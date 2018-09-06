@@ -9,7 +9,18 @@ namespace ShoesProject
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+                        "~/Scripts/jquery-{version}.js",
+                        "~/Scripts/js/vendor/modernizr-2.6.2.min.js",
+                        "~/Scripts/js/vendor/jquery-1.11.3.min.js",
+                        "~/Scripts/js/jquery.fancybox.js",
+                        "~/Scripts/js/jquery.bxslider.min.js",
+                        "~/Scripts/js/jquery.meanmenu.js",
+                        "~/Scripts/js/owl.carousel.min.js",
+                        "~/Scripts/js/jquery.nivo.slider.js",
+                        "~/Scripts/js/jqueryui.js",
+                        "~/Scripts/js/bootstrap.min.js",
+                        "~/Scripts/js/wow.js",
+                        "~/Scripts/js/main.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -25,7 +36,22 @@ namespace ShoesProject
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/css/animate.css",
+                      "~/Content/css/jquery.fancybox.css",
+                      "~/Content/css/jquery.bxslider.css",
+                      "~/Content/css/meanmenu.min.css",
+                      "~/Content/css/jquery-ui-slider.css",
+                      "~/Content/css/nivo-slider.css",
+                      "~/Content/css/owl.carousel.css",
+                      "~/Content/css/owl.theme.css",
+                      "~/Content/css/bootstrap.min.css",
+                      "~/Content/css/font-awesome.min.css",
+                      "~/Content/css/normalize.css",
+                      "~/Content/css/main.css",
+                      "~/Content/style.css",
+                      "~/Content/css/responsive.css",
+                      "~/Content/css/ie.css"));
         }
     }
 }
