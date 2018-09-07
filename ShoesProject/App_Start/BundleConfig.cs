@@ -46,7 +46,7 @@ namespace ShoesProject
                       "~/Content/css/owl.carousel.css",
                       "~/Content/css/owl.theme.css",
                       "~/Content/css/bootstrap.min.css",
-                      "~/Content/css/font-awesome.min.css",
+                      "~/fonts/fonts/font-awesome.min.css",
                       "~/Content/css/normalize.css",
                       "~/Content/css/main.css",
                       "~/Content/style.css",
