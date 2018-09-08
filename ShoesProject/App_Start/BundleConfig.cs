@@ -36,7 +36,6 @@ namespace ShoesProject
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css",
                       "~/Content/css/animate.css",
                       "~/Content/css/jquery.fancybox.css",
                       "~/Content/css/jquery.bxslider.css",
@@ -46,7 +45,7 @@ namespace ShoesProject
                       "~/Content/css/owl.carousel.css",
                       "~/Content/css/owl.theme.css",
                       "~/Content/css/bootstrap.min.css",
-                      "~/Content/css/font-awesome.min.css",
+                      "~/fonts/fonts/font-awesome.min.css",
                       "~/Content/css/normalize.css",
                       "~/Content/css/main.css",
                       "~/Content/style.css",

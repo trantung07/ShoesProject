@@ -151,6 +151,7 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -384,7 +385,7 @@
     <Content Include="Content\css\fancybox\fancybox_sprite.png" />
     <Content Include="Content\css\fancybox_loading%402x.html" />
     <Content Include="Content\css\fancybox_sprite%402x.html" />
-    <Content Include="Content\css\font-awesome.min.css" />
+    <Content Include="fonts\fonts\font-awesome.min.css" />
     <Content Include="Content\css\ie.css" />
     <Content Include="Content\css\images\animated-overlay.html" />
     <Content Include="Content\css\images\ui-bg_diagonals-thick_18_b81900_40x40.html" />
@@ -494,6 +495,7 @@
     <Content Include="Content\img\wishlist\printed-chiffon-dress.jpg" />
     <Content Include="Content\img\wishlist\printed-dress.jpg" />
     <Content Include="Content\img\wishlist\printed-summer-dress.jpg" />
+    <Content Include="Content\style.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fonts\fontawesome-webfonte0a5.svg" />
     <Content Include="fonts\fonts\glyphicons-halflings-regular.svg" />
@@ -582,6 +584,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\js\Baobinh.net.url" />
     <Content Include="Scripts\js\vendor\Baobinh.net.url" />
+    <Content Include="Views\Login\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
