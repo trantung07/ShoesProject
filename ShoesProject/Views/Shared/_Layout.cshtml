@@ -1,6 +1,5 @@
 ﻿<!doctype html>
 <html lang="en">
-<!-- Nulled by http://www.baobinh.net by tieulonglanh -->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -10,7 +9,7 @@
 
     <!-- Favicon
     ============================================ -->
-    <link rel="shortcut icon" type="image/x-icon" href="~/Content/~/Content/img/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="~/Content/img/favicon.png">
 
     <!-- FONTS
     ============================================ -->
@@ -75,11 +74,10 @@
                     <div class="header-right-menu">
                         <nav>
                             <ul class="list-inline">
-                                <li><a href="checkout.html">Check Out</a></li>
-                                <li><a href="wishlist.html">Wishlist</a></li>
-                                <li><a href="my-account.html">My Account</a></li>
-                                <li><a href="cart.html">My Cart</a></li>
-                                <li><a href="registration.html">Sign in</a></li>
+                                <li><a href="@Url.Action("CartPayment","MyCart")">Check Out</a></li>
+                                <li><a href="@Url.Action("Index","MyAccount")">My Account</a></li>
+                                <li><a href="@Url.Action("Index","MyCart")">My Cart</a></li>
+                                <li><a href="@Url.Action("Index","Login")">Sign in</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -96,7 +94,7 @@
                 <div class="col-sm-12">
                     <!-- LOGO START -->
                     <div class="logo">
-                        <a href="index.html"><img src="~/Content/img/logo.png" alt="bstore logo" /></a>
+                        <a href="@Url.Action("Index","Home")"><img src="~/Content/img/logo.png" alt="bstore logo" /></a>
                     </div>
                     <!-- LOGO END -->
                     <!-- HEADER-RIGHT-CALLUS START -->
@@ -161,7 +159,7 @@
                 <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 pull-right shopingcartarea">
                     <div class="shopping-cart-out pull-right">
                         <div class="shopping-cart">
-                            <a class="shop-link" href="cart.html" title="View my shopping cart">
+                            <a class="shop-link" href="@Url.Action("Index","MyCart")" title="View my shopping cart">
                                 <i class="fa fa-shopping-cart cart-icon"></i>
                                 <b>My Cart</b>
                                 <span class="ajax-cart-quantity">2</span>
@@ -170,7 +168,7 @@
                                 <div class="shipping-item">
                                     <span class="cross-icon"><i class="fa fa-times-circle"></i></span>
                                     <div class="shipping-item-image">
-                                        <a href="#"><img src="~/Content/img/shopping-image.jpg" alt="shopping image" /></a>
+                                        <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/shopping-image.jpg" alt="shopping image" /></a>
                                     </div>
                                     <div class="shipping-item-text">
                                         <span>2 <span class="pro-quan-x">x</span> <a href="#" class="pro-cat">Watch</a></span>
@@ -181,7 +179,7 @@
                                 <div class="shipping-item">
                                     <span class="cross-icon"><i class="fa fa-times-circle"></i></span>
                                     <div class="shipping-item-image">
-                                        <a href="#"><img src="~/Content/img/shopping-image2.jpg" alt="shopping image" /></a>
+                                        <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/shopping-image2.jpg" alt="shopping image" /></a>
                                     </div>
                                     <div class="shipping-item-text">
                                         <span>2 <span class="pro-quan-x">x</span> <a href="#" class="pro-cat">Women Bag</a></span>
@@ -200,7 +198,7 @@
                                     </div>
                                 </div>
                                 <div class="shipping-checkout-btn">
-                                    <a href="checkout.html">Check out <i class="fa fa-chevron-right"></i></a>
+                                    <a href="@Url.Action("CartPayment","MyCart")">Check out <i class="fa fa-chevron-right"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -213,7 +211,7 @@
                         <nav>
                             <ul class="list-inline mega-menu">
                                 <li>
-                                    <a href="index.html">Home</a>
+                                    <a href="@Url.Action("Index","Home")">Home</a>
                                     <!-- DROPDOWN MENU START -->
                                     <div class="home-var-menu">
                                         <ul class="home-menu">
@@ -224,27 +222,27 @@
                                     <!-- DROPDOWN MENU END -->
                                 </li>
                                 <li>
-                                    <a href="shop-gird.html">Women</a>
+                                    <a href="@Url.Action("Index","ListProduct")">Women</a>
                                     <!-- DRODOWN-MEGA-MENU START -->
                                     <div class="drodown-mega-menu">
                                         <div class="left-mega col-xs-6">
                                             <div class="mega-menu-list">
-                                                <a class="mega-menu-title" href="shop-gird.html">TOPS</a>
+                                               <a class="mega-menu-title" href="@Url.Action("Index","ListProduct")">TOPS</a>
                                                 <ul>
-                                                    <li><a href="shop-gird.html">T-shirts</a></li>
-                                                    <li><a href="shop-gird.html">clothing</a></li>
-                                                    <li><a href="shop-gird.html">Delivery</a></li>
+                                                    <li><a href="@Url.Action("Index","ProductDetail")">T-shirts</a></li>
+                                                    <li><a href="@Url.Action("Index","ProductDetail")">clothing</a></li>
+                                                    <li><a href="@Url.Action("Index","ProductDetail")">Delivery</a></li>
                                                 </ul>
                                             </div>
                                         </div>
                                         <div class="right-mega col-xs-6">
                                             <div class="mega-menu-list">
-                                                <a class="mega-menu-title" href="shop-gird.html">Prodect</a>
+                                               <a class="mega-menu-title" href="@Url.Action("Index","ListProduct")">Prodect</a>
                                                 <ul>
-                                                    <li><a href="shop-gird.html">T-shirts</a></li>
-                                                    <li><a href="shop-gird.html">clothing</a></li>
-                                                    <li><a href="shop-gird.html">Watch</a></li>
-                                                    <li><a href="shop-gird.html">Delivery</a></li>
+                                                    <li><a href="@Url.Action("Index","ProductDetail")">T-shirts</a></li>
+                                                    <li><a href="@Url.Action("Index","ProductDetail")">clothing</a></li>
+                                                    <li><a href="@Url.Action("Index","ProductDetail")">Watch</a></li>
+                                                    <li><a href="@Url.Action("Index","ProductDetail")">Delivery</a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -252,15 +250,15 @@
                                     <!-- DRODOWN-MEGA-MENU END -->
                                 </li>
                                 <li>
-                                    <a href="shop-gird.html">Men</a>
+                                    <a href="@Url.Action("Index","ListProduct")">Men</a>
                                     <!-- DRODOWN-MEGA-MENU START -->
                                     <div class="drodown-mega-menu">
                                         <div class="left-mega col-xs-6">
                                             <div class="mega-menu-list">
                                                 <ul>
-                                                    <li><a href="shop-gird.html">T-shirts</a></li>
-                                                    <li><a href="shop-gird.html">clothing</a></li>
-                                                    <li><a href="shop-gird.html">Delivery</a></li>
+                                                    <li><a href="@Url.Action("Index","ProductDetail")">T-shirts</a></li>
+                                                    <li><a href="@Url.Action("Index","ProductDetail")">clothing</a></li>
+                                                    <li><a href="@Url.Action("Index","ProductDetail")">Delivery</a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -268,43 +266,43 @@
                                     <!-- DRODOWN-MEGA-MENU END -->
                                 </li>
                                 <li>
-                                    <a href="shop-gird.html">clothing</a>
+                                    <a href="@Url.Action("Index","ListProduct")">clothing</a>
                                     <!-- DRODOWN-MEGA-MENU START -->
                                     <div class="drodown-mega-menu">
                                         <div class="left-mega col-xs-6">
                                             <div class="mega-menu-list">
-                                                <a class="mega-menu-title" href="shop-gird.html">TOPS</a>
+                                               <a class="mega-menu-title" href="@Url.Action("Index","ListProduct")">TOPS</a>
                                                 <ul>
-                                                    <li><a href="shop-gird.html">T-shirts</a></li>
-                                                    <li><a href="shop-gird.html">clothing</a></li>
-                                                    <li><a href="shop-gird.html">Delivery</a></li>
+                                                    <li><a href="@Url.Action("Index","ProductDetail")">T-shirts</a></li>
+                                                    <li><a href="@Url.Action("Index","ProductDetail")">clothing</a></li>
+                                                    <li><a href="@Url.Action("Index","ProductDetail")">Delivery</a></li>
                                                 </ul>
                                             </div>
                                             <div class="mega-menu-list">
-                                                <a class="mega-menu-title" href="shop-gird.html">new product</a>
+                                               <a class="mega-menu-title" href="@Url.Action("Index","ListProduct")">new product</a>
                                                 <ul>
-                                                    <li><a href="shop-gird.html">T-shirts</a></li>
-                                                    <li><a href="shop-gird.html">clothing</a></li>
-                                                    <li><a href="shop-gird.html">Delivery</a></li>
+                                                    <li><a href="@Url.Action("Index","ProductDetail")">T-shirts</a></li>
+                                                    <li><a href="@Url.Action("Index","ProductDetail")">clothing</a></li>
+                                                    <li><a href="@Url.Action("Index","ProductDetail")">Delivery</a></li>
                                                 </ul>
                                             </div>
                                         </div>
                                         <div class="right-mega col-xs-6">
                                             <div class="mega-menu-list">
-                                                <a class="mega-menu-title" href="shop-gird.html">Prodect</a>
+                                               <a class="mega-menu-title" href="@Url.Action("Index","ListProduct")">Prodect</a>
                                                 <ul>
-                                                    <li><a href="shop-gird.html">T-shirts</a></li>
-                                                    <li><a href="shop-gird.html">clothing</a></li>
-                                                    <li><a href="shop-gird.html">Watch</a></li>
-                                                    <li><a href="shop-gird.html">Delivery</a></li>
+                                                    <li><a href="@Url.Action("Index","ProductDetail")">T-shirts</a></li>
+                                                    <li><a href="@Url.Action("Index","ProductDetail")">clothing</a></li>
+                                                    <li><a href="@Url.Action("Index","ProductDetail")">Watch</a></li>
+                                                    <li><a href="@Url.Action("Index","ProductDetail")">Delivery</a></li>
                                                 </ul>
                                             </div>
                                             <div class="mega-menu-list">
-                                                <a class="mega-menu-title" href="shop-gird.html">best sale month</a>
+                                               <a class="mega-menu-title" href="@Url.Action("Index","ListProduct")">best sale month</a>
                                                 <ul>
-                                                    <li><a href="shop-gird.html">T-shirts</a></li>
-                                                    <li><a href="shop-gird.html">clothing</a></li>
-                                                    <li><a href="shop-gird.html">Delivery</a></li>
+                                                    <li><a href="@Url.Action("Index","ProductDetail")">T-shirts</a></li>
+                                                    <li><a href="@Url.Action("Index","ProductDetail")">clothing</a></li>
+                                                    <li><a href="@Url.Action("Index","ProductDetail")">Delivery</a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -312,56 +310,56 @@
                                     <!-- DRODOWN-MEGA-MENU END -->
                                 </li>
                                 <li>
-                                    <a href="shop-gird.html">Tops</a>
+                                    <a href="@Url.Action("Index","ListProduct")">Tops</a>
                                     <!-- DRODOWN-MEGA-MENU START -->
                                     <div class="drodown-mega-menu">
                                         <div class="left-mega col-xs-4">
                                             <div class="mega-menu-list">
-                                                <a class="mega-menu-title" href="shop-gird.html">TOPS</a>
+                                               <a class="mega-menu-title" href="@Url.Action("Index","ListProduct")">TOPS</a>
                                                 <ul>
-                                                    <li><a href="shop-gird.html">T-shirts</a></li>
-                                                    <li><a href="shop-gird.html">clothing</a></li>
-                                                    <li><a href="shop-gird.html">Delivery</a></li>
+                                                    <li><a href="@Url.Action("Index","ProductDetail")">T-shirts</a></li>
+                                                    <li><a href="@Url.Action("Index","ProductDetail")">clothing</a></li>
+                                                    <li><a href="@Url.Action("Index","ProductDetail")">Delivery</a></li>
                                                 </ul>
                                             </div>
                                         </div>
                                         <div class="right-mega col-xs-4">
                                             <div class="mega-menu-list">
-                                                <a class="mega-menu-title" href="shop-gird.html">best sale month</a>
+                                               <a class="mega-menu-title" href="@Url.Action("Index","ListProduct")">best sale month</a>
                                                 <ul>
-                                                    <li><a href="shop-gird.html">T-shirts</a></li>
-                                                    <li><a href="shop-gird.html">clothing</a></li>
-                                                    <li><a href="shop-gird.html">Delivery</a></li>
+                                                    <li><a href="@Url.Action("Index","ProductDetail")">T-shirts</a></li>
+                                                    <li><a href="@Url.Action("Index","ProductDetail")">clothing</a></li>
+                                                    <li><a href="@Url.Action("Index","ProductDetail")">Delivery</a></li>
                                                 </ul>
                                             </div>
                                         </div>
                                         <div class="right-mega col-xs-4">
                                             <div class="mega-menu-list">
-                                                <a class="mega-menu-title" href="shop-gird.html">top rate product</a>
+                                               <a class="mega-menu-title" href="@Url.Action("Index","ListProduct")">top rate product</a>
                                                 <ul>
-                                                    <li><a href="shop-gird.html">T-shirts</a></li>
-                                                    <li><a href="shop-gird.html">clothing</a></li>
-                                                    <li><a href="shop-gird.html">Delivery</a></li>
+                                                    <li><a href="@Url.Action("Index","ProductDetail")">T-shirts</a></li>
+                                                    <li><a href="@Url.Action("Index","ProductDetail")">clothing</a></li>
+                                                    <li><a href="@Url.Action("Index","ProductDetail")">Delivery</a></li>
                                                 </ul>
                                             </div>
                                         </div>
                                         <div class="left-mega col-xs-6">
                                             <div class="mega-menu-list">
-                                                <a class="mega-menu-title" href="shop-gird.html">Latest product</a>
+                                               <a class="mega-menu-title" href="@Url.Action("Index","ListProduct")">Latest product</a>
                                                 <ul>
-                                                    <li><a href="shop-gird.html">T-shirts</a></li>
-                                                    <li><a href="shop-gird.html">clothing</a></li>
-                                                    <li><a href="shop-gird.html">Delivery</a></li>
+                                                    <li><a href="@Url.Action("Index","ProductDetail")">T-shirts</a></li>
+                                                    <li><a href="@Url.Action("Index","ProductDetail")">clothing</a></li>
+                                                    <li><a href="@Url.Action("Index","ProductDetail")">Delivery</a></li>
                                                 </ul>
                                             </div>
                                         </div>
                                         <div class="left-mega col-xs-6">
                                             <div class="mega-menu-list">
-                                                <a class="mega-menu-title" href="shop-gird.html">popular product</a>
+                                               <a class="mega-menu-title" href="@Url.Action("Index","ListProduct")">popular product</a>
                                                 <ul>
-                                                    <li><a href="shop-gird.html">T-shirts</a></li>
-                                                    <li><a href="shop-gird.html">clothing</a></li>
-                                                    <li><a href="shop-gird.html">Delivery</a></li>
+                                                    <li><a href="@Url.Action("Index","ProductDetail")">T-shirts</a></li>
+                                                    <li><a href="@Url.Action("Index","ProductDetail")">clothing</a></li>
+                                                    <li><a href="@Url.Action("Index","ProductDetail")">Delivery</a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -369,43 +367,43 @@
                                     <!-- DRODOWN-MEGA-MENU END -->
                                 </li>
                                 <li>
-                                    <a href="shop-gird.html">T-shirts</a>
+                                    <a href="@Url.Action("Index","ListProduct")">T-shirts</a>
                                     <!-- DRODOWN-MEGA-MENU START -->
                                     <div class="drodown-mega-menu">
                                         <div class="left-mega col-xs-6">
                                             <div class="mega-menu-list">
-                                                <a class="mega-menu-title" href="shop-gird.html">TOPS</a>
+                                               <a class="mega-menu-title" href="@Url.Action("Index","ListProduct")">TOPS</a>
                                                 <ul>
-                                                    <li><a href="shop-gird.html">T-shirts</a></li>
-                                                    <li><a href="shop-gird.html">clothing</a></li>
-                                                    <li><a href="shop-gird.html">Delivery</a></li>
+                                                    <li><a href="@Url.Action("Index","ProductDetail")">T-shirts</a></li>
+                                                    <li><a href="@Url.Action("Index","ProductDetail")">clothing</a></li>
+                                                    <li><a href="@Url.Action("Index","ProductDetail")">Delivery</a></li>
                                                 </ul>
                                             </div>
                                             <div class="mega-menu-list">
-                                                <a class="mega-menu-title" href="shop-gird.html">new product</a>
+                                               <a class="mega-menu-title" href="@Url.Action("Index","ListProduct")">new product</a>
                                                 <ul>
-                                                    <li><a href="shop-gird.html">T-shirts</a></li>
-                                                    <li><a href="shop-gird.html">clothing</a></li>
-                                                    <li><a href="shop-gird.html">Delivery</a></li>
+                                                    <li><a href="@Url.Action("Index","ProductDetail")">T-shirts</a></li>
+                                                    <li><a href="@Url.Action("Index","ProductDetail")">clothing</a></li>
+                                                    <li><a href="@Url.Action("Index","ProductDetail")">Delivery</a></li>
                                                 </ul>
                                             </div>
                                         </div>
                                         <div class="right-mega col-xs-6">
                                             <div class="mega-menu-list">
-                                                <a class="mega-menu-title" href="shop-gird.html">Prodect</a>
+                                               <a class="mega-menu-title" href="@Url.Action("Index","ListProduct")">Prodect</a>
                                                 <ul>
-                                                    <li><a href="shop-gird.html">T-shirts</a></li>
-                                                    <li><a href="shop-gird.html">clothing</a></li>
-                                                    <li><a href="shop-gird.html">Watch</a></li>
-                                                    <li><a href="shop-gird.html">Delivery</a></li>
+                                                    <li><a href="@Url.Action("Index","ProductDetail")">T-shirts</a></li>
+                                                    <li><a href="@Url.Action("Index","ProductDetail")">clothing</a></li>
+                                                    <li><a href="@Url.Action("Index","ProductDetail")">Watch</a></li>
+                                                    <li><a href="@Url.Action("Index","ProductDetail")">Delivery</a></li>
                                                 </ul>
                                             </div>
                                             <div class="mega-menu-list">
-                                                <a class="mega-menu-title" href="shop-gird.html">best sale month</a>
+                                               <a class="mega-menu-title" href="@Url.Action("Index","ListProduct")">best sale month</a>
                                                 <ul>
-                                                    <li><a href="shop-gird.html">T-shirts</a></li>
-                                                    <li><a href="shop-gird.html">clothing</a></li>
-                                                    <li><a href="shop-gird.html">Delivery</a></li>
+                                                    <li><a href="@Url.Action("Index","ProductDetail")">T-shirts</a></li>
+                                                    <li><a href="@Url.Action("Index","ProductDetail")">clothing</a></li>
+                                                    <li><a href="@Url.Action("Index","ProductDetail")">Delivery</a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -435,58 +433,58 @@
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="shop-gird.html">Women</a>
+                                    <a href="@Url.Action("Index","ListProduct")">Women</a>
                                     <ul>
                                         <li>
-                                            <a href="shop-gird.html">Tops</a>
+                                            <a href="@Url.Action("Index","ListProduct")">Tops</a>
                                             <ul>
-                                                <li><a href="shop-gird.html">T-Shirts</a></li>
-                                                <li><a href="shop-gird.html">Blouses</a></li>
+                                                <li><a href="@Url.Action("Index","ProductDetail")">T-Shirts</a></li>
+                                                <li><a href="@Url.Action("Index","ProductDetail")">Blouses</a></li>
                                             </ul>
                                         </li>
                                         <li>
-                                            <a href="shop-gird.html">Dresses</a>
+                                            <a href="@Url.Action("Index","ListProduct")">Dresses</a>
                                             <ul>
-                                                <li><a href="shop-gird.html">Casual Dresses</a></li>
-                                                <li><a href="shop-gird.html">Summer Dresses</a></li>
-                                                <li><a href="shop-gird.html">Evening Dresses</a></li>
+                                                <li><a href="@Url.Action("Index","ProductDetail")">Casual Dresses</a></li>
+                                                <li><a href="@Url.Action("Index","ProductDetail")">Summer Dresses</a></li>
+                                                <li><a href="@Url.Action("Index","ProductDetail")">Evening Dresses</a></li>
                                             </ul>
                                         </li>
 
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="shop-gird.html">men</a>
+                                    <a href="@Url.Action("Index","ListProduct")">men</a>
                                     <ul>
                                         <li>
-                                            <a href="shop-gird.html">Tops</a>
+                                            <a href="@Url.Action("Index","ListProduct")">Tops</a>
                                             <ul>
-                                                <li><a href="shop-gird.html">Sports</a></li>
-                                                <li><a href="shop-gird.html">Day</a></li>
-                                                <li><a href="shop-gird.html">Evening</a></li>
+                                                <li><a href="@Url.Action("Index","ProductDetail")">Sports</a></li>
+                                                <li><a href="@Url.Action("Index","ProductDetail")">Day</a></li>
+                                                <li><a href="@Url.Action("Index","ProductDetail")">Evening</a></li>
                                             </ul>
                                         </li>
                                         <li>
-                                            <a href="shop-gird.html">Blouses</a>
+                                            <a href="@Url.Action("Index","ListProduct")">Blouses</a>
                                             <ul>
-                                                <li><a href="shop-gird.html">Handbag</a></li>
-                                                <li><a href="shop-gird.html">Headphone</a></li>
-                                                <li><a href="shop-gird.html">Houseware</a></li>
+                                                <li><a href="@Url.Action("Index","ProductDetail")">Handbag</a></li>
+                                                <li><a href="@Url.Action("Index","ProductDetail")">Headphone</a></li>
+                                                <li><a href="@Url.Action("Index","ProductDetail")">Houseware</a></li>
                                             </ul>
                                         </li>
                                         <li>
-                                            <a href="shop-gird.html">Accessories</a>
+                                            <a href="@Url.Action("Index","ListProduct")">Accessories</a>
                                             <ul>
-                                                <li><a href="shop-gird.html">Houseware</a></li>
-                                                <li><a href="shop-gird.html">Home</a></li>
-                                                <li><a href="shop-gird.html">Health & Beauty</a></li>
+                                                <li><a href="@Url.Action("Index","ProductDetail")">Houseware</a></li>
+                                                <li><a href="@Url.Action("Index","ProductDetail")">Home</a></li>
+                                                <li><a href="@Url.Action("Index","ProductDetail")">Health & Beauty</a></li>
                                             </ul>
                                         </li>
                                     </ul>
                                 </li>
-                                <li><a href="shop-gird.html">clothing</a></li>
-                                <li><a href="shop-gird.html">tops</a></li>
-                                <li><a href="shop-gird.html">T-shirts</a></li>
+                                <li><a href="@Url.Action("Index","ProductDetail")">clothing</a></li>
+                                <li><a href="@Url.Action("Index","ProductDetail")">tops</a></li>
+                                <li><a href="@Url.Action("Index","ProductDetail")">T-shirts</a></li>
                                 <li><a href="#">Delivery</a></li>
                                 <li><a href="about-us.html">About us</a></li>
                             </ul>
@@ -828,10 +826,10 @@
                                         <div class="single-f-widget">
                                             <h2>Categories</h2>
                                             <ul>
-                                                <li><a href="shop-gird.html"><i class="fa fa-angle-double-right"></i>Women </a></li>
-                                                <li><a href="shop-gird.html"><i class="fa fa-angle-double-right"></i>Men</a></li>
-                                                <li><a href="shop-gird.html"><i class="fa fa-angle-double-right"></i>clothing</a></li>
-                                                <li><a href="shop-gird.html"><i class="fa fa-angle-double-right"></i>kids</a></li>
+                                                <li><a href="@Url.Action("Index","ProductDetail")"><i class="fa fa-angle-double-right"></i>Women </a></li>
+                                                <li><a href="@Url.Action("Index","ProductDetail")"><i class="fa fa-angle-double-right"></i>Men</a></li>
+                                                <li><a href="@Url.Action("Index","ProductDetail")"><i class="fa fa-angle-double-right"></i>clothing</a></li>
+                                                <li><a href="@Url.Action("Index","ProductDetail")"><i class="fa fa-angle-double-right"></i>kids</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -846,7 +844,7 @@
                                                 <li><a href="#"><i class="fa fa-angle-double-right"></i>Specials</a></li>
                                                 <li><a href="#"><i class="fa fa-angle-double-right"></i>New products</a></li>
                                                 <li><a href="#"><i class="fa fa-angle-double-right"></i>Best sellers</a></li>
-                                                <li><a href="contact-us.html"><i class="fa fa-angle-double-right"></i>Contact Us</a></li>
+                                                <li><a href="@Url.Action("Contact","Home")"><i class="fa fa-angle-double-right"></i>Contact Us</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -889,7 +887,7 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="copy-right">
-                        <address>Copyright © 2015 <a href="http://bootexperts.com/">BootExperts</a> All Rights Reserved</address>
+                        <address>Copyright © 2018 <a href="http://bootexperts.com/">BootExperts</a> All Rights Reserved</address>
                     </div>
                     <div class="scroll-to-top">
                         <a href="#" class="bstore-scrollertop"><i class="fa fa-angle-double-up"></i></a>
@@ -925,6 +923,4 @@
    
 
 </body>
-
-<!-- Nulled by http://www.baobinh.net by tieulonglanh -->
 </html>

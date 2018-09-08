@@ -36,7 +36,6 @@ namespace ShoesProject
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css",
                       "~/Content/css/animate.css",
                       "~/Content/css/jquery.fancybox.css",
                       "~/Content/css/jquery.bxslider.css",
