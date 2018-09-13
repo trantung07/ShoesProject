@@ -162,14 +162,19 @@
     <Compile Include="Areas\Admin\Controllers\ColorsController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\PermissonsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SizesController.cs" />
     <Compile Include="Areas\Admin\Util\ReflectionController.cs" />
     <Compile Include="Areas\Admin\Util\Utility.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ListProductController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+<<<<<<< HEAD
     <Compile Include="Controllers\MyAccountController.cs" />
     <Compile Include="Controllers\MyCartController.cs" />
     <Compile Include="Controllers\ProductDetailController.cs" />
+=======
+    <Compile Include="Controllers\SizesController.cs" />
+>>>>>>> 040d527456d907a2611dff7eb4d3b6172d4a2f12
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -592,6 +597,11 @@
     <Content Include="Areas\Admin\Views\Permissons\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Permissons\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Permissons\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Sizes\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Sizes\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Sizes\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Sizes\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Sizes\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -637,6 +647,7 @@
     <Content Include="Views\Admins\Edit.cshtml" />
     <Content Include="Views\Admins\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\ListProduct\Index.cshtml" />
     <Content Include="Views\MyAccount\Index.cshtml" />
     <Content Include="Views\MyAccount\MyPersonalInformation.cshtml" />
@@ -646,6 +657,13 @@
     <Content Include="Views\MyCart\CartShipping.cshtml" />
     <Content Include="Views\MyCart\CartSignin.cshtml" />
     <Content Include="Views\MyCart\Index.cshtml" />
+=======
+    <Content Include="Views\Sizes\Create.cshtml" />
+    <Content Include="Views\Sizes\Delete.cshtml" />
+    <Content Include="Views\Sizes\Details.cshtml" />
+    <Content Include="Views\Sizes\Edit.cshtml" />
+    <Content Include="Views\Sizes\Index.cshtml" />
+>>>>>>> 040d527456d907a2611dff7eb4d3b6172d4a2f12
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
