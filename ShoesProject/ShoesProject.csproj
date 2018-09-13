@@ -162,6 +162,7 @@
     <Compile Include="Areas\Admin\Controllers\ColorsController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\PermissonsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SizesController.cs" />
     <Compile Include="Areas\Admin\Util\ReflectionController.cs" />
     <Compile Include="Areas\Admin\Util\Utility.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -170,6 +171,7 @@
     <Compile Include="Controllers\MyAccountController.cs" />
     <Compile Include="Controllers\MyCartController.cs" />
     <Compile Include="Controllers\ProductDetailController.cs" />
+    <Compile Include="Controllers\SizesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -592,6 +594,11 @@
     <Content Include="Areas\Admin\Views\Permissons\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Permissons\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Permissons\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Sizes\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Sizes\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Sizes\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Sizes\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Sizes\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -646,6 +653,11 @@
     <Content Include="Views\MyCart\CartShipping.cshtml" />
     <Content Include="Views\MyCart\CartSignin.cshtml" />
     <Content Include="Views\MyCart\Index.cshtml" />
+    <Content Include="Views\Sizes\Create.cshtml" />
+    <Content Include="Views\Sizes\Delete.cshtml" />
+    <Content Include="Views\Sizes\Details.cshtml" />
+    <Content Include="Views\Sizes\Edit.cshtml" />
+    <Content Include="Views\Sizes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

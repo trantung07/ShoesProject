@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    var color = "#";
 }
 
 <h2>Index</h2>
@@ -16,7 +17,7 @@
             @Html.DisplayNameFor(model => model.ColorValue)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ColorCode)
+            Color
         </th>
         <th>
             @Html.DisplayNameFor(model => model.ColorStatus)
@@ -30,7 +31,8 @@
             @Html.DisplayFor(modelItem => item.ColorValue)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ColorCode)
+            
+            <div style="max-width: 100px; height:20px; background-color: #@item.ColorCode"></div>
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.ColorStatus)
