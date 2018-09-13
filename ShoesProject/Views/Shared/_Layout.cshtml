@@ -74,10 +74,19 @@
                     <div class="header-right-menu">
                         <nav>
                             <ul class="list-inline">
-                                <li><a href="@Url.Action("CartPayment","MyCart")">Check Out</a></li>
-                                <li><a href="@Url.Action("Index","MyAccount")">My Account</a></li>
-                                <li><a href="@Url.Action("Index","MyCart")">My Cart</a></li>
-                                <li><a href="@Url.Action("Index","Login")">Sign in</a></li>
+                                  @if (Session["user"] != null)
+                                  {
+                                        <li><a href="@Url.Action("CartPayment","MyCart")">Check Out</a></li>
+                                        <li><a href="@Url.Action("Index","MyCart")">My Cart</a></li>
+                                        <li><p class="navbar-right text-primary">Hello @Session["user"]</p></li>
+                                        <li><a href="@Url.Action("Index","MyAccount")">My Account</a></li>
+                                  }else
+                                  {
+                                    <li><a href="@Url.Action("CartPayment","MyCart")">Check Out</a></li>
+                                    <li><a href="@Url.Action("Index","MyAccount")">My Account</a></li>
+                                    <li><a href="@Url.Action("Index","MyCart")">My Cart</a></li>
+                                    <li><a href="@Url.Action("Index","Login")">Sign in</a></li>
+                                  }
                             </ul>
                         </nav>
                     </div>
