@@ -74,11 +74,12 @@
                     <div class="header-right-menu">
                         <nav>
                             <ul class="list-inline">
-                                  @if (Session["user"] != null)
+                                  @if (Session["fullname"] != null)
                                   {
                                         <li><a href="@Url.Action("CartPayment","MyCart")">Check Out</a></li>
                                         <li><a href="@Url.Action("Index","MyCart")">My Cart</a></li>
-                                        <li><p class="navbar-right text-primary">Hello @Session["user"]</p></li>
+                                        <li><p>Hello @Session["fullname"]</p></li>
+                                        <li>@Html.ActionLink("LogOut", "LogOut","Login")</li>
                                         <li><a href="@Url.Action("Index","MyAccount")">My Account</a></li>
                                   }else
                                   {
