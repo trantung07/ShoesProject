@@ -8,7 +8,6 @@ namespace ShoesProject.Controllers
 {
     public class HomeController : Controller
     {
-        // GET: Home
         public ActionResult Index()
         {
             return View();
@@ -17,6 +16,7 @@ namespace ShoesProject.Controllers
         {
             return View();
         }
+
         public ActionResult Contact()
         {
             return View();
