@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace ShoesProject.Controllers
 {
-    public class Home2Controller : Controller
+    public class HomeController : Controller
     {
         public ActionResult Index()
         {
