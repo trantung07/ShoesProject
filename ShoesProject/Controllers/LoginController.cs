@@ -45,7 +45,7 @@ namespace ShoesProject.Controllers
             var user = db.Users.SingleOrDefault(x => x.Email.Equals(Email) && x.Password.StartsWith(pass) && x.Password.EndsWith(pass));
             if (user != null)
             {
-                Session["user"] = user.UserName;
+                Session["fullname"] = user.UserName;
                 return RedirectToAction("Index", "MyAccount");
             }
             else
@@ -54,6 +54,12 @@ namespace ShoesProject.Controllers
                 return RedirectToAction("Index");
             }
         }
+        public ActionResult LogOut()
+        {
+            Session.Remove("fullname");
+            return RedirectToAction("Index");
+        }
+
 
     }
 }

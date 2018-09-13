@@ -164,9 +164,12 @@
     <Compile Include="Areas\Admin\Controllers\PermissonsController.cs" />
     <Compile Include="Areas\Admin\Util\ReflectionController.cs" />
     <Compile Include="Areas\Admin\Util\Utility.cs" />
-    <Compile Include="Controllers\Home2Controller.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ListProductController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\MyAccountController.cs" />
+    <Compile Include="Controllers\MyCartController.cs" />
+    <Compile Include="Controllers\ProductDetailController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -634,6 +637,15 @@
     <Content Include="Views\Admins\Edit.cshtml" />
     <Content Include="Views\Admins\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\ListProduct\Index.cshtml" />
+    <Content Include="Views\MyAccount\Index.cshtml" />
+    <Content Include="Views\MyAccount\MyPersonalInformation.cshtml" />
+    <Content Include="Views\ProductDetail\Index.cshtml" />
+    <Content Include="Views\MyCart\CartAddress.cshtml" />
+    <Content Include="Views\MyCart\CartPayment.cshtml" />
+    <Content Include="Views\MyCart\CartShipping.cshtml" />
+    <Content Include="Views\MyCart\CartSignin.cshtml" />
+    <Content Include="Views\MyCart\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -646,6 +658,12 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Hung\Hung.csproj">
+      <Project>{CD7181EF-66DA-499B-A137-8ECBFA410519}</Project>
+      <Name>Hung</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
