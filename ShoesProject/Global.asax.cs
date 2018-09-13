@@ -17,5 +17,17 @@ namespace ShoesProject
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
+        protected void Session_Start()
+        {
+            Session["userid"] = null;
+            Session["username"] = null;
+            Session["fullname"] = null;
+            Session["avatar"] = null;
+
+            Session["adminId"] = null;
+            Session["adminUsername"] = null;
+            Session["adminName"] = null;
+            Session["avatar"] = null;
+        }
     }
 }

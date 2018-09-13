@@ -1,0 +1,42 @@
+﻿@model IEnumerable<ShoesProject.Models.Business>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+<p>
+    @Html.ActionLink("Sync", "SyncBusiness")
+</p>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.BusinessId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BusinessName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.BusinessId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BusinessName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.BusinessId }) |
+            @Html.ActionLink("Danh sách action", "Index", "Permissons", new { id = item.BusinessId }, new { hidefocus = "hidefocus" }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.BusinessId })
+        </td>
+    </tr>
+}
+
+</table>
