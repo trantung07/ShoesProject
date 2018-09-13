@@ -1,0 +1,58 @@
+﻿@model IEnumerable<ShoesProject.Models.Admin>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.AdminPassword)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AdminUsername)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AdminIsDeleted)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AdminIsDisabled)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsSuper)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AdminPassword)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AdminUsername)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AdminIsDeleted)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AdminIsDisabled)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsSuper)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.AdminId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.AdminId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.AdminId })
+        </td>
+    </tr>
+}
+
+</table>
