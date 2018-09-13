@@ -1,0 +1,44 @@
+﻿@model IEnumerable<TungTT25.Model.Size>
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create</h2>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h4>Form Layout</h4>
+
+                </div>
+                <div class="panel-body">
+                    <h3>Size Forms</h3>
+                    <br>
+                    <form class="form-horizontal" method="post" action="~/Admin/Sizes/Create">
+                        <div class="form-group">
+                            <label for="SizeValue" class="col-sm-3 control-label">Size Name</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" name="SizeValue" id="SizeValue" placeholder="Input Size Name">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="checkbox" class="col-sm-3 control-label">Status</label>
+                            <div class="col-sm-6">
+                                <div class="checkbox block"><label><input type="checkbox" name="SizeStatus" value="True" checked> Enabled</label></div>
+                            </div>
+                        </div>
+                        <div class="btn-toolbar form-group" style="text-align:center">
+                            <button class="btn-primary btn">Submit</button>
+                            <button class="btn-default btn">Cancel</button>
+                        </div>
+
+                    </form>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
