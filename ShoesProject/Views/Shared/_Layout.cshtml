@@ -74,10 +74,20 @@
                     <div class="header-right-menu">
                         <nav>
                             <ul class="list-inline">
-                                <li><a href="@Url.Action("CartPayment","MyCart")">Check Out</a></li>
-                                <li><a href="@Url.Action("Index","MyAccount")">My Account</a></li>
-                                <li><a href="@Url.Action("Index","MyCart")">My Cart</a></li>
-                                <li><a href="@Url.Action("Index","Login")">Sign in</a></li>
+                                  @if (Session["fullname"] != null)
+                                  {
+                                        <li><a href="@Url.Action("CartPayment","MyCart")">Check Out</a></li>
+                                        <li><a href="@Url.Action("Index","MyCart")">My Cart</a></li>
+                                        <li><p>Hello @Session["fullname"]</p></li>
+                                        <li>@Html.ActionLink("LogOut", "LogOut","Login")</li>
+                                        <li><a href="@Url.Action("Index","MyAccount")">My Account</a></li>
+                                  }else
+                                  {
+                                    <li><a href="@Url.Action("CartPayment","MyCart")">Check Out</a></li>
+                                    <li><a href="@Url.Action("Index","MyAccount")">My Account</a></li>
+                                    <li><a href="@Url.Action("Index","MyCart")">My Cart</a></li>
+                                    <li><a href="@Url.Action("Index","Login")">Sign in</a></li>
+                                  }
                             </ul>
                         </nav>
                     </div>
@@ -411,7 +421,7 @@
                                     <!-- DRODOWN-MEGA-MENU END -->
                                 </li>
                                 <li><a href="#">Delivery</a></li>
-                                <li><a href="about-us.html">About us</a></li>
+                                <li><a href="@Url.Action("About","Home")">About us</a></li>
                             </ul>
                         </nav>
                     </div>

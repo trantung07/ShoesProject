@@ -10,108 +10,107 @@ using ShoesProjectModels.Model;
 
 namespace ShoesProject.Areas.Admin.Controllers
 {
-    public class ColorsController : Controller
+    public class AdminsController : Controller
     {
         private Shoes db = new Shoes();
 
-        // GET: Admin/Colors
+        // GET: Admin/Admins
         public ActionResult Index()
         {
-            return View(db.Colors.ToList());
+            return View(db.Admins.ToList());
         }
 
-        // GET: Admin/Colors/Details/5
+        // GET: Admin/Admins/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Color color = db.Colors.Find(id);
-            if (color == null)
+            ShoesProjectModels.Model.Admin admin = db.Admins.Find(id);
+            if (admin == null)
             {
                 return HttpNotFound();
             }
-            return View(color);
+            return View(admin);
         }
 
-        // GET: Admin/Colors/Create
+        // GET: Admin/Admins/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Admin/Colors/Create
+        // POST: Admin/Admins/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ColorId,ColorValue,ColorCode")] Color color)
+        public ActionResult Create([Bind(Include = "AdminId,AdminPassword,AdminUsername,AdminIsDeleted,AdminIsDisabled,IsSuper")] ShoesProjectModels.Model.Admin admin)
         {
-            color.ColorStatus = true;
             if (ModelState.IsValid)
             {
-                db.Colors.Add(color);
+                db.Admins.Add(admin);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(color);
+            return View(admin);
         }
 
-        // GET: Admin/Colors/Edit/5
+        // GET: Admin/Admins/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Color color = db.Colors.Find(id);
-            if (color == null)
+            ShoesProjectModels.Model.Admin admin = db.Admins.Find(id);
+            if (admin == null)
             {
                 return HttpNotFound();
             }
-            return View(color);
+            return View(admin);
         }
 
-        // POST: Admin/Colors/Edit/5
+        // POST: Admin/Admins/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ColorId,ColorValue,ColorCode,ColorStatus")] Color color)
+        public ActionResult Edit([Bind(Include = "AdminId,AdminPassword,AdminUsername,AdminIsDeleted,AdminIsDisabled,IsSuper")] ShoesProjectModels.Model.Admin admin)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(color).State = EntityState.Modified;
+                db.Entry(admin).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(color);
+            return View(admin);
         }
 
-        // GET: Admin/Colors/Delete/5
+        // GET: Admin/Admins/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Color color = db.Colors.Find(id);
-            if (color == null)
+            ShoesProjectModels.Model.Admin admin = db.Admins.Find(id);
+            if (admin == null)
             {
                 return HttpNotFound();
             }
-            return View(color);
+            return View(admin);
         }
 
-        // POST: Admin/Colors/Delete/5
+        // POST: Admin/Admins/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Color color = db.Colors.Find(id);
-            db.Colors.Remove(color);
+            ShoesProjectModels.Model.Admin admin = db.Admins.Find(id);
+            db.Admins.Remove(admin);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

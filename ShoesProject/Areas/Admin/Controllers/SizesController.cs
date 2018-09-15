@@ -1,22 +1,40 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using TungTT25.Model;
+using ShoesProjectModels.Model;
 
 namespace ShoesProject.Areas.Admin.Controllers
 {
     public class SizesController : Controller
     {
-        ShoesModel db = new ShoesModel();
+        private Shoes db = new Shoes();
         // GET: Admin/Sizes
         public ActionResult Index()
         {
             return View(db.Sizes.ToList());
         }
 
+        // GET: Admin/Sizes/Details/5
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Size size = db.Sizes.Find(id);
+            if (size == null)
+            {
+                return HttpNotFound();
+            }
+            return View(size);
+        }
+
+        // GET: Admin/Sizes/Create
         public ActionResult Create()
         {
             return View();

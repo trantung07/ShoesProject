@@ -10,108 +10,107 @@ using ShoesProjectModels.Model;
 
 namespace ShoesProject.Areas.Admin.Controllers
 {
-    public class ColorsController : Controller
+    public class BrandsController : Controller
     {
         private Shoes db = new Shoes();
 
-        // GET: Admin/Colors
+        // GET: Admin/Brands
         public ActionResult Index()
         {
-            return View(db.Colors.ToList());
+            return View(db.Brands.ToList());
         }
 
-        // GET: Admin/Colors/Details/5
+        // GET: Admin/Brands/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Color color = db.Colors.Find(id);
-            if (color == null)
+            Brand brand = db.Brands.Find(id);
+            if (brand == null)
             {
                 return HttpNotFound();
             }
-            return View(color);
+            return View(brand);
         }
 
-        // GET: Admin/Colors/Create
+        // GET: Admin/Brands/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Admin/Colors/Create
+        // POST: Admin/Brands/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ColorId,ColorValue,ColorCode")] Color color)
+        public ActionResult Create([Bind(Include = "BrandId,BrandName,BrandImage")] Brand brand)
         {
-            color.ColorStatus = true;
             if (ModelState.IsValid)
             {
-                db.Colors.Add(color);
+                db.Brands.Add(brand);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(color);
+            return View(brand);
         }
 
-        // GET: Admin/Colors/Edit/5
+        // GET: Admin/Brands/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Color color = db.Colors.Find(id);
-            if (color == null)
+            Brand brand = db.Brands.Find(id);
+            if (brand == null)
             {
                 return HttpNotFound();
             }
-            return View(color);
+            return View(brand);
         }
 
-        // POST: Admin/Colors/Edit/5
+        // POST: Admin/Brands/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ColorId,ColorValue,ColorCode,ColorStatus")] Color color)
+        public ActionResult Edit([Bind(Include = "BrandId,BrandName,BrandImage")] Brand brand)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(color).State = EntityState.Modified;
+                db.Entry(brand).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(color);
+            return View(brand);
         }
 
-        // GET: Admin/Colors/Delete/5
+        // GET: Admin/Brands/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Color color = db.Colors.Find(id);
-            if (color == null)
+            Brand brand = db.Brands.Find(id);
+            if (brand == null)
             {
                 return HttpNotFound();
             }
-            return View(color);
+            return View(brand);
         }
 
-        // POST: Admin/Colors/Delete/5
+        // POST: Admin/Brands/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Color color = db.Colors.Find(id);
-            db.Colors.Remove(color);
+            Brand brand = db.Brands.Find(id);
+            db.Brands.Remove(brand);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

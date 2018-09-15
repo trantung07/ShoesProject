@@ -1,0 +1,35 @@
+﻿@model ShoesProject.Models.Size
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Size</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SizeValue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SizeValue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SizeStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SizeStatus)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.SizeId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
