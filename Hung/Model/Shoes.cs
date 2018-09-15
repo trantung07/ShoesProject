@@ -1,13 +1,13 @@
-namespace Hung.Model
+namespace ShoesProjectModels.Model
 {
     using System;
     using System.Data.Entity;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
 
-    public partial class HungModel : DbContext
+    public partial class Shoes : DbContext
     {
-        public HungModel()
+        public Shoes()
             : base("name=HungModel")
         {
         }

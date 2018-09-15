@@ -56,7 +56,7 @@
     <Compile Include="Model\Business.cs" />
     <Compile Include="Model\Category.cs" />
     <Compile Include="Model\Color.cs" />
-    <Compile Include="Model\HungModel.cs" />
+    <Compile Include="Model\Shoes.cs" />
     <Compile Include="Model\Order.cs" />
     <Compile Include="Model\OrdersDetail.cs" />
     <Compile Include="Model\Permisson.cs" />

@@ -158,7 +158,10 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AdminsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\BrandsController.cs" />
     <Compile Include="Areas\Admin\Controllers\BusinessesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CategoriesController.cs" />
     <Compile Include="Areas\Admin\Controllers\ColorsController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\PermissonsController.cs" />
@@ -171,24 +174,9 @@
     <Compile Include="Controllers\MyAccountController.cs" />
     <Compile Include="Controllers\MyCartController.cs" />
     <Compile Include="Controllers\ProductDetailController.cs" />
-    <Compile Include="Controllers\SizesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Admin.cs" />
-    <Compile Include="Models\Brand.cs" />
-    <Compile Include="Models\Business.cs" />
-    <Compile Include="Models\Category.cs" />
-    <Compile Include="Models\Color.cs" />
-    <Compile Include="Models\Order.cs" />
-    <Compile Include="Models\OrdersDetail.cs" />
-    <Compile Include="Models\Permisson.cs" />
-    <Compile Include="Models\Product.cs" />
-    <Compile Include="Models\ProductImage.cs" />
-    <Compile Include="Models\Shoes.cs" />
-    <Compile Include="Models\Size.cs" />
-    <Compile Include="Models\User.cs" />
-    <Compile Include="Models\Voucher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -599,6 +587,21 @@
     <Content Include="Areas\Admin\Views\Sizes\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Sizes\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Sizes\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Brands\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Brands\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Brands\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Brands\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Brands\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Categories\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Categories\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Categories\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Categories\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Categories\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Admins\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Admins\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Admins\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Admins\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Admins\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -622,7 +625,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -672,9 +677,9 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Hung\Hung.csproj">
-      <Project>{CD7181EF-66DA-499B-A137-8ECBFA410519}</Project>
-      <Name>Hung</Name>
+    <ProjectReference Include="..\Hung\ShoesProjectModels.csproj">
+      <Project>{cd7181ef-66da-499b-a137-8ecbfa410519}</Project>
+      <Name>ShoesProjectModels</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

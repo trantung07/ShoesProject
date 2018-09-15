@@ -1,4 +1,4 @@
-﻿using Hung.Model;
+﻿using ShoesProjectModels.Model;
 using ShoesProject.Areas.Admin.Util;
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ namespace ShoesProject.Controllers
 {
     public class LoginController : Controller
     {
-        HungModel db = new HungModel();
+        Shoes db = new Shoes();
         // GET: Login
         public ActionResult Index()
         {
