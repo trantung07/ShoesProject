@@ -10,108 +10,107 @@ using ShoesProjectModels.Model;
 
 namespace ShoesProject.Areas.Admin.Controllers
 {
-    public class ColorsController : Controller
+    public class CategoriesController : Controller
     {
         private Shoes db = new Shoes();
 
-        // GET: Admin/Colors
+        // GET: Admin/Categories
         public ActionResult Index()
         {
-            return View(db.Colors.ToList());
+            return View(db.Categories.ToList());
         }
 
-        // GET: Admin/Colors/Details/5
+        // GET: Admin/Categories/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Color color = db.Colors.Find(id);
-            if (color == null)
+            Category category = db.Categories.Find(id);
+            if (category == null)
             {
                 return HttpNotFound();
             }
-            return View(color);
+            return View(category);
         }
 
-        // GET: Admin/Colors/Create
+        // GET: Admin/Categories/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Admin/Colors/Create
+        // POST: Admin/Categories/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ColorId,ColorValue,ColorCode")] Color color)
+        public ActionResult Create([Bind(Include = "CategoryId,CategoryStatus,CategoryParentId,CategoryName")] Category category)
         {
-            color.ColorStatus = true;
             if (ModelState.IsValid)
             {
-                db.Colors.Add(color);
+                db.Categories.Add(category);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(color);
+            return View(category);
         }
 
-        // GET: Admin/Colors/Edit/5
+        // GET: Admin/Categories/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Color color = db.Colors.Find(id);
-            if (color == null)
+            Category category = db.Categories.Find(id);
+            if (category == null)
             {
                 return HttpNotFound();
             }
-            return View(color);
+            return View(category);
         }
 
-        // POST: Admin/Colors/Edit/5
+        // POST: Admin/Categories/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ColorId,ColorValue,ColorCode,ColorStatus")] Color color)
+        public ActionResult Edit([Bind(Include = "CategoryId,CategoryStatus,CategoryParentId,CategoryName")] Category category)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(color).State = EntityState.Modified;
+                db.Entry(category).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(color);
+            return View(category);
         }
 
-        // GET: Admin/Colors/Delete/5
+        // GET: Admin/Categories/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Color color = db.Colors.Find(id);
-            if (color == null)
+            Category category = db.Categories.Find(id);
+            if (category == null)
             {
                 return HttpNotFound();
             }
-            return View(color);
+            return View(category);
         }
 
-        // POST: Admin/Colors/Delete/5
+        // POST: Admin/Categories/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Color color = db.Colors.Find(id);
-            db.Colors.Remove(color);
+            Category category = db.Categories.Find(id);
+            db.Categories.Remove(category);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

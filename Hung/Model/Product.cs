@@ -1,4 +1,4 @@
-namespace Hung.Model
+namespace ShoesProjectModels.Model
 {
     using System;
     using System.Collections.Generic;
