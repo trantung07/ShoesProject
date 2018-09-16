@@ -5,6 +5,7 @@ namespace ShoesProject.Models
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
+    using Hung.Model;
 
     public partial class Product
     {
@@ -50,5 +51,10 @@ namespace ShoesProject.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Size> Sizes { get; set; }
+
+        public static implicit operator Product(Hung.Model.Product v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

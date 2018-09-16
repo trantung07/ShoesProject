@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Hung.Model;
+using ShoesProject.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,12 +10,71 @@ namespace ShoesProject.Controllers
 {
     public class MyCartController : Controller
     {
+        HungModel db = new HungModel();
         // GET: MyCart
         public ActionResult Index()
         {
-            return View();
+            List<CartItem> lst = (List<CartItem>)Session["Cart"];
+            return View(lst);
         }
-
+        public ActionResult AddCart(int id)
+        {
+            var product = db.Products.Find(id);
+            if(Session["Cart"] != null)
+            {
+                List<CartItem> lst = new List<CartItem>();
+                lst = (List<CartItem>)Session["Cart"];
+                bool check = false;
+                foreach (var item in lst)
+                {
+                    if(item.Product.ProductId == product.ProductId)
+                    {
+                        item.Quantity += 1;
+                        check = true;
+                        break;
+                    }
+                }
+                if (!check)
+                {
+                    lst.Add(new CartItem { Product = product, Quantity = 1 });
+                }
+                Session["Cart"] = lst;
+            }else
+            {
+                Session["Cart"] = new List<CartItem>() { new CartItem { Product = product, Quantity = 1 } }; 
+            }
+            return RedirectToAction("Index");
+        }
+        [HttpPost]
+        public string UpdateCart(int id,int quantity)
+        {
+            var lst = (List<CartItem>)Session["Cart"];
+            foreach (var item in lst)
+            {
+                if(item.Product.ProductId == id)
+                {
+                    item.Quantity = quantity;
+                    break;
+                }
+            }
+            Session["Cart"] = lst;
+            return "Ok";
+        }
+        [HttpPost]
+        public string DeleteCart(int id)
+        {
+            var lst = (List<CartItem>)Session["Cart"];
+            foreach (var item in lst)
+            {
+                if (item.Product.ProductId == id)
+                {
+                    lst.Remove(item);
+                    break;
+                }
+            }
+            Session["Cart"] = lst;
+            return "Ok";
+        }
         public ActionResult CartSignin()
         {
             return View();
