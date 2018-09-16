@@ -42,11 +42,15 @@ namespace ShoesProject.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Create(Size s)
         {
-            s.SizeStatus = s.SizeStatus ?? false;
+            if (ModelState.IsValid)
+            {
+                s.SizeStatus = s.SizeStatus ?? false;
+                db.Sizes.Add(s);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(s);
 
-            db.Sizes.Add(s);
-            db.SaveChanges();
-            return RedirectToAction("Index");
         }
         public ActionResult Edit(int id)
         {
@@ -65,6 +69,30 @@ namespace ShoesProject.Areas.Admin.Controllers
                 return RedirectToAction("Index");
             }
             return View(s);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            Size size = db.Sizes.Find(id);
+            db.Sizes.Remove(size);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Size size = db.Sizes.Find(id);
+            if (size == null)
+            {
+                return HttpNotFound();
+            }
+            return View(size);
         }
     }
 }
