@@ -1,10 +1,12 @@
 
-﻿@model ShoesProject.Models.Size
+@model ShoesProjectModels.Model.Size
 
 
 @{
-    ViewBag.Title = "Edit";
-    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+                /**/
+
+                ViewBag.Title = "Edit";
+                Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Edit</h2>
@@ -18,13 +20,13 @@
                 </div>
                 <div class="panel-body">
                     <h3>Size Forms</h3>
-                    <br>                   
+                    <br>
                     <form class="form-horizontal" method="post" action="~/Admin/Sizes/Edit">
                         @Html.HiddenFor(model => model.SizeId)
                         <div class="form-group">
                             <label for="SizeValue" class="col-sm-3 control-label">Size Name</label>
                             <div class="col-sm-6">
-                                @Html.EditorFor(model => model.SizeValue, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.EditorFor(model => model.SizeValue, new { htmlAttributes = new { @class = "form-control"} })
                             </div>
                         </div>
 

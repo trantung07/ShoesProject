@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using FineUploader;
 using ShoesProjectModels.Model;
 
 namespace ShoesProject.Areas.Admin.Controllers
@@ -45,7 +48,7 @@ namespace ShoesProject.Areas.Admin.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "BrandId,BrandName,BrandImage")] Brand brand)
         {
             if (ModelState.IsValid)
@@ -113,6 +116,28 @@ namespace ShoesProject.Areas.Admin.Controllers
             db.Brands.Remove(brand);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public FineUploaderResult CreateBrandWithImage(FineUpload upload, string BrandName)
+        {          
+            try
+            {
+                Brand b = new Brand();
+                b.BrandName = BrandName;
+                b.BrandImage = upload.Filename;
+                db.Brands.Add(b);
+                db.SaveChanges();
+                var dir = Server.MapPath("../Content/brandImages/" + b.BrandId + "/");
+                var filePath = Path.Combine(dir, upload.Filename);
+                upload.SaveAs(filePath);
+                return new FineUploaderResult(true, new { FilePath = filePath });
+            }
+            catch (Exception ex)
+            {
+                return new FineUploaderResult(false, error: ex.Message);
+            }
+
         }
 
         protected override void Dispose(bool disposing)

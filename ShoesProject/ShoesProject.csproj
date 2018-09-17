@@ -177,9 +177,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\FineUpload.cs" />
+    <Compile Include="Infrastructure\FineUploadResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Admin\Content\css\Baobinh.net.url" />
+    <Content Include="Areas\Admin\Content\css\fine-uploader-new.css" />
     <Content Include="Areas\Admin\Content\css\styles.minc726.css" />
     <Content Include="Areas\Admin\Content\demo\avatar\aniss.png" />
     <Content Include="Areas\Admin\Content\demo\avatar\avatar00_0002_scottwills_cat.png" />
@@ -193,6 +197,7 @@
     <Content Include="Areas\Admin\Content\demo\avatar\potter.png" />
     <Content Include="Areas\Admin\Content\demo\avatar\tennant.png" />
     <Content Include="Areas\Admin\Content\demo\avatar\watson.png" />
+    <Content Include="Areas\Admin\Content\demo\Baobinh.net.url" />
     <Content Include="Areas\Admin\Content\demo\demo-alerts.js" />
     <Content Include="Areas\Admin\Content\demo\demo-calendar.js" />
     <Content Include="Areas\Admin\Content\demo\demo-chartjs.js" />
@@ -251,9 +256,19 @@
     <Content Include="Areas\Admin\Content\demo\images\thmb_nature_trees.jpg" />
     <Content Include="Areas\Admin\Content\demo\images\thmb_nature_woodstump.jpg" />
     <Content Include="Areas\Admin\Content\demo\variations\default.css" />
+    <Content Include="Areas\Admin\Content\fonts\Baobinh.net.url" />
+    <Content Include="Areas\Admin\Content\fonts\font-awesome\fonts\Baobinh.net.url" />
+    <Content Include="Areas\Admin\Content\fonts\font-awesome\fonts\fontawesome-webfont862f.eot" />
     <Content Include="Areas\Admin\Content\fonts\font-awesome\fonts\fontawesome-webfont862f.svg" />
+    <Content Include="Areas\Admin\Content\fonts\font-awesome\fonts\fontawesome-webfont862f.ttf" />
+    <Content Include="Areas\Admin\Content\fonts\font-awesome\fonts\fontawesome-webfont862f.woff" />
+    <Content Include="Areas\Admin\Content\fonts\font-awesome\fonts\fontawesome-webfontd41d.eot" />
     <Content Include="Areas\Admin\Content\fonts\glyphicons\css\glyphicons.min.css" />
+    <Content Include="Areas\Admin\Content\fonts\glyphicons\font\glyphicons-halflings-regular.eot" />
     <Content Include="Areas\Admin\Content\fonts\glyphicons\font\glyphicons-halflings-regular.svg" />
+    <Content Include="Areas\Admin\Content\fonts\glyphicons\font\glyphicons-halflings-regular.ttf" />
+    <Content Include="Areas\Admin\Content\fonts\glyphicons\font\glyphicons-halflings-regular.woff" />
+    <Content Include="Areas\Admin\Content\fonts\glyphicons\font\glyphicons-halflings-regulard41d.eot" />
     <Content Include="Areas\Admin\Content\img\logo-big.png" />
     <Content Include="Areas\Admin\Content\img\logo.png" />
     <Content Include="Areas\Admin\Content\img\patterns\brickwall.png" />
@@ -270,7 +285,9 @@
     <Content Include="Areas\Admin\Content\js\application.js" />
     <Content Include="Areas\Admin\Content\js\bootstrap.min.js" />
     <Content Include="Areas\Admin\Content\js\enquire.js" />
+    <Content Include="Areas\Admin\Content\js\fine-uploader.js" />
     <Content Include="Areas\Admin\Content\js\images\animated-overlay.gif" />
+    <Content Include="Areas\Admin\Content\js\images\Baobinh.net.url" />
     <Content Include="Areas\Admin\Content\js\images\ui-bg_flat_0_2b6bd9_40x100.png" />
     <Content Include="Areas\Admin\Content\js\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Areas\Admin\Content\js\images\ui-bg_flat_0_e6e7e8_40x100.png" />
@@ -283,11 +300,13 @@
     <Content Include="Areas\Admin\Content\js\images\ui-icons_ffffff_256x240.png" />
     <Content Include="Areas\Admin\Content\js\jquery-1.10.2.min.js" />
     <Content Include="Areas\Admin\Content\js\jquery.cookie.js" />
+    <Content Include="Areas\Admin\Content\js\jquery.fine-uploader.min.js" />
     <Content Include="Areas\Admin\Content\js\jquery.nicescroll.min.js" />
     <Content Include="Areas\Admin\Content\js\jqueryui-1.10.3.min.js" />
     <Content Include="Areas\Admin\Content\js\jqueryui.css" />
     <Content Include="Areas\Admin\Content\js\jscolor.js" />
     <Content Include="Areas\Admin\Content\js\placeholdr.js" />
+    <Content Include="Areas\Admin\Content\plugins\Baobinh.net.url" />
     <Content Include="Areas\Admin\Content\plugins\bootbox\bootbox.min.js" />
     <Content Include="Areas\Admin\Content\plugins\bootstro.js\bootstro.min.css" />
     <Content Include="Areas\Admin\Content\plugins\bootstro.js\bootstro.min.js" />
@@ -302,6 +321,7 @@
     <Content Include="Areas\Admin\Content\plugins\charts-morrisjs\raphael.min.js" />
     <Content Include="Areas\Admin\Content\plugins\codeprettifier\prettify.css" />
     <Content Include="Areas\Admin\Content\plugins\codeprettifier\prettify.js" />
+    <Content Include="Areas\Admin\Content\plugins\datatables\Baobinh.net.url" />
     <Content Include="Areas\Admin\Content\plugins\datatables\dataTables.bootstrap.js" />
     <Content Include="Areas\Admin\Content\plugins\datatables\dataTables.css" />
     <Content Include="Areas\Admin\Content\plugins\datatables\dataTables.editor.bootstrap.js" />
@@ -408,6 +428,9 @@
     <Content Include="Content\css\fancybox\fancybox_sprite.png" />
     <Content Include="Content\css\fancybox_loading%402x.html" />
     <Content Include="Content\css\fancybox_sprite%402x.html" />
+    <Content Include="Content\FineUploader\fineuploader.css" />
+    <Content Include="Content\FineUploader\loading.gif" />
+    <Content Include="Content\FineUploader\processing.gif" />
     <Content Include="fonts\fonts\font-awesome.min.css" />
     <Content Include="Content\css\ie.css" />
     <Content Include="Content\css\images\animated-overlay.html" />
@@ -525,6 +548,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Infrastructure\readme.txt" />
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -536,21 +560,6 @@
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
-    <Content Include="Areas\Admin\Content\css\Baobinh.net.url" />
-    <Content Include="Areas\Admin\Content\demo\Baobinh.net.url" />
-    <Content Include="Areas\Admin\Content\fonts\Baobinh.net.url" />
-    <Content Include="Areas\Admin\Content\fonts\font-awesome\fonts\Baobinh.net.url" />
-    <Content Include="Areas\Admin\Content\fonts\font-awesome\fonts\fontawesome-webfont862f.eot" />
-    <Content Include="Areas\Admin\Content\fonts\font-awesome\fonts\fontawesome-webfont862f.ttf" />
-    <Content Include="Areas\Admin\Content\fonts\font-awesome\fonts\fontawesome-webfont862f.woff" />
-    <Content Include="Areas\Admin\Content\fonts\font-awesome\fonts\fontawesome-webfontd41d.eot" />
-    <Content Include="Areas\Admin\Content\fonts\glyphicons\font\glyphicons-halflings-regular.eot" />
-    <Content Include="Areas\Admin\Content\fonts\glyphicons\font\glyphicons-halflings-regular.ttf" />
-    <Content Include="Areas\Admin\Content\fonts\glyphicons\font\glyphicons-halflings-regular.woff" />
-    <Content Include="Areas\Admin\Content\fonts\glyphicons\font\glyphicons-halflings-regulard41d.eot" />
-    <Content Include="Areas\Admin\Content\js\images\Baobinh.net.url" />
-    <Content Include="Areas\Admin\Content\plugins\Baobinh.net.url" />
-    <Content Include="Areas\Admin\Content\plugins\datatables\Baobinh.net.url" />
     <Content Include="Areas\Admin\Views\Home\Login.cshtml" />
     <Content Include="Content\css\fancybox\Baobinh.net.url" />
     <Content Include="Content\css\images\Baobinh.net.url" />
@@ -606,6 +615,8 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.fineuploader-3.1.js" />
+    <Content Include="Scripts\jquery.fineuploader-3.1.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -665,6 +676,7 @@
     <Content Include="Views\Sizes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Admin\Content\images\" />
     <Folder Include="App_Data\" />
     <Folder Include="HTMLSource\bstore\" />
   </ItemGroup>
