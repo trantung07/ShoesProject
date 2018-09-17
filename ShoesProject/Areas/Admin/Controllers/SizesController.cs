@@ -6,14 +6,13 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using ShoesProject.Models;
+using ShoesProjectModels.Model;
 
 namespace ShoesProject.Areas.Admin.Controllers
 {
     public class SizesController : Controller
     {
         private Shoes db = new Shoes();
-
         // GET: Admin/Sizes
         public ActionResult Index()
         {
@@ -40,56 +39,48 @@ namespace ShoesProject.Areas.Admin.Controllers
         {
             return View();
         }
-
-        // POST: Admin/Sizes/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "SizeId,SizeValue,SizeStatus")] Size size)
+        public ActionResult Create(Size s)
         {
             if (ModelState.IsValid)
             {
-                db.Sizes.Add(size);
+                s.SizeStatus = s.SizeStatus ?? false;
+                db.Sizes.Add(s);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            return View(s);
+
+        }
+        public ActionResult Edit(int id)
+        {
+            var size = db.Sizes.Find(id);
 
             return View(size);
         }
 
-        // GET: Admin/Sizes/Edit/5
-        public ActionResult Edit(int? id)
+        [HttpPost]
+        public ActionResult Edit(Size s)
         {
-            if (id == null)
+            if (ModelState.IsValid)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                db.Entry(s).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
             }
+            return View(s);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
             Size size = db.Sizes.Find(id);
-            if (size == null)
-            {
-                return HttpNotFound();
-            }
-            return View(size);
+            db.Sizes.Remove(size);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
-        // POST: Admin/Sizes/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "SizeId,SizeValue,SizeStatus")] Size size)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(size).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(size);
-        }
-
-        // GET: Admin/Sizes/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -102,26 +93,6 @@ namespace ShoesProject.Areas.Admin.Controllers
                 return HttpNotFound();
             }
             return View(size);
-        }
-
-        // POST: Admin/Sizes/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Size size = db.Sizes.Find(id);
-            db.Sizes.Remove(size);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }

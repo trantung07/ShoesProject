@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<ShoesProject.Models.CartItem>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -19,11 +19,15 @@
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <!-- SHOPPING-CART SUMMARY START -->
-            <h2 class="page-title">Shopping-cart summary <span class="shop-pro-item">Your shopping cart contains: 2 products</span></h2>
-            <!-- SHOPPING-CART SUMMARY END -->
-        </div>
-
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <h2 class="page-title">Shopping-cart summary <span class="shop-pro-item">Your shopping cart contains: @{
+                if (Model != null && Model.Count() > 0)
+                {
+                    Model.Count();
+                }
+                } products</span></h2>
+                <!-- SHOPPING-CART SUMMARY END -->
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <!-- SHOPING-CART-MENU START -->
             <div class="shoping-cart-menu">
                 <ul class="step">
@@ -63,182 +67,134 @@
                     </thead>
                     <!-- TABLE HEADER END -->
                     <!-- TABLE BODY START -->
-                    <tbody>
+                    <tbody id="list_cart">
                         <!-- SINGLE CART_ITEM START -->
-                        <tr>
-                            <td class="cart-product">
-                                <a href="#"><img alt="Blouse" src="~/Content/img/product/cart-image1.jpg"></a>
-                            </td>
-                            <td class="cart-description">
-                                <p class="product-name"><a href="#">Faded Short Sleeves T-shirt</a></p>
-                                <small>SKU : demo_1</small>
-                                <small><a href="#">Size : S, Color : Orange</a></small>
-                            </td>
-                            <td class="cart-avail"><span class="label label-success">In stock</span></td>
-                            <td class="cart-unit">
-                                <ul class="price text-right">
-                                    <li class="price">$16.51</li>
-                                </ul>
-                            </td>
-                            <td class="cart_quantity text-center">
-                                <div class="cart-plus-minus-button">
-                                    <input class="cart-plus-minus" type="text" name="qtybutton" value="0">
-                                </div>
-                            </td>
-                            <td class="cart-delete text-center">
-                                <span>
-                                    <a href="#" class="cart_quantity_delete" title="Delete"><i class="fa fa-trash-o"></i></a>
-                                </span>
-                            </td>
-                            <td class="cart-total">
-                                <span class="price">$16.51</span>
-                            </td>
-                        </tr>
+                        @{
+                            if (Model != null && Model.Count() > 0)
+                            {
+                                foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td class="cart-product">
+                                            <a href="#"><img alt="Blouse" src="~/Content/img/@item.Product.ProductImages"></a>
+                                        </td>
+                                        <td class="cart-description">
+                                            <p class="product-name"><a href="#">@item.Product.ProductName</a></p>
+                                            <small>SKU : demo_1</small>
+                                            <small><a href="#">Size :@item.Product.Sizes, Color : @item.Product.Colors</a></small>
+                                        </td>
+                                        <td class="cart-avail"><span class="label label-success">In stock</span></td>
+                                        <td class="cart-unit">
+                                            <ul class="price text-right">
+                                                <li class="price">@item.Product.ProductPrice</li>
+                                            </ul>
+                                        </td>
+                                        <td class="cart_quantity text-center">
+                                            <div class="cart-plus-minus-button">
+                                                <input data-id="@item.Product.ProductId" class="cart-plus-minus quantity" type="text" name="Quantity" id="Quantity" value="@item.Quantity">
+                                            </div>
+                                        </td>
+                                        <td class="cart-delete text-center">
+                                            <span>
+                                                <a href="#" data-id="@item.Product.ProductId" class="cart_quantity_delete" title="Delete"><i class="fa fa-trash-o"></i></a>
+                                            </span>
+                                        </td>
+                                        <td class="cart-total">
+                                            <span class="money">(@item.Product.ProductPrice * @item.Quantity)</span>
+                                        </td>
+                                    </tr>
                         <!-- SINGLE CART_ITEM END -->
                         <!-- SINGLE CART_ITEM START -->
-                        <tr>
-                            <td class="cart-product">
-                                <a href="#"><img alt="Blouse" src="~/Content/img/product/cart-image2.jpg"></a>
-                            </td>
-                            <td class="cart-description">
-                                <p class="product-name"><a href="#">Blouse</a></p>
-                                <small>SKU : demo_2</small>
-                                <small><a href="#">Size : S, Color : Black</a></small>
-                            </td>
-                            <td class="cart-avail"><span class="label label-success">In stock</span></td>
-                            <td class="cart-unit">
-                                <ul class="price text-right">
-                                    <li class="price special-price">$24.00</li>
-                                    <li class="price-percent-reduction small">&nbsp;-3%&nbsp;</li>
-                                    <li class="old-price">$27.00</li>
-                                </ul>
-                            </td>
-                            <td class="cart_quantity text-center">
-                                <div class="cart-plus-minus-button">
-                                    <input class="cart-plus-minus" type="text" name="qtybutton" value="0">
-                                </div>
-                            </td>
-                            <td class="cart-delete text-center">
-                                <a href="#" class="cart_quantity_delete" title="Delete"><i class="fa fa-trash-o"></i></a>
-                            </td>
-                            <td class="cart-total">
-                                <span class="price">$22.95</span>
-                            </td>
-                        </tr>
-                        <!-- SINGLE CART_ITEM END -->
-                        <!-- SINGLE CART_ITEM START -->
-                        <tr>
-                            <td class="cart-product">
-                                <a href="#"><img alt="Blouse" src="~/Content/img/product/cart-image3.jpg"></a>
-                            </td>
-                            <td class="cart-description">
-                                <p class="product-name"><a href="#">Printed Summer Dress</a></p>
-                                <small>SKU : demo_5</small>
-                                <small><a href="#">Size : M, Color : Blue</a></small>
-                            </td>
-                            <td class="cart-avail"><span class="label label-success">In stock</span></td>
-                            <td class="cart-unit">
-                                <ul class="price text-right">
-                                    <li class="price special-price">$30.45</li>
-                                    <li class="price-percent-reduction small">&nbsp;-7.05%&nbsp;</li>
-                                    <li class="old-price">$37.50</li>
-                                </ul>
-                            </td>
-                            <td class="cart_quantity text-center">
-                                <div class="cart-plus-minus-button">
-                                    <input class="cart-plus-minus" type="text" name="qtybutton" value="0">
-                                </div>
-                            </td>
-                            <td class="cart-delete text-center">
-                                <a href="#" class="cart_quantity_delete" title="Delete"><i class="fa fa-trash-o"></i></a>
-                            </td>
-                            <td class="cart-total">
-                                <span class="price">$30.45</span>
-                            </td>
-                        </tr>
-                        <!-- SINGLE CART_ITEM END -->
+                                }
+                            }
+                            else
+                            {
+                                <tr><td colspan="7" class="text-center text-danger">Gio hang trong!</td></tr>
+                            }
+                        }
                     </tbody>
                     <!-- TABLE BODY END -->
                     <!-- TABLE FOOTER START -->
-                    <tfoot>
-                        <tr class="cart-total-price">
-                            <td class="cart_voucher" colspan="3" rowspan="4"></td>
-                            <td class="text-right" colspan="3">Total products (tax excl.)</td>
-                            <td id="total_product" class="price" colspan="1">$76.46</td>
-                        </tr>
-                        <tr>
-                            <td class="text-right" colspan="3">Total shipping</td>
-                            <td id="total_shipping" class="price" colspan="1">$5.00</td>
-                        </tr>
-                        <tr>
-                            <td class="text-right" colspan="3">Total vouchers (tax excl.)</td>
-                            <td class="price" colspan="1">$0.00</td>
-                        </tr>
-                        <tr>
-                            <td class="total-price-container text-right" colspan="3">
-                                <span>Total</span>
-                            </td>
-                            <td id="total-price-container" class="price" colspan="1">
-                                <span id="total-price">$76.46</span>
-                            </td>
-                        </tr>
-                    </tfoot>
+                   @{
+                       if (Model != null && Model.Count() > 0)
+                       {
+                        <tfoot>
+                            <tr class="cart-total-price">
+                                <td class="cart_voucher" colspan="3" rowspan="4"></td>
+                                <td class="text-right" colspan="3">Total products (tax excl.)</td>
+                                <td id="total_product" class="price" colspan="1">$76.46</td>
+                            </tr>
+                            <tr>
+                                <td class="text-right" colspan="3">Total shipping</td>
+                                <td id="total_shipping" class="price" colspan="1">$5.00</td>
+                            </tr>
+                            <tr>
+                                <td class="text-right" colspan="3">Total vouchers (tax excl.)</td>
+                                <td class="price" colspan="1">$0.00</td>
+                            </tr>
+                            <tr>
+                                <td class="total-price-container text-right" colspan="3">
+                                    <span>Total</span>
+                                </td>
+                                <td id="total-price-container" class="price" colspan="1">
+                                    <span id="total-price">$76.46</span>
+                                </td>
+                            </tr>
+                        </tfoot>
+                       }
+                }
                     <!-- TABLE FOOTER END -->
                 </table>
                 <!-- TABLE END -->
             </div>
             <!-- CART TABLE_BLOCK END -->
         </div>
-        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-            <div class="first_item primari-box mycartaddress-info">
-                <!-- SINGLE ADDRESS START -->
-                <ul class="address">
-                    <li>
-                        <h3 class="page-subheading box-subheading">
-                            Delivery address (BootExperts Office)
-                        </h3>
-                    </li>
-                    <li><span class="address_name">BootExperts</span></li>
-                    <li><span class="address_company">Web development Company</span></li>
-                    <li><span class="address_address1">Bonossri</span></li>
-                    <li><span class="address_address2">D-Block</span></li>
-                    <li><span class="">Rampura</span></li>
-                    <li><span class="">Dhaka</span></li>
-                    <li><span class="address_phone">+880 1735161598</span></li>
-                    <li><span class="address_phone_mobile">+880 1975161598</span></li>
-                </ul>
-                <!-- SINGLE ADDRESS END -->
-            </div>
-        </div>
-        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-            <div class="second_item primari-box mycartaddress-info">
-                <!-- SINGLE ADDRESS START -->
-                <ul class="address">
-                    <li>
-                        <h3 class="page-subheading box-subheading">
-                            Invoice address (BootExperts Home)
-                        </h3>
-                    </li>
-                    <li><span class="address_name">BootExperts</span></li>
-                    <li><span class="address_company">Web development Company</span></li>
-                    <li><span class="address_address1">Dhaka</span></li>
-                    <li><span class="address_address2">Bonossri</span></li>
-                    <li><span class="">Dhaka-1205</span></li>
-                    <li><span class="">Rampura</span></li>
-                    <li><span class="address_phone">+880 1735161598</span></li>
-                    <li><span class="address_phone_mobile">+880 1975161598</span></li>
-                </ul>
-                <!-- SINGLE ADDRESS END -->
-            </div>
-        </div>
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <!-- RETURNE-CONTINUE-SHOP START -->
             <div class="returne-continue-shop">
                 <a href="@Url.Action("Index","Home")" class="continueshoping"><i class="fa fa-chevron-left"></i>Continue shopping</a>
-                <a href="@Url.Action("CartSignin","MyCart")" class="procedtocheckout">Proceed to checkout<i class="fa fa-chevron-right"></i></a>
+                @{if (Model != null && Model.Count() > 0)
+                    {<a href="@Url.Action("CartSignin","MyCart")" class="procedtocheckout">Proceed to checkout<i class="fa fa-chevron-right"></i></a> } }
             </div>
             <!-- RETURNE-CONTINUE-SHOP END -->
         </div>
     </div>
 </div>
-
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $(document).on("Keyup mouseup", ".quantity", function () {
+                var tr = $(this).parents("tr");
+                var price = parseInt(tr.find(".price").text());
+                var money = parseInt(tr.find(".price").text());
+                var quantity = parseInt($(this).val());
+                var id = $(this).data("id");
+                if (parseInt($(this).val()) > 0) {
+                    $.ajax({
+                        type: "POST",
+                        url: "@Url.Action("UpdateCart", "MyCart")",
+                        data: {id:id,quantity:quantity},
+                        success: function(rps){
+                            tr.find(".money").text(price * quantity);
+                        }
+                    })
+                }
+            })
+        })
+        $(".cart_quantity_delete").click(function(){
+            var tr = $(this).parents("tr");
+            var id = $(this).data("id");
+            $.ajax({
+                type:"POST",
+                url: "@Url.Action("DeleteCart", "MyCart")", 
+                data:{id:id},
+                success: function () {
+                    tr.remove();
+                    if ($("#list_cart > tr").length <= 0) {
+                        $("#list_cart").html('<tr><td colspan="7" class="text-center text-danger">Gio hang trong!</td></tr>')
+                    }
+                }
+            })
+        })
+    </script>
+}

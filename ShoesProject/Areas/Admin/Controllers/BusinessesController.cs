@@ -8,7 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ShoesProject.Areas.Admin.Util;
-using ShoesProject.Models;
+using ShoesProjectModels.Model;
 
 namespace ShoesProject.Areas.Admin.Controllers
 {
