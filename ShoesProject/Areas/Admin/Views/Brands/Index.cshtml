@@ -1,8 +1,8 @@
-﻿@model IEnumerable<ShoesProject.Models.Brand>
+﻿@model IEnumerable<ShoesProjectModels.Model.Brand>
 
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Index</h2>
@@ -27,7 +27,7 @@
             @Html.DisplayFor(modelItem => item.BrandName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.BrandImage)
+            <img style="max-width: 200px" class="img-thumbnail" src="@Url.Content("~/Admin/Content/brandImages/" + item.BrandId + "/" + item.BrandImage)" alt="Alternate Text" />
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.BrandId }) |
