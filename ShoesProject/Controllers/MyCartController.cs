@@ -1,5 +1,5 @@
-﻿using Hung.Model;
-using ShoesProject.Models;
+﻿using ShoesProject.Models;
+using ShoesProjectModels.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +10,7 @@ namespace ShoesProject.Controllers
 {
     public class MyCartController : Controller
     {
-        HungModel db = new HungModel();
+       Shoes db = new Shoes();
         // GET: MyCart
         public ActionResult Index()
         {
@@ -74,6 +74,18 @@ namespace ShoesProject.Controllers
             }
             Session["Cart"] = lst;
             return "Ok";
+        }
+
+        public int SumPriceCart()
+        {
+            var lst = (List<CartItem>)Session["Cart"];
+            var total = 0;
+            foreach (var item in lst)
+            {
+                total += (item.Product.ProductPrice * item.Quantity);
+            }
+            var totalSum = total / lst.Count();
+            return totalSum;
         }
         public ActionResult CartSignin()
         {

@@ -1,4 +1,6 @@
-﻿using System;
+﻿
+using ShoesProjectModels.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,9 +10,11 @@ namespace ShoesProject.Controllers
 {
     public class HomeController : Controller
     {
+        Shoes db = new Shoes();
         public ActionResult Index()
         {
-            return View();
+            var lst = db.Products.ToList();
+            return View(lst);
         }
         public ActionResult About()
         {

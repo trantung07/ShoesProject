@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<ShoesProjectModels.Model.Product>
+@{
     ViewBag.Title = "Home Page";
 }
 <div class="container">
@@ -63,42 +64,50 @@
                             <!-- NEW-PRO-CAROUSEL START -->
                             <div class="new-pro-carousel">
                                 <!-- NEW-PRODUCT-SINGLE-ITEM START -->
-                                <div class="item">
-                                    <div class="new-product">
-                                        <div class="single-product-item">
-                                            <div class="product-image">
-                                                <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/8.jpg" alt="product-image" /></a>
-                                                <a href="#" class="new-mark-box">new</a>
-                                                <div class="overlay-content">
-                                                    <ul>
-                                                        <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
-                                                        <li><a href="@Url.Action("AddCart","MyCart")" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
-                                                        <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
-                                                        <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
-                                                    </ul>
+                                @{
+                                    if (Model != null && Model.Count() > 0)
+                                    {
+                                        foreach (var item in Model)
+                                        {
+                                            <div class="item">
+                                                <div class="new-product">
+                                                    <div class="single-product-item">
+                                                        <div class="product-image">
+                                                            <a href="@Url.Action("Index","ProductDetail",new {id = @item.ProductId})"><img src="~/Content/img/produc/@item.ProductImages" alt="product-image" /></a>
+                                                            <a href="#" class="new-mark-box">new</a>
+                                                            <div class="overlay-content">
+                                                                <ul>
+                                                                    <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
+                                                                    <li><a href="@Url.Action("AddCart","MyCart",new {id = @item.ProductId })" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
+                                                                    <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
+                                                                    <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                        <div class="product-info">
+                                                            <div class="customar-comments-box">
+                                                                <div class="rating-box">
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star-half-empty"></i>
+                                                                    <i class="fa fa-star-half-empty"></i>
+                                                                </div>
+                                                                <div class="review-box">
+                                                                    <span>1 Review (s)</span>
+                                                                </div>
+                                                            </div>
+                                                            <a href="@Url.Action("Index","ProductDetail",new {id = @item.ProductId })">@item.ProductName</a>
+                                                            <div class="price-box">
+                                                                <span class="price">@item.ProductPrice</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="product-info">
-                                                <div class="customar-comments-box">
-                                                    <div class="rating-box">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star-half-empty"></i>
-                                                        <i class="fa fa-star-half-empty"></i>
-                                                    </div>
-                                                    <div class="review-box">
-                                                        <span>1 Review (s)</span>
-                                                    </div>
-                                                </div>
-                                                <a href="@Url.Action("Index","ProductDetail")">Printed Dress</a>
-                                                <div class="price-box">
-                                                    <span class="price">$26.00</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                        }
+                                    }
+                                }
                                 <!-- NEW-PRODUCT-SINGLE-ITEM END -->
                                 <!-- NEW-PRODUCT-SINGLE-ITEM START -->
                                 <div class="item">

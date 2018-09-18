@@ -22,7 +22,7 @@
             <h2 class="page-title">Shopping-cart summary <span class="shop-pro-item">Your shopping cart contains: @{
                 if (Model != null && Model.Count() > 0)
                 {
-                    Model.Count();
+                   @Model.Count();
                 }
                 } products</span></h2>
                 <!-- SHOPPING-CART SUMMARY END -->
@@ -90,9 +90,7 @@
                                             </ul>
                                         </td>
                                         <td class="cart_quantity text-center">
-                                            <div class="cart-plus-minus-button">
-                                                <input data-id="@item.Product.ProductId" class="cart-plus-minus quantity" type="text" name="Quantity" id="Quantity" value="@item.Quantity">
-                                            </div>
+                                                <input data-id="@item.Product.ProductId" class="cart-plus-minus Quantity" type="number" name="Quantity" id="Quantity" value="@item.Quantity" min="1">
                                         </td>
                                         <td class="cart-delete text-center">
                                             <span>
@@ -100,12 +98,11 @@
                                             </span>
                                         </td>
                                         <td class="cart-total">
-                                            <span class="money">(@item.Product.ProductPrice * @item.Quantity)</span>
+                                            @{var money = item.Product.ProductPrice * item.Quantity;}
+                                            <span class="money">@money</span>
                                         </td>
                                     </tr>
-                        <!-- SINGLE CART_ITEM END -->
-                        <!-- SINGLE CART_ITEM START -->
-                                }
+                                    }
                             }
                             else
                             {
@@ -119,25 +116,39 @@
                        if (Model != null && Model.Count() > 0)
                        {
                         <tfoot>
+                            @*@{ var totalSum = 0;
+                                foreach (var item in Model)
+                                {
+                                    var totalPrice = (item.Quantity * item.Product.ProductPrice);
+                                    totalSum += totalPrice;
+                                }
+                                var total = totalSum / Model.Count();
+                             }*@
                             <tr class="cart-total-price">
                                 <td class="cart_voucher" colspan="3" rowspan="4"></td>
                                 <td class="text-right" colspan="3">Total products (tax excl.)</td>
-                                <td id="total_product" class="price" colspan="1">$76.46</td>
+                                <td id="total_product" class="price totalPrice" colspan="1"></td>
                             </tr>
-                            <tr>
+                            @*<tr>
                                 <td class="text-right" colspan="3">Total shipping</td>
                                 <td id="total_shipping" class="price" colspan="1">$5.00</td>
-                            </tr>
-                            <tr>
-                                <td class="text-right" colspan="3">Total vouchers (tax excl.)</td>
-                                <td class="price" colspan="1">$0.00</td>
-                            </tr>
+                            </tr>*@
+                            @foreach (var item in Model)
+                            {
+                                if (item.Product.ProductDiscount != null)
+                                {
+                                    <tr>
+                                        <td class="text-right" colspan="3">Total vouchers (tax excl.)</td>
+                                        <td class="price" colspan="1">$0.00</td>
+                                    </tr>
+                                }
+                            }
                             <tr>
                                 <td class="total-price-container text-right" colspan="3">
                                     <span>Total</span>
                                 </td>
                                 <td id="total-price-container" class="price" colspan="1">
-                                    <span id="total-price">$76.46</span>
+                                    <span id="total-price" class="totalPrice"></span>
                                 </td>
                             </tr>
                         </tfoot>
@@ -163,7 +174,7 @@
 @section scripts{
     <script>
         $(document).ready(function () {
-            $(document).on("Keyup mouseup", ".quantity", function () {
+            $(".Quantity").click(function () {
                 var tr = $(this).parents("tr");
                 var price = parseInt(tr.find(".price").text());
                 var money = parseInt(tr.find(".price").text());
@@ -176,6 +187,7 @@
                         data: {id:id,quantity:quantity},
                         success: function(rps){
                             tr.find(".money").text(price * quantity);
+                            tr.fin(".totalPrice").text();
                         }
                     })
                 }
@@ -195,6 +207,19 @@
                     }
                 }
             })
+        })
+        $(function sumcart() {
+            var tr = $("#total_product").parents("tr");
+            $.ajax({
+                type:"GET",
+                url: "@Url.Action("SumPriceCart", "MyCart")", 
+            success: function (rps) {
+                tr.find(".totalPrice").text(rps)
+            }
+        })
+        })
+        $(function () {
+            sumcart();
         })
     </script>
 }
