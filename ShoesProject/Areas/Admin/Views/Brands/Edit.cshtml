@@ -18,7 +18,7 @@
             <div class="qq-upload-button-selector qq-upload-button">
                 <div>Select files</div>
             </div>
-            <button type="button" id="trigger-upload" class="btn btn-primary">
+            <button type="button" onclick="uploadNow()" id="trigger-upload" class="btn btn-primary">
                 <i class="icon-upload icon-white"></i> Upload
             </button>
         </div>
@@ -40,6 +40,7 @@
                 <button type="button" class="qq-btn qq-upload-cancel-selector qq-upload-cancel">Cancel</button>
                 <button type="button" class="qq-btn qq-upload-retry-selector qq-upload-retry">Retry</button>
                 <button type="button" class="qq-btn qq-upload-delete-selector qq-upload-delete">Delete</button>
+                <button type="button" class="qq-btn" onclick="removeCurrentImage()">Remove</button>
                 <span role="status" class="qq-upload-status-text-selector qq-upload-status-text"></span>
             </li>
         </ul>
@@ -102,7 +103,7 @@
         @Html.HiddenFor(model => model.BrandId)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.BrandName, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.BrandName, htmlAttributes: new { @class = "control-label col-md-2", @id="BrandName" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.BrandName, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.BrandName, "", new { @class = "text-danger" })
@@ -114,30 +115,35 @@
         </div>
     </div>
 }
-
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
 @section Scripts
 {
     <script>
-
+        function uploadNow() {
+            $('#fine-uploader-manual-trigger').fineUploader('setParams', { BrandId: @Model.BrandId , BrandName: $('BrandName').val() }, 0);
+            $('#fine-uploader-manual-trigger').fineUploader('uploadStoredFiles');
+        }
+        function removeCurrentImage() {
+            $('#fine-uploader-manual-trigger').fineUploader('reset');
+        }
         $(document).ready(function () {
             $('#fine-uploader-manual-trigger').fineUploader({
                 template: 'qq-template-manual-trigger',
+                request: {
+                    endpoint: '@Url.Action("UpdateBrandWithImage", "Brands")'
+                },
                 autoUpload: false,
                 validation: {
                     itemLimit: 1
                 }
             });
             $('#fine-uploader-manual-trigger').fineUploader('addInitialFiles', [{
-                name: 'old',
-                uuid: '123123-sadasd-213123',
+                name: '@Model.BrandImage',
+                uuid: '@Model.BrandId',
                 thumbnailUrl: '@Url.Content("~/Admin/Content/brandImages/" + Model.BrandId + "/" + Model.BrandImage)'
             }]);
-            $('#trigger-upload').click(function () {
-                $('#fine-uploader-manual-trigger').fineUploader('uploadStoredFiles');
-            });
     });
     </script>
 }
