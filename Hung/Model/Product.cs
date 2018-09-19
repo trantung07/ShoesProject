@@ -35,6 +35,11 @@ namespace ShoesProjectModels.Model
 
         public int? ProductDiscount { get; set; }
 
+        [Column(TypeName = "text")]
+        [Required]
+        public string ProductFeatureImage { get; set; }
+
+
         public virtual Brand Brand { get; set; }
 
         public virtual Category Category { get; set; }

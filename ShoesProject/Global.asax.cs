@@ -25,6 +25,7 @@ namespace ShoesProject
             Session["avatar"] = null;
 
             Session["adminId"] = null;
+            Session["userOnSet"] = null;
             Session["adminUsername"] = null;
             Session["adminName"] = null;
             Session["avatar"] = null;
