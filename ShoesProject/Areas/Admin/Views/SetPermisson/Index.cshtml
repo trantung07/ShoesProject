@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<div class="col-md-4">
+    @Html.DropDownList("BusinessesController", (IEnumerable < SelectListItem >) ViewBag.items, new { size = 20, id="listBusinesses"});
+</div>
+<div class="col-md-6">
+    <ul id="listPermissonGranted">
+        
+    </ul>
+</div>
+@section Scripts{
+<script>
+    $(document).ready(function () {
+        $('#listBusinesses').change(fetchPermissonsOfCurrentUser);
+    })
+    function fetchPermissonsOfCurrentUser() {
+        $.ajax({
+            url: '@Url.Action("getUserPermissons", "Permissons")',
+            data: {
+                userId: $('#listBusinesses').val()
+            },
+            method: "post",
+            success: function() {
+                $('#listPermissonGranted').html(
+                    "<li> Got data success!</li>"
+                );
+            }
+        })
+    }
+    function renderPermissons(listPermissons) {
+
+    }
+</script>    
+}

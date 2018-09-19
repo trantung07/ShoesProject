@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Index</h2>
@@ -48,9 +48,10 @@
             @Html.DisplayFor(modelItem => item.IsSuper)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.AdminId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.AdminId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.AdminId })
+            @Html.ActionLink("Edit", "Edit", new { id = item.AdminId }) |
+            @Html.ActionLink("Details", "Details", new { id = item.AdminId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.AdminId }) |
+            @Html.ActionLink("Set Permisson", "Index", "SetPermisson", new { id = item.AdminId },null)
         </td>
     </tr>
 }
