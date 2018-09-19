@@ -225,49 +225,47 @@
                     <div class="mainmenu">
                         <nav>
                             <ul class="list-inline mega-menu">
-                                @*<li>
-                                    <a href="@Url.Action("Index","Home")">@ViewBag.Home</a>
-                                    <!-- DROPDOWN MENU START -->
-                                    <div class="home-var-menu">
-                                        <ul class="home-menu">
-                                            <li><a href="index.html">Home variation 1</a></li>
-                                            <li><a href="index-2.html">Home variation 2</a></li>
-                                        </ul>
-                                    </div>
-                                    <!-- DROPDOWN MENU END -->
-                                </li>*@
+                                <li>
+                                    <a href="@Url.Action("Index","Home")">Home</a>
+                                </li>
                                 @{
-
                                     foreach (var item in ViewBag.lstCategory)
                                     {
-                                        <li>
-                                            <a href="@Url.Action("Index",@item == "Home"?"home":"ListProduct")">@item</a>
-                                            <!-- DRODOWN-MEGA-MENU START -->
-                                            <div class="drodown-mega-menu">
-                                                <div class="left-mega col-xs-6">
-                                                    <div class="mega-menu-list">
-                                                        <a class="mega-menu-title" href="@Url.Action("Index","ListProduct")">TOPS</a>
-                                                        <ul>
-                                                            <li><a href="@Url.Action("Index","ProductDetail")">T-shirts</a></li>
-                                                            <li><a href="@Url.Action("Index","ProductDetail")">clothing</a></li>
-                                                            <li><a href="@Url.Action("Index","ProductDetail")">Delivery</a></li>
-                                                        </ul>
-                                                    </div>
+                                        if (@item.CategoryParentId == 0)
+                                        {
+                                            <li>
+                                                <a href="@Url.Action("Index","ListProduct")">@item.CategoryName</a>
+                                                <!-- DRODOWN-MEGA-MENU START -->
+                                                <div class="drodown-mega-menu">
+                                                   @{
+                                                       foreach (var item1 in ViewBag.lstCategory)
+                                                       {
+                                                           if (item1.CategoryParentId == item.CategoryId)
+                                                           {
+                                                            <div class="left-mega col-xs-6">
+                                                                <div class="mega-menu-list">
+                                                                    <a class="mega-menu-title" href="@Url.Action("Index","ListProduct")">@item1.CategoryName</a>
+                                                                    <ul>
+                                                                        @{
+                                                                            foreach (var item2 in ViewBag.lstCategory)
+                                                                            {
+                                                                                if (item2.CategoryParentId == item1.CategoryId)
+                                                                                {
+
+                                                                                    <li><a href="@Url.Action("Index","ListProduct")">@item2.CategoryName</a></li>
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    </ul>                                                            
+                                                                </div>
+                                                            </div>
+                                                           }
+                                                       }
+                                                    }
                                                 </div>
-                                                <div class="right-mega col-xs-6">
-                                                    <div class="mega-menu-list">
-                                                        <a class="mega-menu-title" href="@Url.Action("Index","ListProduct")">Prodect</a>
-                                                        <ul>
-                                                            <li><a href="@Url.Action("Index","ProductDetail")">T-shirts</a></li>
-                                                            <li><a href="@Url.Action("Index","ProductDetail")">clothing</a></li>
-                                                            <li><a href="@Url.Action("Index","ProductDetail")">Watch</a></li>
-                                                            <li><a href="@Url.Action("Index","ProductDetail")">Delivery</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- DRODOWN-MEGA-MENU END -->
-                                        </li>
+                                                <!-- DRODOWN-MEGA-MENU END -->
+                                            </li>
+                                        }
                                     }
                                 }
                                 <li><a href="@Url.Action("Contact","Home")">Contact</a></li>
@@ -286,67 +284,46 @@
                         <nav>
                             <ul>
                                 <li>
-                                    <a href="index.html">Home</a>
-                                    <ul>
-                                        <li><a href="index.html">Home variation 1</a></li>
-                                        <li><a href="index-2.html">Home variation 2</a></li>
-                                    </ul>
+                                    <a href="@Url.Action("Index","Home")">Home</a>
                                 </li>
-                                <li>
-                                    <a href="@Url.Action("Index","ListProduct")">Women</a>
-                                    <ul>
-                                        <li>
-                                            <a href="@Url.Action("Index","ListProduct")">Tops</a>
-                                            <ul>
-                                                <li><a href="@Url.Action("Index","ProductDetail")">T-Shirts</a></li>
-                                                <li><a href="@Url.Action("Index","ProductDetail")">Blouses</a></li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            <a href="@Url.Action("Index","ListProduct")">Dresses</a>
-                                            <ul>
-                                                <li><a href="@Url.Action("Index","ProductDetail")">Casual Dresses</a></li>
-                                                <li><a href="@Url.Action("Index","ProductDetail")">Summer Dresses</a></li>
-                                                <li><a href="@Url.Action("Index","ProductDetail")">Evening Dresses</a></li>
-                                            </ul>
-                                        </li>
+                                @{
+                                    foreach (var item in ViewBag.lstCategory)
+                                    {
+                                        if (@item.CategoryParentId == 0)
+                                        {
+                                            <li>
+                                                <a href="@Url.Action("Index", "ListProduct")">@item.CategoryName</a>
+                                                <ul>
+                                                @{
+                                                    foreach (var item1 in ViewBag.lstCategory)
+                                                    {
+                                                        if (item1.CategoryParentId == item.CategoryId)
+                                                        {
 
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action("Index","ListProduct")">men</a>
-                                    <ul>
-                                        <li>
-                                            <a href="@Url.Action("Index","ListProduct")">Tops</a>
-                                            <ul>
-                                                <li><a href="@Url.Action("Index","ProductDetail")">Sports</a></li>
-                                                <li><a href="@Url.Action("Index","ProductDetail")">Day</a></li>
-                                                <li><a href="@Url.Action("Index","ProductDetail")">Evening</a></li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            <a href="@Url.Action("Index","ListProduct")">Blouses</a>
-                                            <ul>
-                                                <li><a href="@Url.Action("Index","ProductDetail")">Handbag</a></li>
-                                                <li><a href="@Url.Action("Index","ProductDetail")">Headphone</a></li>
-                                                <li><a href="@Url.Action("Index","ProductDetail")">Houseware</a></li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            <a href="@Url.Action("Index","ListProduct")">Accessories</a>
-                                            <ul>
-                                                <li><a href="@Url.Action("Index","ProductDetail")">Houseware</a></li>
-                                                <li><a href="@Url.Action("Index","ProductDetail")">Home</a></li>
-                                                <li><a href="@Url.Action("Index","ProductDetail")">Health & Beauty</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li><a href="@Url.Action("Index","ProductDetail")">clothing</a></li>
-                                <li><a href="@Url.Action("Index","ProductDetail")">tops</a></li>
-                                <li><a href="@Url.Action("Index","ProductDetail")">T-shirts</a></li>
-                                <li><a href="#">Delivery</a></li>
-                                <li><a href="about-us.html">About us</a></li>
+                                                                <li>
+                                                                    <a href="@Url.Action("Index", "ListProduct")">@item1.CategoryName</a>
+                                                                    <ul>
+                                                                        @{
+                                                                            foreach (var item2 in ViewBag.lstCategory)
+                                                                            {
+                                                                                if (item2.CategoryParentId == item1.CategoryId)
+                                                                                {
+                                                                                    <li><a href="@Url.Action("Index", "ProductDetail")">@item2.CategoryName</a></li>
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    </ul>
+                                                                </li>
+                                                            }
+                                                        }
+                                                    }
+                                                </ul>
+                                            </li>
+                                        }
+                                    }
+                                }
+                                <li><a href="@Url.Action("Contact","Home")">Contact</a></li>
+                                <li><a href="@Url.Action("About","Home")">About us</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -770,7 +747,7 @@
 				scrollwheel: false,
 				center: new google.maps.LatLng(35.149868, -90.046678)
 			  };
-			  var map = new google.maps.Map(document.getElementById('googleMap'),
+			  var map = new google.maps.Map(document.getElementById('goog   `leMap'),
 				  mapOptions);
 			  var marker = new google.maps.Marker({
 				position: map.getCenter(),

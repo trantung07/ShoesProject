@@ -1,5 +1,4 @@
-﻿
-using ShoesProjectModels.Model;
+﻿using ShoesProjectModels.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,18 +14,15 @@ namespace ShoesProject.Controllers
         {
             var lst = db.Products.ToList();
             ViewBag.lstProduct = lst;
-            var lstCate = from c in db.Categories
-                          where c.CategoryParentId == null
-                          select c.CategoryName;
+            var lstCate = from c in db.Categories          
+                          select c;
             ViewBag.lstCategory = lstCate;
-
             return View();
         }
         public ActionResult About()
         {
             var lstCate = from c in db.Categories
-                          where c.CategoryParentId == null
-                          select c.CategoryName;
+                          select c;
             ViewBag.lstCategory = lstCate;
             return View();
         }
@@ -34,8 +30,7 @@ namespace ShoesProject.Controllers
         public ActionResult Contact()
         {
             var lstCate = from c in db.Categories
-                          where c.CategoryParentId == null
-                          select c.CategoryName;
+                          select c;
             ViewBag.lstCategory = lstCate;
             return View();
         }

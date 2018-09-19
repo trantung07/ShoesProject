@@ -15,8 +15,7 @@ namespace ShoesProject.Controllers
         public ActionResult Index()
         {
             var lstCate = from c in db.Categories
-                          where c.CategoryParentId == null
-                          select c.CategoryName;
+                          select c;
             ViewBag.lstCategory = lstCate;
             return View();
         }
