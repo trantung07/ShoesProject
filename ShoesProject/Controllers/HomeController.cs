@@ -14,15 +14,29 @@ namespace ShoesProject.Controllers
         public ActionResult Index()
         {
             var lst = db.Products.ToList();
-            return View(lst);
+            ViewBag.lstProduct = lst;
+            var lstCate = from c in db.Categories
+                          where c.CategoryParentId == null
+                          select c.CategoryName;
+            ViewBag.lstCategory = lstCate;
+
+            return View();
         }
         public ActionResult About()
         {
+            var lstCate = from c in db.Categories
+                          where c.CategoryParentId == null
+                          select c.CategoryName;
+            ViewBag.lstCategory = lstCate;
             return View();
         }
 
         public ActionResult Contact()
         {
+            var lstCate = from c in db.Categories
+                          where c.CategoryParentId == null
+                          select c.CategoryName;
+            ViewBag.lstCategory = lstCate;
             return View();
         }
     }

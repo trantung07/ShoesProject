@@ -1,5 +1,4 @@
-﻿@model IEnumerable<ShoesProjectModels.Model.Product>
-@{
+﻿@{
     ViewBag.Title = "Home Page";
 }
 <div class="container">
@@ -65,9 +64,9 @@
                             <div class="new-pro-carousel">
                                 <!-- NEW-PRODUCT-SINGLE-ITEM START -->
                                 @{
-                                    if (Model != null && Model.Count() > 0)
+                                    if (ViewBag.lstProduct != null)
                                     {
-                                        foreach (var item in Model)
+                                        foreach (var item in ViewBag.lstProduct)
                                         {
                                             <div class="item">
                                                 <div class="new-product">

@@ -14,6 +14,10 @@ namespace ShoesProject.Controllers
         // GET: Login
         public ActionResult Index()
         {
+            var lstCate = from c in db.Categories
+                          where c.CategoryParentId == null
+                          select c.CategoryName;
+            ViewBag.lstCategory = lstCate;
             return View();
         }
         [HttpPost]

@@ -14,6 +14,10 @@ namespace ShoesProject.Controllers
         // GET: MyCart
         public ActionResult Index()
         {
+            var lstCate = from c in db.Categories
+                          where c.CategoryParentId == null
+                          select c.CategoryName;
+            ViewBag.lstCategory = lstCate;
             List<CartItem> lst = (List<CartItem>)Session["Cart"];
             return View(lst);
         }
