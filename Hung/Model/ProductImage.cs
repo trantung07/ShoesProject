@@ -8,13 +8,11 @@ namespace ShoesProjectModels.Model
 
     public partial class ProductImage
     {
-        [Key]
-        [Column(Order = 0)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ProductId { get; set; }
 
-        [Key]
-        [Column(Order = 1, TypeName = "text")]
+        public int ProductImageId { get; set; }
+
+        [Column(TypeName = "text")]
         public string Image { get; set; }
 
         public virtual Product Product { get; set; }
