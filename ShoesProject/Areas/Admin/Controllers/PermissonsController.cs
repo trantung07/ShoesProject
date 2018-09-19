@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ShoesProjectModels.Model;
+using ShoesProject.Areas.Admin.Models;
 
 namespace ShoesProject.Areas.Admin.Controllers
 {
@@ -125,6 +126,26 @@ namespace ShoesProject.Areas.Admin.Controllers
         //{
 
         //}
+        public JsonResult getUserPermissons(string id, int userId)
+        {
+            var grantedPermissonsList = (from a in db.Admins
+                                        from p in a.Permissons
+                                        where a.AdminId == userId && p.BusinessId == id
+                                        select new PermissonViewModel { PermissonId = p.PermissonId, PermissonName = p.PermissonName, Description = p.PermissonDescription, isGranted = true }).ToList();
+            var permissonsList = from p in db.Permissons
+                                 where p.BusinessId == id
+                                 select new PermissonViewModel { PermissonId = p.PermissonId, PermissonName = p.PermissonName, Description = p.PermissonDescription, isGranted = true };
+
+            var grantedPermissonsIdList = grantedPermissonsList.Select(p => p.PermissonId);
+            foreach(var item in permissonsList)
+            {
+                if (!grantedPermissonsIdList.Contains(item.PermissonId)) grantedPermissonsList.Add(item);
+            }
+            return Json(grantedPermissonsList.OrderBy(x => x.Description), JsonRequestBehavior.AllowGet);
+
+        }
+
+
 
         protected override void Dispose(bool disposing)
         {

@@ -6,13 +6,13 @@
 
 <h2>Index</h2>
 
-<div class="col-md-4">
-    @Html.DropDownList("BusinessesController", (IEnumerable < SelectListItem >) ViewBag.items, new { size = 20, id="listBusinesses"});
-</div>
-<div class="col-md-6">
-    <ul id="listPermissonGranted">
-        
-    </ul>
+<div class="row">
+    <div class="col-md-4">
+        @Html.DropDownList("BusinessesController", (IEnumerable<SelectListItem>)ViewBag.items, new { size = 20, id = "listBusinesses" });
+    </div>
+    <div class="col-md-6">
+        <ul id="listPermissonGranted"></ul>
+    </div>
 </div>
 @section Scripts{
 <script>
@@ -23,18 +23,21 @@
         $.ajax({
             url: '@Url.Action("getUserPermissons", "Permissons")',
             data: {
-                userId: $('#listBusinesses').val()
+                id:$('#listBusinesses').val(),
+                userId: @Session["userOnSet"]
             },
             method: "post",
-            success: function() {
-                $('#listPermissonGranted').html(
-                    "<li> Got data success!</li>"
-                );
+            success: function(data) {
+                renderPermissons(data);
             }
         })
     }
     function renderPermissons(listPermissons) {
-
+        $('#listPermissonGranted').html("");
+        listPermissons.forEach(function(item){
+            console.log(item);
+            $('#listPermissonGranted').append("<li><label><input type='checkbox' value='' />"+ item.PermissonName +"</label></li>");
+        });
     }
 </script>    
 }
