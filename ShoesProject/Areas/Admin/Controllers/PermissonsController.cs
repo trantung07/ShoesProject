@@ -120,6 +120,11 @@ namespace ShoesProject.Areas.Admin.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+        //[HttpPost]
+        //public ActionResult getUserPermissons(int userId)
+        //{
+
+        //}
 
         protected override void Dispose(bool disposing)
         {
