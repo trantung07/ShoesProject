@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ShoesProject.Models.CartItem>
+﻿@*@model IEnumerable<ShoesProject.Models.CartItem>*@
 <!doctype html>
 <html lang="en">
 <head>
@@ -75,18 +75,19 @@
                     <div class="header-right-menu">
                         <nav>
                             <ul class="list-inline">
-                                  @if (Session["fullname"] != null)
-                                  {
-                                        <li><a href="@Url.Action("CartPayment","MyCart")">Check Out</a></li>
-                                        <li><a href="@Url.Action("Index","MyCart")">My Cart</a></li>
-                                        <li><p>Hello @Session["fullname"]</p></li>
-                                        <li>@Html.ActionLink("LogOut", "LogOut","Login")</li>
-                                        <li><a href="@Url.Action("Index","MyAccount")">My Account</a></li>
-                                  }else
-                                  {
+                                @if (Session["fullname"] != null)
+                                {
+                                    <li><a href="@Url.Action("CartPayment","MyCart")">Check Out</a></li>
                                     <li><a href="@Url.Action("Index","MyCart")">My Cart</a></li>
-                                    <li><a href="@Url.Action("Index","Login")">Sign in</a></li>
-                                  }
+                                    <li><p>Hello @Session["fullname"]</p></li>
+                                    <li>@Html.ActionLink("LogOut", "LogOut", "Login")</li>
+                                    <li><a href="@Url.Action("Index","MyAccount")">My Account</a></li>
+                                }
+                                else
+                                {
+                    <li><a href="@Url.Action("Index","MyCart")">My Cart</a></li>
+                    <li><a href="@Url.Action("Index","Login")">Sign in</a></li>
+                }
                             </ul>
                         </nav>
                     </div>
@@ -233,7 +234,7 @@
                                     <div class="drodown-mega-menu">
                                         <div class="left-mega col-xs-6">
                                             <div class="mega-menu-list">
-                                               <a class="mega-menu-title" href="@Url.Action("Index","ListProduct")">TOPS</a>
+                                                <a class="mega-menu-title" href="@Url.Action("Index","ListProduct")">TOPS</a>
                                                 <ul>
                                                     <li><a href="@Url.Action("Index","ProductDetail")">T-shirts</a></li>
                                                     <li><a href="@Url.Action("Index","ProductDetail")">clothing</a></li>
@@ -243,7 +244,7 @@
                                         </div>
                                         <div class="right-mega col-xs-6">
                                             <div class="mega-menu-list">
-                                               <a class="mega-menu-title" href="@Url.Action("Index","ListProduct")">Prodect</a>
+                                                <a class="mega-menu-title" href="@Url.Action("Index","ListProduct")">Prodect</a>
                                                 <ul>
                                                     <li><a href="@Url.Action("Index","ProductDetail")">T-shirts</a></li>
                                                     <li><a href="@Url.Action("Index","ProductDetail")">clothing</a></li>
@@ -277,7 +278,7 @@
                                     <div class="drodown-mega-menu">
                                         <div class="left-mega col-xs-6">
                                             <div class="mega-menu-list">
-                                               <a class="mega-menu-title" href="@Url.Action("Index","ListProduct")">TOPS</a>
+                                                <a class="mega-menu-title" href="@Url.Action("Index","ListProduct")">TOPS</a>
                                                 <ul>
                                                     <li><a href="@Url.Action("Index","ProductDetail")">T-shirts</a></li>
                                                     <li><a href="@Url.Action("Index","ProductDetail")">clothing</a></li>
@@ -285,7 +286,7 @@
                                                 </ul>
                                             </div>
                                             <div class="mega-menu-list">
-                                               <a class="mega-menu-title" href="@Url.Action("Index","ListProduct")">new product</a>
+                                                <a class="mega-menu-title" href="@Url.Action("Index","ListProduct")">new product</a>
                                                 <ul>
                                                     <li><a href="@Url.Action("Index","ProductDetail")">T-shirts</a></li>
                                                     <li><a href="@Url.Action("Index","ProductDetail")">clothing</a></li>
@@ -295,7 +296,7 @@
                                         </div>
                                         <div class="right-mega col-xs-6">
                                             <div class="mega-menu-list">
-                                               <a class="mega-menu-title" href="@Url.Action("Index","ListProduct")">Prodect</a>
+                                                <a class="mega-menu-title" href="@Url.Action("Index","ListProduct")">Prodect</a>
                                                 <ul>
                                                     <li><a href="@Url.Action("Index","ProductDetail")">T-shirts</a></li>
                                                     <li><a href="@Url.Action("Index","ProductDetail")">clothing</a></li>
@@ -304,7 +305,7 @@
                                                 </ul>
                                             </div>
                                             <div class="mega-menu-list">
-                                               <a class="mega-menu-title" href="@Url.Action("Index","ListProduct")">best sale month</a>
+                                                <a class="mega-menu-title" href="@Url.Action("Index","ListProduct")">best sale month</a>
                                                 <ul>
                                                     <li><a href="@Url.Action("Index","ProductDetail")">T-shirts</a></li>
                                                     <li><a href="@Url.Action("Index","ProductDetail")">clothing</a></li>
@@ -321,7 +322,7 @@
                                     <div class="drodown-mega-menu">
                                         <div class="left-mega col-xs-4">
                                             <div class="mega-menu-list">
-                                               <a class="mega-menu-title" href="@Url.Action("Index","ListProduct")">TOPS</a>
+                                                <a class="mega-menu-title" href="@Url.Action("Index","ListProduct")">TOPS</a>
                                                 <ul>
                                                     <li><a href="@Url.Action("Index","ProductDetail")">T-shirts</a></li>
                                                     <li><a href="@Url.Action("Index","ProductDetail")">clothing</a></li>
@@ -331,7 +332,7 @@
                                         </div>
                                         <div class="right-mega col-xs-4">
                                             <div class="mega-menu-list">
-                                               <a class="mega-menu-title" href="@Url.Action("Index","ListProduct")">best sale month</a>
+                                                <a class="mega-menu-title" href="@Url.Action("Index","ListProduct")">best sale month</a>
                                                 <ul>
                                                     <li><a href="@Url.Action("Index","ProductDetail")">T-shirts</a></li>
                                                     <li><a href="@Url.Action("Index","ProductDetail")">clothing</a></li>
@@ -341,7 +342,7 @@
                                         </div>
                                         <div class="right-mega col-xs-4">
                                             <div class="mega-menu-list">
-                                               <a class="mega-menu-title" href="@Url.Action("Index","ListProduct")">top rate product</a>
+                                                <a class="mega-menu-title" href="@Url.Action("Index","ListProduct")">top rate product</a>
                                                 <ul>
                                                     <li><a href="@Url.Action("Index","ProductDetail")">T-shirts</a></li>
                                                     <li><a href="@Url.Action("Index","ProductDetail")">clothing</a></li>
@@ -351,7 +352,7 @@
                                         </div>
                                         <div class="left-mega col-xs-6">
                                             <div class="mega-menu-list">
-                                               <a class="mega-menu-title" href="@Url.Action("Index","ListProduct")">Latest product</a>
+                                                <a class="mega-menu-title" href="@Url.Action("Index","ListProduct")">Latest product</a>
                                                 <ul>
                                                     <li><a href="@Url.Action("Index","ProductDetail")">T-shirts</a></li>
                                                     <li><a href="@Url.Action("Index","ProductDetail")">clothing</a></li>
@@ -361,7 +362,7 @@
                                         </div>
                                         <div class="left-mega col-xs-6">
                                             <div class="mega-menu-list">
-                                               <a class="mega-menu-title" href="@Url.Action("Index","ListProduct")">popular product</a>
+                                                <a class="mega-menu-title" href="@Url.Action("Index","ListProduct")">popular product</a>
                                                 <ul>
                                                     <li><a href="@Url.Action("Index","ProductDetail")">T-shirts</a></li>
                                                     <li><a href="@Url.Action("Index","ProductDetail")">clothing</a></li>
@@ -378,7 +379,7 @@
                                     <div class="drodown-mega-menu">
                                         <div class="left-mega col-xs-6">
                                             <div class="mega-menu-list">
-                                               <a class="mega-menu-title" href="@Url.Action("Index","ListProduct")">TOPS</a>
+                                                <a class="mega-menu-title" href="@Url.Action("Index","ListProduct")">TOPS</a>
                                                 <ul>
                                                     <li><a href="@Url.Action("Index","ProductDetail")">T-shirts</a></li>
                                                     <li><a href="@Url.Action("Index","ProductDetail")">clothing</a></li>
@@ -386,7 +387,7 @@
                                                 </ul>
                                             </div>
                                             <div class="mega-menu-list">
-                                               <a class="mega-menu-title" href="@Url.Action("Index","ListProduct")">new product</a>
+                                                <a class="mega-menu-title" href="@Url.Action("Index","ListProduct")">new product</a>
                                                 <ul>
                                                     <li><a href="@Url.Action("Index","ProductDetail")">T-shirts</a></li>
                                                     <li><a href="@Url.Action("Index","ProductDetail")">clothing</a></li>
@@ -396,7 +397,7 @@
                                         </div>
                                         <div class="right-mega col-xs-6">
                                             <div class="mega-menu-list">
-                                               <a class="mega-menu-title" href="@Url.Action("Index","ListProduct")">Prodect</a>
+                                                <a class="mega-menu-title" href="@Url.Action("Index","ListProduct")">Prodect</a>
                                                 <ul>
                                                     <li><a href="@Url.Action("Index","ProductDetail")">T-shirts</a></li>
                                                     <li><a href="@Url.Action("Index","ProductDetail")">clothing</a></li>
@@ -405,7 +406,7 @@
                                                 </ul>
                                             </div>
                                             <div class="mega-menu-list">
-                                               <a class="mega-menu-title" href="@Url.Action("Index","ListProduct")">best sale month</a>
+                                                <a class="mega-menu-title" href="@Url.Action("Index","ListProduct")">best sale month</a>
                                                 <ul>
                                                     <li><a href="@Url.Action("Index","ProductDetail")">T-shirts</a></li>
                                                     <li><a href="@Url.Action("Index","ProductDetail")">clothing</a></li>
@@ -504,7 +505,7 @@
     <!-- MAIN-MENU-AREA END -->
     <!-- MAIN-CONTENT-SECTION START -->
     <section class="main-content-section">
-       @RenderBody()
+        @RenderBody()
     </section>
     <!-- MAIN-CONTENT-SECTION END -->
     <!-- BRAND-CLIENT-AREA START -->
@@ -901,30 +902,30 @@
                 </div>
             </div>
         </div>
-    </footer> 
+    </footer>
 
     <script>
-			new WOW().init();
+        new WOW().init();
     </script>
 
     <!-- Google Map js -->
     <script src="https://maps.googleapis.com/maps/api/js"></script>
     <script>
-			function initialize() {
-			  var mapOptions = {
-				zoom: 8,
-				scrollwheel: false,
-				center: new google.maps.LatLng(35.149868, -90.046678)
-			  };
-			  var map = new google.maps.Map(document.getElementById('googleMap'),
-				  mapOptions);
-			  var marker = new google.maps.Marker({
-				position: map.getCenter(),
-				map: map
-			  });
+        function initialize() {
+            var mapOptions = {
+                zoom: 8,
+                scrollwheel: false,
+                center: new google.maps.LatLng(35.149868, -90.046678)
+            };
+            var map = new google.maps.Map(document.getElementById('googleMap'),
+                mapOptions);
+            var marker = new google.maps.Marker({
+                position: map.getCenter(),
+                map: map
+            });
 
-			}
-			google.maps.event.addDomListener(window, 'load', initialize);
+        }
+        google.maps.event.addDomListener(window, 'load', initialize);
     </script>
     @RenderSection("scripts", required: false)
 
