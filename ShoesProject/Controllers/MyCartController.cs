@@ -18,6 +18,7 @@ namespace ShoesProject.Controllers
                           select c;
             ViewBag.lstCategory = lstCate;
             List<CartItem> lst = (List<CartItem>)Session["Cart"];
+            //List<CartItem> lst = new List<CartItem>()
             return View(lst);
         }
         public ActionResult AddCart(int id)
@@ -39,12 +40,13 @@ namespace ShoesProject.Controllers
                 }
                 if (!check)
                 {
-                    lst.Add(new CartItem { Product = product, Quantity = 1 });
+                    lst.Add(new CartItem { Product = product, Quantity = 1 , Images = product.ProductFeatureImage.ToString() });
                 }
                 Session["Cart"] = lst;
             }else
             {
-                Session["Cart"] = new List<CartItem>() { new CartItem { Product = product, Quantity = 1 } }; 
+                
+                Session["Cart"] = new List<CartItem>() { new CartItem { Product = product, Quantity = 1, Images = product.ProductFeatureImage.ToString() } }; 
             }
             return RedirectToAction("Index");
         }
@@ -92,19 +94,31 @@ namespace ShoesProject.Controllers
         }
         public ActionResult CartSignin()
         {
+            var lstCate = from c in db.Categories
+                          select c;
+            ViewBag.lstCategory = lstCate;
             return View();
         }
 
         public ActionResult CartAddress()
         {
+            var lstCate = from c in db.Categories
+                          select c;
+            ViewBag.lstCategory = lstCate;
             return View();
         }
         public ActionResult CartShipping()
         {
+            var lstCate = from c in db.Categories
+                          select c;
+            ViewBag.lstCategory = lstCate;
             return View();
         }
         public ActionResult CartPayment()
         {
+            var lstCate = from c in db.Categories
+                          select c;
+            ViewBag.lstCategory = lstCate;
             return View();
         }
     }

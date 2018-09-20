@@ -179,7 +179,6 @@
                                 }
                                 </span>
                             </a>
-                            <div class="shipping-cart-overly">
                                 @{
                                     if (Session["Cart"] != null)
                                     {
@@ -187,35 +186,38 @@
                                         {
                                             foreach (var item in Model)
                                             {
-                                                <div class="shipping-item">
-                                                    <span class="cross-icon"><i class="fa fa-times-circle"></i></span>
-                                                    <div class="shipping-item-image">
-                                                        <a href="@Url.Action("Index","ProductDetail",new { id = item.Product.ProductId})"><img src="~/Content/img/@item.Product.ProductImages" alt="shopping image" /></a>
+                                                <div class="shipping-cart-overly">
+                                                    <div class="shipping-item">
+                                                        <span class="cross-icon"><i class="fa fa-times-circle"></i></span>
+                                                        <div class="shipping-item-image">
+                                                            <a href="@Url.Action("Index", "ProductDetail", new { id = item.Product.ProductId })"><img src="~/Content/img/product/@item.Images" alt="shopping image" /></a>
+                                                        </div>
+                                                        <div class="shipping-item-text">
+                                                            <span>@item.Quantity<a href="#" class="pro-cat">@item.Product.ProductName</a><a href="#" data-id="@item.Product.ProductId" class="cart_quantity_delete" title="Delete"></span>
+                                                            <span class="pro-quality"><a href="#">@item.Product.Sizes,@item.Product.Colors</a></span>
+                                                            @{ var total = @item.Quantity * @item.Product.ProductPrice; }
+                                                            <p>@total</p>
+                                                        </div>
                                                     </div>
-                                                    <div class="shipping-item-text">
-                                                        <span>@item.Quantity<span class="pro-quan-x">x</span> <a href="#" class="pro-cat">@item.Product.ProductName</a></span>
-                                                        <span class="pro-quality"><a href="#">@item.Product.Sizes,@item.Product.Colors</a></span>
-                                                        <p>@item.Quantity*@item.Product.ProductPrice</p>
+                                                    }
+                                                    <div class="shipping-total-bill">
+                                                        @*<div class="cart-prices">
+                                                                <span class="shipping-cost">$2.00</span>
+                                                                <span>Shipping</span>
+                                                            </div>*@
+                                                        <div class="total-shipping-prices">
+                                                            <span class="shipping-total">$24.95</span>
+                                                            <span>Total</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="shipping-checkout-btn">
+                                                        <a href="@Url.Action("Index", "MyCart")">Check out <i class="fa fa-chevron-right"></i></a>
                                                     </div>
                                                 </div>
-                                            }
-                                        }
-                                    }
-                                }
-                                <div class="shipping-total-bill">
-                                    <div class="cart-prices">
-                                        <span class="shipping-cost">$2.00</span>
-                                        <span>Shipping</span>
-                                    </div>
-                                    <div class="total-shipping-prices">
-                                        <span class="shipping-total">$24.95</span>
-                                        <span>Total</span>
-                                    </div>
-                                </div>
-                                <div class="shipping-checkout-btn">
-                                    <a href="@Url.Action("CartPayment","MyCart")">Check out <i class="fa fa-chevron-right"></i></a>
-                                </div>
-                            </div>
+                           }
+                        }
+                     }
+                  }
                         </div>
                     </div>
                 </div>
@@ -756,8 +758,19 @@
 
 			}
 			google.maps.event.addDomListener(window, 'load', initialize);
+			$(".cart_quantity_delete").click(function () {
+			    var div = $(this).parents("div");
+			    var id = $(this).data("id");
+			    $.ajax({
+			        type:"POST",
+			        url: "@Url.Action("DeleteCart", "MyCart")", 
+			        data:{id:id},
+			        success: function () {		           
+			        }
+			        })
+			  })
     </script>
     @RenderSection("scripts", required: false)
-
+    
 </body>
 </html>

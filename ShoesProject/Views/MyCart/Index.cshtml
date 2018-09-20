@@ -76,7 +76,7 @@
                                 {
                                     <tr>
                                         <td class="cart-product">
-                                            <a href="#"><img alt="Blouse" src="~/Content/img/@item.Product.ProductImages"></a>
+                                            <a href="#"><img alt="Blouse" src="~/Content/img/product/@item.Images"></a>
                                         </td>
                                         <td class="cart-description">
                                             <p class="product-name"><a href="#">@item.Product.ProductName</a></p>
@@ -187,7 +187,6 @@
                         data: {id:id,quantity:quantity},
                         success: function(rps){
                             tr.find(".money").text(price * quantity);
-                            tr.fin(".totalPrice").text();
                         }
                     })
                 }

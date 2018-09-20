@@ -1,0 +1,53 @@
+﻿@model IEnumerable<ShoesProjectModels.Model.Category>
+@Styles.Render("~/Content/css");
+    <div class="mainmenu">
+        <nav>
+            <ul class="list-inline mega-menu">
+                <li>
+                    <a href="@Url.Action("Index","Home")">Home</a>
+                </li>
+                @{
+                    foreach (var item in Model)
+                    {
+                        if (@item.CategoryParentId == 0)
+                        {
+                            <li>
+                                <a href="@Url.Action("Index","ListProduct")">@item.CategoryName</a>
+                                <!-- DRODOWN-MEGA-MENU START -->
+                                <div class="drodown-mega-menu">
+                                    @{
+                                        foreach (var item1 in Model)
+                                        {
+                                            if (item1.CategoryParentId == item.CategoryId)
+                                            {
+                                                <div class="left-mega col-xs-6">
+                                                    <div class="mega-menu-list">
+                                                        <a class="mega-menu-title" href="@Url.Action("Index","ListProduct")">@item1.CategoryName</a>
+                                                        <ul>
+                                                            @{
+                                                                foreach (var item2 in Model)
+                                                                {
+                                                                    if (item2.CategoryParentId == item1.CategoryId)
+                                                                    {
+
+                                                                        <li><a href="@Url.Action("Index","ListProduct")">@item2.CategoryName</a></li>
+                                                                    }
+                                                                }
+                                                            }
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                                    }
+                                                                }
+                                    }
+                                </div>
+                                <!-- DRODOWN-MEGA-MENU END -->
+                            </li>
+                                                                    }
+                                                                }
+                }
+                <li><a href="@Url.Action("Contact","Home")">Contact</a></li>
+                <li><a href="@Url.Action("About","Home")">About us</a></li>
+            </ul>
+        </nav>
+    </div>
