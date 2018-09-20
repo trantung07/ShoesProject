@@ -167,6 +167,7 @@
     <Compile Include="Areas\Admin\Controllers\PermissonsController.cs" />
     <Compile Include="Areas\Admin\Controllers\SetPermissonController.cs" />
     <Compile Include="Areas\Admin\Controllers\SizesController.cs" />
+    <Compile Include="Areas\Admin\Models\PermissonViewModel.cs" />
     <Compile Include="Areas\Admin\Util\ReflectionController.cs" />
     <Compile Include="Areas\Admin\Util\Utility.cs" />
     <Compile Include="Controllers\HomeController.cs" />
