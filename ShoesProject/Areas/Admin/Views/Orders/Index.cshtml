@@ -1,0 +1,86 @@
+﻿@model IEnumerable<ShoesProjectModels.Model.Order>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.User.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Voucher.VoucherName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProgressStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderStatus)
+        </th>
+        <th>Actions</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Voucher.VoucherName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PhoneNumber)
+        </td>
+        <td>
+            @if ((int)item.ProgressStatus == 0)
+            {
+                <span>Đăng ký thành công</span>
+            }
+            @if ((int)item.ProgressStatus == 1)
+            {
+                <span>Đã tiếp nhận đơn hàng</span>
+            }
+            @if ((int)item.ProgressStatus == 2)
+            {
+                <span>Đang vận chuyển</span>
+            }
+            @if ((int)item.ProgressStatus == 3)
+            {
+                <span>Giao hàng thành công</span>
+            }
+        </td>
+        <td>
+            @if (item.OrderStatus ?? false)
+            {
+                <span>Enabled</span>
+            }
+            else
+            {
+                <span>Canceled</span>
+            }
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.OrderId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.OrderId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.OrderId })
+        </td>
+    </tr>
+}
+
+</table>

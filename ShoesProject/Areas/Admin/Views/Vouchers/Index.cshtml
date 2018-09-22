@@ -1,0 +1,58 @@
+﻿@model IEnumerable<ShoesProjectModels.Model.Voucher>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table table-bordered">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.VoucherName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DiscountPercent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Remain)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ExpiredAt)
+        </th>
+        <th>Actions</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.VoucherName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Code)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DiscountPercent)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Remain)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ExpiredAt)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.VoucherId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.VoucherId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.VoucherId })
+        </td>
+    </tr>
+}
+
+</table>
