@@ -141,6 +141,15 @@ namespace ShoesProject.Areas.Admin.Controllers
                 return new FineUploaderResult(false, error: ex.Message);
             }
         }
+
+        public JsonResult GetProductImages(int ProductId)
+        {
+            var imagesList = (from p in db.ProductImages
+                             where p.ProductId == ProductId
+                             select new {Image = p.Image, ProductImageId = p.ProductImageId}
+                             ).ToList();
+            return Json(imagesList.OrderBy(x => x.ProductImageId), JsonRequestBehavior.AllowGet);
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)
