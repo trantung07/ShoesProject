@@ -9,10 +9,12 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using FineUploader;
+using ShoesProject.Areas.Admin.Models;
 using ShoesProjectModels.Model;
 
 namespace ShoesProject.Areas.Admin.Controllers
 {
+    [AuthorizeBusiness]
     public class BrandsController : Controller
     {
         private Shoes db = new Shoes();
