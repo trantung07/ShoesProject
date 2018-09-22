@@ -50,7 +50,7 @@ namespace ShoesProject.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                admin.AdminPassword = Util.Utility.getHashedMD5(admin.AdminPassword);
+                admin.AdminPassword = Util.Utility.getHashedMD5(admin.AdminUsername +admin.AdminPassword);
                 db.Admins.Add(admin);
                 db.SaveChanges();
                 return RedirectToAction("Index");

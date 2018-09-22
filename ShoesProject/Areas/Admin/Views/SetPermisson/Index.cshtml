@@ -5,7 +5,7 @@
 }
 
 <h2>Index</h2>
-
+<div id="message"></div>
 <div class="row">
     <div class="col-md-4">
         @Html.DropDownList("BusinessesController", (IEnumerable<SelectListItem>)ViewBag.items, new { size = 20, id = "listBusinesses" });
@@ -35,9 +35,24 @@
     function renderPermissons(listPermissons) {
         $('#listPermissonGranted').html("");
         listPermissons.forEach(function(item){
-            console.log(item);
-            $('#listPermissonGranted').append("<li><label><input type='checkbox' value='' />"+ item.PermissonName +"</label></li>");
+            item.isGranted ?
+                $('#listPermissonGranted').append("<li><label><input type='checkbox' checked value='' onchange='updateUserPermissonState(" + item.PermissonId + ",@Session["userOnSet"]" + ")'/>" + item.PermissonName + "</label></li>")
+                : $('#listPermissonGranted').append("<li><label><input type='checkbox' value='' onchange='updateUserPermissonState(" + item.PermissonId + ",@Session["userOnSet"]" + ")'/>" + item.PermissonName + "</label></li>");
         });
+    }
+    function updateUserPermissonState(id,userId) {
+        $.ajax({
+            url: '@Url.Action("UpdateUserPermissonState", "Permissons")',
+            method: "post",
+            data: {
+                id,
+                userId
+            },
+            success: function (msg) {
+                $('#message').html(msg);
+            }
+
+        })
     }
 </script>    
 }
