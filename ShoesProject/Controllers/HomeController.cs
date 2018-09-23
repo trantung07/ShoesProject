@@ -21,6 +21,7 @@ namespace ShoesProject.Controllers
                    from p in db.Products
                    join c in db.Categories on p.CategoryId equals c.CategoryId
                    join b in db.Brands on p.BrandId equals b.BrandId
+                   where p.ProductStatus == true
                    orderby p.ProductId descending
                    select new Products
                    {
@@ -43,6 +44,7 @@ namespace ShoesProject.Controllers
                    from p in db.Products
                    join c in db.Categories on p.CategoryId equals c.CategoryId
                    join b in db.Brands on p.BrandId equals b.BrandId
+                   where p.ProductStatus == true
                    where p.ProductDiscount > 0
                    && p.ProductDiscount != null
                    select new Products
@@ -66,6 +68,7 @@ namespace ShoesProject.Controllers
                    from p in db.Products
                    join c in db.Categories on p.CategoryId equals c.CategoryId
                    join b in db.Brands on p.BrandId equals b.BrandId
+                   where p.ProductStatus == true
                    orderby p.ProductId ascending
                    select new Products
                    {
