@@ -141,6 +141,30 @@ namespace ShoesProject.Areas.Admin.Controllers
                 return new FineUploaderResult(false, error: ex.Message);
             }
         }
+
+        public JsonResult GetProductImages(int ProductId)
+        {
+            var imagesList = (from p in db.ProductImages
+                             where p.ProductId == ProductId
+                             select new {Image = p.Image, ProductImageId = p.ProductImageId}
+                             ).ToList();
+            return Json(imagesList.OrderBy(x => x.ProductImageId), JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public int DeleteProductImages(int ImgId)
+        {
+            try
+            {
+                var img = db.ProductImages.SingleOrDefault(x => x.ProductImageId == ImgId);
+                db.ProductImages.Remove(img);
+                db.SaveChanges();
+                return 1;
+            }
+            catch
+            {
+                return 0;
+            }
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

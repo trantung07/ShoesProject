@@ -168,6 +168,8 @@
     <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
     <Compile Include="Areas\Admin\Controllers\SetPermissonController.cs" />
     <Compile Include="Areas\Admin\Controllers\SizesController.cs" />
+    <Compile Include="Areas\Admin\Models\AuthorizeBusiness.cs" />
+    <Compile Include="Areas\Admin\Models\ImageViewModel.cs" />
     <Compile Include="Areas\Admin\Models\PermissonViewModel.cs" />
     <Compile Include="Areas\Admin\Util\ReflectionController.cs" />
     <Compile Include="Areas\Admin\Util\Utility.cs" />
@@ -191,6 +193,21 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Admin\Content\brandImages\1\2017-10-20.png" />
+    <Content Include="Admin\Content\brandImages\1\2018-01-04.png" />
+    <Content Include="Admin\Content\ProductImages\1\2017-10-20.png" />
+    <Content Include="Admin\Content\ProductImages\1\2018-01-06 %281%29.png" />
+    <Content Include="Admin\Content\ProductImages\5\Jellyfish.jpg" />
+    <Content Include="Admin\Content\ProductImages\5\Lighthouse.jpg" />
+    <Content Include="Admin\Content\ProductImages\5\Penguins.jpg" />
+    <Content Include="Admin\Content\ProductImages\5\Tulips.jpg" />
+    <Content Include="Admin\Content\ProductImages\6\Jellyfish.jpg" />
+    <Content Include="Admin\Content\ProductImages\6\Koala.jpg" />
+    <Content Include="Admin\Content\ProductImages\6\Lighthouse.jpg" />
+    <Content Include="Admin\Content\ProductImages\6\Penguins.jpg" />
+    <Content Include="Admin\Content\ProductImages\7\Chrysanthemum.jpg" />
+    <Content Include="Admin\Content\ProductImages\7\Desert.jpg" />
+    <Content Include="Admin\Content\ProductImages\7\Hydrangeas.jpg" />
     <Content Include="Areas\Admin\Content\css\Baobinh.net.url" />
     <Content Include="Areas\Admin\Content\css\fine-uploader-new.css" />
     <Content Include="Areas\Admin\Content\css\styles.minc726.css" />
@@ -752,6 +769,7 @@
     <Content Include="Views\Menu\MenuCart.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Admin\Content\images\" />
     <Folder Include="App_Data\" />
     <Folder Include="HTMLSource\bstore\" />
     <Folder Include="obj\Debug\TempPE\" />

@@ -34,6 +34,8 @@ namespace ShoesProjectModels.Model
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Quantity { get; set; }
 
+        public int? OldPrice { get; set; }
+
         public virtual Color Color { get; set; }
 
         public virtual Order Order { get; set; }

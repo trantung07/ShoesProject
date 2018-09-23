@@ -134,7 +134,7 @@ namespace ShoesProject.Areas.Admin.Controllers
                                         select new PermissonViewModel { PermissonId = p.PermissonId, PermissonName = p.PermissonName, Description = p.PermissonDescription, isGranted = true }).ToList();
             var permissonsList = from p in db.Permissons
                                  where p.BusinessId == id
-                                 select new PermissonViewModel { PermissonId = p.PermissonId, PermissonName = p.PermissonName, Description = p.PermissonDescription, isGranted = true };
+                                 select new PermissonViewModel { PermissonId = p.PermissonId, PermissonName = p.PermissonName, Description = p.PermissonDescription, isGranted = false };
 
             var grantedPermissonsIdList = grantedPermissonsList.Select(p => p.PermissonId);
             foreach(var item in permissonsList)
@@ -145,7 +145,29 @@ namespace ShoesProject.Areas.Admin.Controllers
 
         }
 
-
+        [HttpPost]
+        public string UpdateUserPermissonState(int id, int userId)
+        {
+            string msg = "";
+            var currentPermisson = db.Permissons.SingleOrDefault(x => x.PermissonId == id);
+            var currentAdmin = db.Admins.SingleOrDefault(x => x.AdminId == userId);
+            if(currentPermisson == null || currentAdmin == null)
+            {
+                return "<div class='alert alert-danger'>400 Bad Request</div>";
+            }
+            if(currentAdmin.Permissons.Any(x => x.PermissonId == currentPermisson.PermissonId))
+            {
+                currentAdmin.Permissons.Remove(currentPermisson);
+                msg = "<div class='alert alert-danger'>Permisson Deactivated!</div>";
+            }
+            else
+            {
+                currentAdmin.Permissons.Add(currentPermisson);
+                msg = "<div class='alert alert-success'>Permisson Activated!</div>";
+            }
+            db.SaveChanges();
+            return msg;
+        }
 
         protected override void Dispose(bool disposing)
         {
