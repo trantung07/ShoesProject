@@ -29,12 +29,14 @@ namespace ShoesProject.Models
 
         public string imagesFeature { get; set; }
 
+        public bool? status { get; set; }
+
         public Products()
         {
 
         }
 
-        public Products(int id, string name, int cateId, string cateName, int instock, int brandId, string brandName, int price, string description, int? discount, string imagesFeature)
+        public Products(int id, string name, int cateId, string cateName, int instock, int brandId, string brandName, int price, string description, int? discount, string imagesFeature, bool? status)
         {
             this.id = id;
             this.name = name;
@@ -47,6 +49,7 @@ namespace ShoesProject.Models
             this.description = description;
             this.discount = discount;
             this.imagesFeature = imagesFeature;
+            this.status = status;
         }
     }
 }
