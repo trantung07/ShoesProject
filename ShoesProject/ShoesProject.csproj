@@ -176,7 +176,9 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ListProductController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\MyAccountController.cs" />
+    <Compile Include="Controllers\MyCartController.cs" />
     <Compile Include="Controllers\ProductDetailController.cs" />
     <Compile Include="Models\Products.cs" />
     <Compile Include="Global.asax.cs">
@@ -757,14 +759,14 @@
     <Content Include="Views\ProductDetail\Index.cshtml" />
     <Content Include="Views\MyCart\CartAddress.cshtml" />
     <Content Include="Views\MyCart\CartPayment.cshtml" />
-    <Content Include="Views\MyCart\CartShipping.cshtml" />
-    <Content Include="Views\MyCart\CartSignin.cshtml" />
     <Content Include="Views\MyCart\Index.cshtml" />
     <Content Include="Views\Sizes\Create.cshtml" />
     <Content Include="Views\Sizes\Delete.cshtml" />
     <Content Include="Views\Sizes\Details.cshtml" />
     <Content Include="Views\Sizes\Edit.cshtml" />
     <Content Include="Views\Sizes\Index.cshtml" />
+    <Content Include="Views\Menu\Index.cshtml" />
+    <Content Include="Views\Menu\MenuCart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Admin\Content\images\" />

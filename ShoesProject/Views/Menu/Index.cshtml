@@ -1,0 +1,119 @@
+﻿@model IEnumerable<ShoesProjectModels.Model.Category>
+ <header class="main-menu-area">
+        <div class="container">
+            <div class="row">
+                <!-- SHOPPING-CART START -->
+                @{ Html.RenderAction("MenuCart", "Menu");}
+                <!-- SHOPPING-CART END -->
+                <!-- MAINMENU START -->
+                <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 no-padding-right menuarea">
+                    <div class="mainmenu">
+                        <nav>
+                            <ul class="list-inline mega-menu">
+                                <li>
+                                    <a href="@Url.Action("Index","Home")">Home</a>
+                                </li>
+                                @{
+                                    foreach (var item in Model)
+                                    {
+                                        if (@item.CategoryParentId == 0)
+                                        {
+                                            <li>
+                                                <a href="@Url.Action("Index","ListProduct",new { id =@item.CategoryId})">@item.CategoryName</a>
+                                                <!-- DRODOWN-MEGA-MENU START -->
+                                                <div class="drodown-mega-menu">
+                                                   @{
+                                                       foreach (var item1 in Model)
+                                                       {
+                                                           if (item1.CategoryParentId == item.CategoryId)
+                                                           {
+                                                            <div class="left-mega col-xs-6">
+                                                                <div class="mega-menu-list">
+                                                                    <a class="mega-menu-title" href="@Url.Action("Index","ListProduct",new { id =@item1.CategoryId})">@item1.CategoryName</a>
+                                                                    <ul>
+                                                                        @{
+                                                                            foreach (var item2 in Model)
+                                                                            {
+                                                                                if (item2.CategoryParentId == item1.CategoryId)
+                                                                                {
+
+                                                                                    <li><a href="@Url.Action("Index","ListProduct",new { id =@item2.CategoryId})">@item2.CategoryName</a></li>
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    </ul>                                                            
+                                                                </div>
+                                                            </div>
+                                                           }
+                                                       }
+                                                    }
+                                                </div>
+                                                <!-- DRODOWN-MEGA-MENU END -->
+                                            </li>
+                                        }
+                                    }
+                                }
+                                <li><a href="@Url.Action("Contact","Home")">Contact</a></li>
+                                <li><a href="@Url.Action("About","Home")">About us</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <!-- MAINMENU END -->
+            </div>
+            <div class="row">
+                <!-- MOBILE MENU START -->
+                <div class="col-sm-12 mobile-menu-area">
+                    <div class="mobile-menu hidden-md hidden-lg" id="mob-menu">
+                        <span class="mobile-menu-title">MENU</span>
+                        <nav>
+                            <ul>
+                                <li>
+                                    <a href="@Url.Action("Index","Home")">Home</a>
+                                </li>
+                                @{
+                                    foreach (var item in Model)
+                                    {
+                                        if (@item.CategoryParentId == 0)
+                                        {
+                                            <li>
+                                                <a href="@Url.Action("Index", "ListProduct",new { id =@item.CategoryId})">@item.CategoryName</a>
+                                                <ul>
+                                                @{
+                                                    foreach (var item1 in Model)
+                                                    {
+                                                        if (item1.CategoryParentId == item.CategoryId)
+                                                        {
+
+                                                                <li>
+                                                                    <a href="@Url.Action("Index", "ListProduct",new { id =@item1.CategoryId})">@item1.CategoryName</a>
+                                                                    <ul>
+                                                                        @{
+                                                                            foreach (var item2 in Model)
+                                                                            {
+                                                                                if (item2.CategoryParentId == item1.CategoryId)
+                                                                                {
+                                                                                    <li><a href="@Url.Action("Index", "LisProduct",new { id =@item2.CategoryId})">@item2.CategoryName</a></li>
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    </ul>
+                                                                </li>
+                                                            }
+                                                        }
+                                                    }
+                                                </ul>
+                                            </li>
+                                        }
+                                    }
+                                }
+                                <li><a href="@Url.Action("Contact","Home")">Contact</a></li>
+                                <li><a href="@Url.Action("About","Home")">About us</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <!-- MOBILE MENU END -->
+            </div>
+        </div>
+    </header>

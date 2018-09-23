@@ -10,6 +10,7 @@ namespace ShoesProject.Controllers
 {
     public class HomeController : Controller
     {
+
         private Shoes db = new Shoes();
         public ActionResult Index()
         {
@@ -58,7 +59,7 @@ namespace ShoesProject.Controllers
                        imagesFeature = p.ProductFeatureImage
                    };
             ViewBag.lstSaleProduct = lstSaleProduct.Take(LIMIT);
-            return View(ViewBag);
+            return View();
         }
         public ActionResult About()
         {

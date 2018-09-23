@@ -1,4 +1,4 @@
-﻿using ShoesProject.Models;
+using ShoesProject.Models;
 using ShoesProjectModels.Model;
 using System;
 using System.Collections.Generic;

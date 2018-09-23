@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ShoesProjectModels.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,10 +9,16 @@ namespace ShoesProject.Controllers
 {
     public class ProductDetailController : Controller
     {
+        Shoes db = new Shoes();
         // GET: ProductDetail
-        public ActionResult Index()
+        public ActionResult Index(int id)
         {
-            return View();
+            Product p = db.Products.Find(id);
+            //ViewBag.Size = from s in db.Sizes
+            //               where s.Products.Contains(p)
+            //               select s.SizeValue;
+            return View(p);
         }
+        
     }
 }

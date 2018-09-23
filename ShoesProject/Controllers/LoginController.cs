@@ -1,5 +1,5 @@
-﻿using ShoesProjectModels.Model;
-using ShoesProject.Areas.Admin.Util;
+﻿using ShoesProject.Areas.Admin.Util;
+using ShoesProjectModels.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -51,6 +51,7 @@ namespace ShoesProject.Controllers
             if (user != null)
             {
                 Session["fullname"] = user.UserName;
+                Session["UserId"] = user.UserId;
                 return RedirectToAction("Index", "MyAccount");
             }
             else
