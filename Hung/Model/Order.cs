@@ -32,6 +32,9 @@ namespace ShoesProjectModels.Model
 
         public virtual User User { get; set; }
 
+        [Column(TypeName = "date")]
+        public DateTime? CreatedAt { get; set; }
+
         public virtual Voucher Voucher { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
