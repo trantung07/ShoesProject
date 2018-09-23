@@ -177,7 +177,6 @@
 </div>
 @section Scripts{
 <script>
-    var dataImgs = new Array(); 
     $(document).ready(function () {
         $('#fine-uploader-manual-trigger').fineUploader({
             template: 'qq-template-manual-trigger',
@@ -186,7 +185,9 @@
                 endpoint: '@Url.Action("CreateProductImages", "Products")'
             },
             deleteFile: {
-                enabled: true
+                enabled: true,
+                endpoint: '@Url.Action("DeleteProductImages", "Products")',
+                method: "POST"
             }
         });        
         $.when($.ajax({
@@ -200,11 +201,11 @@
                     id: index,
                     name: img.Image,
                     uuid: img.ProductImageId,
-                    thumbnailUrl: '@Url.Content("~/Admin/Content/ProductImages/" + Model.ProductId + "/")' + img.Image
+                    thumbnailUrl: '@Url.Content("~/Admin/Content/ProductImages/" + Model.ProductId + "/")' + img.Image,
+                    deleteFileParams: { ImgId: img.ProductImageId }
                 }]);
             })
         });      
-        console.log(dataImgs);
     })
 </script>    
 }

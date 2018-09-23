@@ -150,6 +150,21 @@ namespace ShoesProject.Areas.Admin.Controllers
                              ).ToList();
             return Json(imagesList.OrderBy(x => x.ProductImageId), JsonRequestBehavior.AllowGet);
         }
+        [HttpPost]
+        public int DeleteProductImages(int ImgId)
+        {
+            try
+            {
+                var img = db.ProductImages.SingleOrDefault(x => x.ProductImageId == ImgId);
+                db.ProductImages.Remove(img);
+                db.SaveChanges();
+                return 1;
+            }
+            catch
+            {
+                return 0;
+            }
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)
