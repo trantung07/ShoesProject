@@ -14,9 +14,6 @@ namespace ShoesProject.Controllers
         // GET: Login
         public ActionResult Index()
         {
-            var lstCate = from c in db.Categories
-                          select c;
-            ViewBag.lstCategory = lstCate;
             return View();
         }
         [HttpPost]
@@ -54,6 +51,7 @@ namespace ShoesProject.Controllers
             if (user != null)
             {
                 Session["fullname"] = user.UserName;
+                Session["UserId"] = user.UserId;
                 return RedirectToAction("Index", "MyAccount");
             }
             else

@@ -20,18 +20,15 @@
             <h2 class="page-title">My account</h2>
         </div>
         <div class="account-info-text">
-            Welcome to your @Session["user"] . Here you can manage all of your personal information and orders.
+            Welcome to your @Session["fullName"] . Here you can manage all of your personal information and orders.
         </div>
         <!-- ACCOUNT-INFO-TEXT START -->
         <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
             <div class="account-info">
                 <div class="single-account-info">
                     <ul>
-                        <li><a href="#"><i class="fa fa-building"></i><span>Add my first address</span>	</a></li>
-                        <li><a href="#"><i class="fa fa-list-ol"></i><span>Order history and details</span>	</a></li>
-                        <li><a href="#"><i class="fa fa-file-o"></i><span>My credit slips</span>	</a></li>
-                        <li><a href="@Url.Action("CartAddress","MyCart")"><i class="fa fa-building"></i><span>My addresses</span>	</a></li>
-                        <li><a href="@Url.Action("MyPersonalInformation","MyAccount")"><i class="fa fa-user"></i><span>My personal information</span>	</a></li>
+                        <li><a href="#"><i class="fa fa-list-ol"></i><span>Lịch sử Đơn Hàng</span>	</a></li>
+                        <li><a href="@Url.Action("MyPersonalInformation","MyAccount")"><i class="fa fa-user"></i><span>Thông Tin Cá Nhân</span></a></li>
                     </ul>
                 </div>
             </div>

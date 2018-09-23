@@ -1,9 +1,5 @@
-<<<<<<< HEAD
-﻿using ShoesProjectModels.Model;
-=======
-﻿using ShoesProject.Models;
+using ShoesProject.Models;
 using ShoesProjectModels.Model;
->>>>>>> 25601fb91a4b59e2bce1d061b0a8b423ba9cc410
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,9 +14,6 @@ namespace ShoesProject.Controllers
         // GET: ShopGirl
         public ActionResult Index()
         {
-            var lstCate = from c in db.Categories
-                          select c;
-            ViewBag.lstCategory = lstCate;
             var lst =
                 //from co in db.Colors
                 //from s in db.Sizes

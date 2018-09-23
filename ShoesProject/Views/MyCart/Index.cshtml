@@ -3,14 +3,13 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <div class="container">
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <!-- BSTORE-BREADCRUMB START -->
             <div class="bstore-breadcrumb">
                 <a href="index.html">HOMe</a>
-                <span><i class="fa fa-caret-right	"></i></span>
+                <span><i class="fa fa-caret-right"></i></span>
                 <span>Your shopping cart</span>
             </div>
             <!-- BSTORE-BREADCRUMB END -->
@@ -19,32 +18,33 @@
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <!-- SHOPPING-CART SUMMARY START -->
-            <h2 class="page-title">Shopping-cart summary <span class="shop-pro-item">Your shopping cart contains: @{
-                if (Model != null && Model.Count() > 0)
-                {
-                   @Model.Count();
-                }
-                } products</span></h2>
-                <!-- SHOPPING-CART SUMMARY END -->
-            </div>
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <h2 class="page-title">
+                Shopping-cart summary <span class="shop-pro-item">
+                    Your shopping cart contains: @{
+                        if (Model != null && Model.Count() > 0)
+                        {
+                            @Model.Count();
+                        }
+                    } products
+                </span>
+            </h2>
+            <!-- SHOPPING-CART SUMMARY END -->
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <!-- SHOPING-CART-MENU START -->
             <div class="shoping-cart-menu">
-                <ul class="step">
+                <ul class="step center-title-area">
                     <li class="step-current first">
-                        <span>01. Summary</span>
+                        <span>01. Giỏ Hàng</span>
                     </li>
                     <li class="step-todo second">
-                        <span>02. Sign in</span>
+                        <span>02. Đăng Nhập</span>
                     </li>
                     <li class="step-todo third">
-                        <span>03. Address</span>
-                    </li>
-                    <li class="step-todo four">
-                        <span>04. Shipping</span>
+                        <span>03. Thanh Toán</span>
                     </li>
                     <li class="step-todo last" id="step_end">
-                        <span>05. Payment</span>
+                        <span>04.Hoàn Tất</span>
                     </li>
                 </ul>
             </div>
@@ -76,21 +76,22 @@
                                 {
                                     <tr>
                                         <td class="cart-product">
-                                            <a href="#"><img alt="Blouse" src="~/Content/img/product/@item.Images"></a>
+                                            <a href="#"><img alt="Blouse" src="~/Content/img/product/@item.Product.ProductFeatureImage"></a>
                                         </td>
                                         <td class="cart-description">
                                             <p class="product-name"><a href="#">@item.Product.ProductName</a></p>
-                                            <small>SKU : demo_1</small>
-                                            <small><a href="#">Size :@item.Product.Sizes, Color : @item.Product.Colors</a></small>
+                                            <small>@item.Brand.BrandName</small>
+                                            <small>@item.Category.CategoryName</small>
+                                            <small><a href="#">Size : @*@item.Size.SizeValue*@, Color : @*@item.Color.ColorValue*@ </a></small>
                                         </td>
-                                        <td class="cart-avail"><span class="label label-success">In stock</span></td>
+                                        <td class="cart-avail"><span class="label label-success instock">@item.Product.Instock</span></td>
                                         <td class="cart-unit">
                                             <ul class="price text-right">
                                                 <li class="price">@item.Product.ProductPrice</li>
                                             </ul>
                                         </td>
                                         <td class="cart_quantity text-center">
-                                                <input data-id="@item.Product.ProductId" class="cart-plus-minus Quantity" type="number" name="Quantity" id="Quantity" value="@item.Quantity" min="1">
+                                            <input data-id="@item.Product.ProductId" class="cart-plus-minus Quantity" type="number" name="Quantity" id="Quantity" value="@item.Quantity" min="1" max="@item.Product.Instock">
                                         </td>
                                         <td class="cart-delete text-center">
                                             <span>
@@ -98,62 +99,35 @@
                                             </span>
                                         </td>
                                         <td class="cart-total">
-                                            @{var money = item.Product.ProductPrice * item.Quantity;}
+                                            @{
+                                                var money = 0;
+                                                if (item.Quantity > item.Product.Instock)
+                                                {
+                                                    money = item.Product.ProductPrice * item.Product.Instock;
+                                                }
+                                                else if (item.Quantity < 0 || item.Quantity == 0)
+                                                {
+                                                    money = item.Product.ProductPrice;
+                                                }
+                                                else
+                                                {
+
+                                                    money = item.Product.ProductPrice * item.Quantity;
+                                                }
+                                            }
                                             <span class="money">@money</span>
                                         </td>
                                     </tr>
-                                    }
-                            }
-                            else
-                            {
-                                <tr><td colspan="7" class="text-center text-danger">Gio hang trong!</td></tr>
-                            }
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <tr><td colspan="7" class="text-center text-danger">Gio hang trong!</td></tr>
+                                                }
                         }
                     </tbody>
                     <!-- TABLE BODY END -->
                     <!-- TABLE FOOTER START -->
-                   @{
-                       if (Model != null && Model.Count() > 0)
-                       {
-                        <tfoot>
-                            @*@{ var totalSum = 0;
-                                foreach (var item in Model)
-                                {
-                                    var totalPrice = (item.Quantity * item.Product.ProductPrice);
-                                    totalSum += totalPrice;
-                                }
-                                var total = totalSum / Model.Count();
-                             }*@
-                            <tr class="cart-total-price">
-                                <td class="cart_voucher" colspan="3" rowspan="4"></td>
-                                <td class="text-right" colspan="3">Total products (tax excl.)</td>
-                                <td id="total_product" class="price totalPrice" colspan="1"></td>
-                            </tr>
-                            @*<tr>
-                                <td class="text-right" colspan="3">Total shipping</td>
-                                <td id="total_shipping" class="price" colspan="1">$5.00</td>
-                            </tr>*@
-                            @foreach (var item in Model)
-                            {
-                                if (item.Product.ProductDiscount != null)
-                                {
-                                    <tr>
-                                        <td class="text-right" colspan="3">Total vouchers (tax excl.)</td>
-                                        <td class="price" colspan="1">$0.00</td>
-                                    </tr>
-                                }
-                            }
-                            <tr>
-                                <td class="total-price-container text-right" colspan="3">
-                                    <span>Total</span>
-                                </td>
-                                <td id="total-price-container" class="price" colspan="1">
-                                    <span id="total-price" class="totalPrice"></span>
-                                </td>
-                            </tr>
-                        </tfoot>
-                       }
-                }
                     <!-- TABLE FOOTER END -->
                 </table>
                 <!-- TABLE END -->
@@ -176,6 +150,7 @@
         $(document).ready(function () {
             $(".Quantity").click(function () {
                 var tr = $(this).parents("tr");
+                var instock= parseInt(tr.find(".instock").text());
                 var price = parseInt(tr.find(".price").text());
                 var money = parseInt(tr.find(".price").text());
                 var quantity = parseInt($(this).val());
@@ -184,41 +159,36 @@
                     $.ajax({
                         type: "POST",
                         url: "@Url.Action("UpdateCart", "MyCart")",
-                        data: {id:id,quantity:quantity},
-                        success: function(rps){
-                            tr.find(".money").text(price * quantity);
+                        data: { id: id, quantity: quantity },
+                        success: function (rps) {
+                            if (quantity > instock) {
+                                tr.find(".money").text(price * instock);
+                            } else if (quantity < 0 || quantity == 0) {
+                                tr.find(".money").text(price);
+                            } else {
+                                tr.find(".money").text(price * quantity);
+                            }
+                            sumcart();
                         }
                     })
                 }
             })
         })
-        $(".cart_quantity_delete").click(function(){
+        $(".cart_quantity_delete").click(function () {
             var tr = $(this).parents("tr");
             var id = $(this).data("id");
             $.ajax({
-                type:"POST",
-                url: "@Url.Action("DeleteCart", "MyCart")", 
-                data:{id:id},
+                type: "POST",
+                url: "@Url.Action("DeleteCart", "MyCart")",
+                data: { id: id },
                 success: function () {
                     tr.remove();
+                    window.location.href = "/MyCart";
                     if ($("#list_cart > tr").length <= 0) {
                         $("#list_cart").html('<tr><td colspan="7" class="text-center text-danger">Gio hang trong!</td></tr>')
                     }
                 }
             })
-        })
-        $(function sumcart() {
-            var tr = $("#total_product").parents("tr");
-            $.ajax({
-                type:"GET",
-                url: "@Url.Action("SumPriceCart", "MyCart")", 
-            success: function (rps) {
-                tr.find(".totalPrice").text(rps)
-            }
-        })
-        })
-        $(function () {
-            sumcart();
         })
     </script>
 }

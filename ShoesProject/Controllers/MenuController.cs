@@ -17,18 +17,17 @@ namespace ShoesProject.Controllers
         {
             var lstCate = from c in db.Categories
                           select c;
-            return View(lstCate);
+            return PartialView(lstCate);
         }
         public ActionResult MenuCart()
         {
             List<CartItem> Cart = (List<CartItem>)Session["Cart"];
-            return View(Cart);
-        }
-        public ActionResult MenuMobile()
-        {
-            var lstCate = from c in db.Categories
-                          select c;
-            return View(lstCate);
+            var lst = new List<CartItem>();
+            if (Cart != null)
+            {
+                lst = Cart;
+            }
+            return PartialView(Cart);
         }
     }
 }

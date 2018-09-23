@@ -14,12 +14,6 @@ namespace ShoesProject.Controllers
         private Shoes db = new Shoes();
         public ActionResult Index()
         {
-            List<CartItem> lstCart = (List<CartItem>)Session["Cart"];
-            var lst = db.Products.AsEnumerable();
-            ViewBag.lstProduct = lst;
-            var lstCate = from c in db.Categories
-                          select c;
-            ViewBag.lstCategory = lstCate;
             int LIMIT = 100;
             var lstNewProducts =
                    //from co in db.Colors
@@ -65,21 +59,15 @@ namespace ShoesProject.Controllers
                        imagesFeature = p.ProductFeatureImage
                    };
             ViewBag.lstSaleProduct = lstSaleProduct.Take(LIMIT);
-            return View(ViewBag);
+            return View();
         }
         public ActionResult About()
         {
-            var lstCate = from c in db.Categories
-                          select c;
-            ViewBag.lstCategory = lstCate;
             return View();
         }
 
         public ActionResult Contact()
         {
-            var lstCate = from c in db.Categories
-                          select c;
-            ViewBag.lstCategory = lstCate;
             return View();
         }
     }

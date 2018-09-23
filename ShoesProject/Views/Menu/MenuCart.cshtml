@@ -1,6 +1,5 @@
 ﻿@model IEnumerable<ShoesProject.Models.CartItem>
-
-@Styles.Render("~/Content/css");
+<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 pull-right shopingcartarea">
     <div class="shopping-cart-out pull-right">
         <div class="shopping-cart">
             <a class="shop-link" href="@Url.Action("Index", "MyCart")" title="View my shopping cart">
@@ -8,49 +7,16 @@
                 <b>My Cart</b>
                 <span class="ajax-cart-quantity">
                     @{
-                    if (Model != null && Model.Count() > 0)
+                    if (Session["Cart"] != null)
                     {
-                        @Model.Count()
-                    }
-                }
-            </span>
-        </a>
-        <div class="shipping-cart-overly">
-            @{
-                if (Session["Cart"] != null)
-                {
-                    if (Model != null && Model.Count() > 0)
-                    {
-                        foreach (var item in Model)
+                        if (Model != null && Model.Count() > 0)
                         {
-                            <div class="shipping-item">
-                                <span class="cross-icon"><i class="fa fa-times-circle"></i></span>
-                                <div class="shipping-item-image">
-                                    <a href="@Url.Action("Index","ProductDetail",new { id = item.Product.ProductId})"><img src="~/Content/img/@item.Product.ProductImages" alt="shopping image" /></a>
-                                </div>
-                                <div class="shipping-item-text">
-                                    <span>@item.Quantity<span class="pro-quan-x">x</span> <a href="#" class="pro-cat">@item.Product.ProductName</a></span>
-                                    <span class="pro-quality"><a href="#">@item.Product.Sizes,@item.Product.Colors</a></span>
-                                    <p>@item.Quantity*@item.Product.ProductPrice</p>
-                                </div>
-                            </div>
+                            @Model.Count();
                         }
                     }
                 }
-            }
-            <div class="shipping-total-bill">
-                <div class="cart-prices">
-                    <span class="shipping-cost">$2.00</span>
-                    <span>Shipping</span>
-                </div>
-                <div class="total-shipping-prices">
-                    <span class="shipping-total">$24.95</span>
-                    <span>Total</span>
-                </div>
-            </div>
-            <div class="shipping-checkout-btn">
-                <a href="@Url.Action("CartPayment","MyCart")">Check out <i class="fa fa-chevron-right"></i></a>
-            </div>
+                </span>
+            </a>
         </div>
     </div>
 </div>
