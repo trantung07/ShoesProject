@@ -7,9 +7,6 @@
 
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
@@ -29,6 +26,9 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.OrderStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedAt)
         </th>
         <th>Actions</th>
     </tr>
@@ -74,6 +74,9 @@
             {
                 <span>Canceled</span>
             }
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedAt)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.OrderId }) |
