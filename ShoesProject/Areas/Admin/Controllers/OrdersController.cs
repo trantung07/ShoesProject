@@ -21,6 +21,11 @@ namespace ShoesProject.Areas.Admin.Controllers
             return View(orders.ToList());
         }
 
+        public ActionResult OrdersDetail(int? id)
+        {
+            return RedirectToAction("Index", "OrdersDetails", new { area = "Admin", id = id });
+        }
+
         // GET: Admin/Orders/Details/5
         public ActionResult Details(int? id)
         {

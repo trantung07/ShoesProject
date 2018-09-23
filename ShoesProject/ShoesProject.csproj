@@ -165,6 +165,7 @@
     <Compile Include="Areas\Admin\Controllers\ColorsController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\OrdersController.cs" />
+    <Compile Include="Areas\Admin\Controllers\OrdersDetailsController.cs" />
     <Compile Include="Areas\Admin\Controllers\PermissonsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
     <Compile Include="Areas\Admin\Controllers\SetPermissonController.cs" />
@@ -714,6 +715,11 @@
     <Content Include="Areas\Admin\Views\Orders\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Orders\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Orders\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\OrdersDetails\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\OrdersDetails\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\OrdersDetails\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\OrdersDetails\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\OrdersDetails\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
