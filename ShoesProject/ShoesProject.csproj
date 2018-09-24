@@ -173,6 +173,7 @@
     <Compile Include="Areas\Admin\Models\PermissonViewModel.cs" />
     <Compile Include="Areas\Admin\Util\ReflectionController.cs" />
     <Compile Include="Areas\Admin\Util\Utility.cs" />
+    <Compile Include="Common\MailHelper.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ListProductController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -729,6 +730,7 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Template\content.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -767,6 +769,8 @@
     <Content Include="Views\Sizes\Index.cshtml" />
     <Content Include="Views\Menu\Index.cshtml" />
     <Content Include="Views\Menu\MenuCart.cshtml" />
+    <Content Include="Views\MyAccount\ChangePassword.cshtml" />
+    <Content Include="Views\MyAccount\ForgotPassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Admin\Content\images\" />
