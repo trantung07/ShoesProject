@@ -50,7 +50,7 @@ namespace ShoesProject.Areas.Admin.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        public int Create([Bind(Include = "ProductId,ProductName,CategoryId,Instock,BrandId,ProductPrice,ProductDescription,ProductDiscount,ProductFeatureImage")] Product product)
+        public int Create([Bind(Include = "ProductId,ProductName,CategoryId,Instock,BrandId,ProductPrice,ProductDescription,ProductDiscount,ProductFeatureImage,ProductStatus")] Product product)
         {
             if (ModelState.IsValid)
             {
@@ -83,7 +83,7 @@ namespace ShoesProject.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProductId,ProductName,CategoryId,Instock,BrandId,ProductPrice,ProductDescription,ProductDiscount,ProductFeatureImage")] Product product)
+        public ActionResult Edit([Bind(Include = "ProductId,ProductName,CategoryId,Instock,BrandId,ProductPrice,ProductDescription,ProductDiscount,ProductFeatureImage, ProductStatus")] Product product)
         {
             if (ModelState.IsValid)
             {
@@ -164,6 +164,12 @@ namespace ShoesProject.Areas.Admin.Controllers
             {
                 return 0;
             }
+        }
+
+        public JsonResult GetProductsByName(string name)
+        {
+            var products = db.Products.Where(x => x.ProductName.ToLower() == name.ToLower()).Select(x => new { ProductName = x.ProductName, ProductId = x.ProductId, ProductFeatureImage = x.ProductFeatureImage  });
+            return Json(products.OrderBy(x => x.ProductName), JsonRequestBehavior.AllowGet);
         }
         protected override void Dispose(bool disposing)
         {
