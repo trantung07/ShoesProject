@@ -8,9 +8,9 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <!-- BSTORE-BREADCRUMB START -->
             <div class="bstore-breadcrumb">
-                <a href="index.html">HOMe</a>
+                <a href="@Url.Action("Index","Home")">Home</a>
                 <span><i class="fa fa-caret-right"></i></span>
-                <span>Your shopping cart</span>
+                <span>Cart</span>
             </div>
             <!-- BSTORE-BREADCRUMB END -->
         </div>
@@ -19,13 +19,13 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <!-- SHOPPING-CART SUMMARY START -->
             <h2 class="page-title">
-                Shopping-cart summary <span class="shop-pro-item">
-                    Your shopping cart contains: @{
+                Shopping-cart <span class="shop-pro-item">
+                       Your cart has  : @{
                         if (Model != null && Model.Count() > 0)
                         {
                             @Model.Count();
                         }
-                    } products
+                    }Products
                 </span>
             </h2>
             <!-- SHOPPING-CART SUMMARY END -->
@@ -35,16 +35,16 @@
             <div class="shoping-cart-menu">
                 <ul class="step center-title-area">
                     <li class="step-current first">
-                        <span>01. Giỏ Hàng</span>
+                        <span>01. Cart</span>
                     </li>
                     <li class="step-todo second">
-                        <span>02. Đăng Nhập</span>
+                        <span>02. Login</span>
                     </li>
                     <li class="step-todo third">
-                        <span>03. Thanh Toán</span>
+                        <span>03. Payment</span>
                     </li>
                     <li class="step-todo last" id="step_end">
-                        <span>04.Hoàn Tất</span>
+                        <span>04.Completed</span>
                     </li>
                 </ul>
             </div>
@@ -58,11 +58,13 @@
                         <tr>
                             <th class="cart-product">Product</th>
                             <th class="cart-description">Description</th>
-                            <th class="cart-avail text-center">Availability</th>
-                            <th class="cart-unit text-right">Unit price</th>
-                            <th class="cart_quantity text-center">Qty</th>
+                            <th class="cart-avail text-center">Instock</th>
+                            <th class="cart-unit text-right">Sale</th>
+                            <th class="cart-unit text-right">Price</th>
+                            <th class="cart-unit text-right">Price After Discount</th>
+                            <th class="cart_quantity text-center">Quantity</th>
                             <th class="cart-delete">&nbsp;</th>
-                            <th class="cart-total text-right">Total</th>
+                            <th class="cart-total text-right">Total Price</th>
                         </tr>
                     </thead>
                     <!-- TABLE HEADER END -->
@@ -87,7 +89,23 @@
                                         <td class="cart-avail"><span class="label label-success instock">@item.Product.Instock</span></td>
                                         <td class="cart-unit">
                                             <ul class="price text-right">
+                                                @{ var discount = 0;
+                                                    if (item.Product.ProductDiscount != null) { discount = (int)item.Product.ProductDiscount; } else { discount = 0; }
+                                                }
+                                                <li class="price">@discount%</li>
+                                            </ul>
+                                        </td>
+                                        <td class="cart-unit">
+                                            <ul class="price text-right">
                                                 <li class="price">@item.Product.ProductPrice</li>
+                                            </ul>
+                                        </td>
+                                            <td class="cart-unit">
+                                            <ul class="price text-right">
+                                                @{ var price = 0;
+                                                    if (item.Product.ProductDiscount != null) { price = item.Product.ProductPrice - (int)((item.Product.ProductDiscount * item.Product.ProductPrice) / 100); } else { price = item.Product.ProductPrice; }
+                                                }
+                                                <li class="price">@price</li>
                                             </ul>
                                         </td>
                                         <td class="cart_quantity text-center">
@@ -122,7 +140,7 @@
                                                 }
                                                 else
                                                 {
-                                                    <tr><td colspan="7" class="text-center text-danger">Gio hang trong!</td></tr>
+                                                    <tr><td colspan="9" class="text-center text-danger">Cart is empty!</td></tr>
                                                 }
                         }
                     </tbody>
@@ -137,9 +155,9 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <!-- RETURNE-CONTINUE-SHOP START -->
             <div class="returne-continue-shop">
-                <a href="@Url.Action("Index","Home")" class="continueshoping"><i class="fa fa-chevron-left"></i>Continue shopping</a>
+                <a href="@Url.Action("Index","Home")" class="continueshoping"><i class="fa fa-chevron-left"></i>Continue Shoping</a>
                 @{if (Model != null && Model.Count() > 0)
-                    {<a href="@Url.Action("CartSignin","MyCart")" class="procedtocheckout">Proceed to checkout<i class="fa fa-chevron-right"></i></a> } }
+                    {<a href="@Url.Action("CartSignin","MyCart")" class="procedtocheckout">Payment<i class="fa fa-chevron-right"></i></a> } }
             </div>
             <!-- RETURNE-CONTINUE-SHOP END -->
         </div>

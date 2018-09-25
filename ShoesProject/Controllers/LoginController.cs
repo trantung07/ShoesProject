@@ -16,7 +16,14 @@ namespace ShoesProject.Controllers
         {
             if (Session["fullName"] != null)
             {
-                return RedirectToAction("Index","MyAccount");
+                if(Session["Cart"] != null)
+                {
+                    return RedirectToAction("CartAddress", "MyCart");
+                }else
+                {
+                    return RedirectToAction("Index", "MyAccount");
+                }
+                
             }else
             {
                 return View();
@@ -59,7 +66,14 @@ namespace ShoesProject.Controllers
                 Session["fullname"] = user.UserName;
                 Session["UserId"] = user.UserId;
                 Session["Email"] = user.Email;
-                return RedirectToAction("Index", "MyAccount");
+                if (Session["Cart"] != null)
+                {
+                    return RedirectToAction("CartAddress", "MyCart");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "MyAccount");
+                }
             }
             else
             {

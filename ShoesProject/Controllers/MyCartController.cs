@@ -25,36 +25,43 @@ namespace ShoesProject.Controllers
         public ActionResult AddCart(int id)
         {
             var product = db.Products.Find(id);
-            var brand = db.Brands.Find(product.BrandId);
-            var category = db.Categories.Find(product.CategoryId);
-            //var color = db.Colors.Find(db.Products.Find(id));
-            //var size = db.Sizes.Find(db.Products.Find(id));
-            if (Session["Cart"] != null)
+            if(product != null)
             {
-                List<CartItem> lst = new List<CartItem>();
-                lst = (List<CartItem>)Session["Cart"];
-                bool check = false;
-                foreach (var item in lst)
+                var brand = db.Brands.Find(product.BrandId);
+                var category = db.Categories.Find(product.CategoryId);
+                //var color = db.Colors.Find(db.Products.Find(id));
+                //var size = db.Sizes.Find(db.Products.Find(id));
+                if (Session["Cart"] != null)
                 {
-                    if (item.Product.ProductId == product.ProductId)
+                    List<CartItem> lst = new List<CartItem>();
+                    lst = (List<CartItem>)Session["Cart"];
+                    bool check = false;
+                    foreach (var item in lst)
                     {
-                        item.Quantity += 1;
-                        check = true;
-                        break;
+                        if (item.Product.ProductId == product.ProductId)
+                        {
+                            item.Quantity += 1;
+                            check = true;
+                            break;
+                        }
                     }
+                    if (!check)
+                    {
+                        lst.Add(new CartItem { Product = product, Quantity = 1, Brand = brand, Category = category });
+                    }
+                    Session["Cart"] = lst;
                 }
-                if (!check)
+                else
                 {
-                    lst.Add(new CartItem { Product = product, Quantity = 1, Brand = brand, Category = category });
-                }
-                Session["Cart"] = lst;
-            }
-            else
-            {
 
-                Session["Cart"] = new List<CartItem>() { new CartItem { Product = product, Quantity = 1, Brand = brand, Category = category } };
+                    Session["Cart"] = new List<CartItem>() { new CartItem { Product = product, Quantity = 1, Brand = brand, Category = category } };
+                }
+                return RedirectToAction("Index");
+            }else
+            {
+                return RedirectToAction("Index", "Home");
             }
-            return RedirectToAction("Index");
+            
         }
         [HttpPost]
         public string UpdateCart(int id, int quantity)
@@ -121,13 +128,17 @@ namespace ShoesProject.Controllers
 
         public ActionResult CartAddress()
         {
-            List<CartItem> lst = (List<CartItem>)Session["Cart"];
-            var lstCart = new List<CartItem>();
-            if (lst != null)
+            if(Session["UserId"] != null)
             {
-                lstCart = lst;
+                List<CartItem> lst = (List<CartItem>)Session["Cart"];
+                var lstCart = new List<CartItem>();
+                if (lst != null)
+                {
+                    lstCart = lst;
+                }
+                return View(lst);
             }
-            return View(lst);
+            return RedirectToAction("Index", "Login");
         }
         //[HttpPost]
         //public ActionResult CartAddress(string Address, string PhoneNumber, string code)
@@ -186,7 +197,7 @@ namespace ShoesProject.Controllers
         //}
         public ActionResult CartPayment()
         {
-            //if (Session["fullName"] != null)
+            //if (Session["UserId"] != null)
             //{
 
             //    List<CartItem> lst = (List<CartItem>)Session["Cart"];

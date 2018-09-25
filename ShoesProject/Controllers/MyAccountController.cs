@@ -43,7 +43,7 @@ namespace ShoesProject.Controllers
                 content = content.Replace("{{CustomerName}}", user.UserName);
                 content = content.Replace("{{Email}}", user.Email);
 
-                new MailHelper().SendMail(user.Email,"Lấy Lại Mật Khẩu", content);
+                new MailHelper().SendMail(user.Email, "Password retrieval", content);
                 return RedirectToAction("Index","Login");
             }else
             {
@@ -76,12 +76,12 @@ namespace ShoesProject.Controllers
                     db.Entry(user).State = System.Data.Entity.EntityState.Modified;
                     db.SaveChanges();
                     Session["fullname"] = user.UserName;
-                TempData["msg"] = "Cập nhật thành công";
+                TempData["msg"] = "Update successful";
                 return RedirectToAction("Index");
             }
             else
             {
-                TempData["msg"] = "Cập nhật không thành công";
+                TempData["msg"] = "Update failed";
                 return RedirectToAction("MyPersonalInformation");
             }
         }
@@ -103,11 +103,11 @@ namespace ShoesProject.Controllers
                 user.Password = Utility.getHashedMD5(passwordNew);
                 db.Entry(user).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
-                TempData["msg"] = "Đổi mật khẩu thành công";
+                TempData["msg"] = "Change password successfully";
                 return RedirectToAction("Index");
             }else
             {
-                TempData["msg"] = "Mật Khẩu cũ không đúng";
+                TempData["msg"] = "The old password is incorrect";
                 return View();
             }
         }
