@@ -92,7 +92,7 @@
                                                 @{ var discount = 0;
                                                     if (item.Product.ProductDiscount != null) { discount = (int)item.Product.ProductDiscount; } else { discount = 0; }
                                                 }
-                                                <li class="price">@discount%</li>
+                                                <li class="discount">@discount%</li>
                                             </ul>
                                         </td>
                                         <td class="cart-unit">
@@ -102,10 +102,11 @@
                                         </td>
                                             <td class="cart-unit">
                                             <ul class="price text-right">
-                                                @{ var price = 0;
-                                                    if (item.Product.ProductDiscount != null) { price = item.Product.ProductPrice - (int)((item.Product.ProductDiscount * item.Product.ProductPrice) / 100); } else { price = item.Product.ProductPrice; }
+                                                @{ 
+                                                    var price = 0;
+                                                    if (item.Product.ProductDiscount != null) {  price = item.Product.ProductPrice - (int)((item.Product.ProductDiscount * item.Product.ProductPrice) / 100); } else {  price = item.Product.ProductPrice; }
                                                 }
-                                                <li class="price">@price</li>
+                                                <li class="Price-After-Discount">@price</li>
                                             </ul>
                                         </td>
                                         <td class="cart_quantity text-center">
@@ -121,16 +122,15 @@
                                                 var money = 0;
                                                 if (item.Quantity > item.Product.Instock)
                                                 {
-                                                    money = item.Product.ProductPrice * item.Product.Instock;
+                                                    money = price * item.Product.Instock;
                                                 }
                                                 else if (item.Quantity < 0 || item.Quantity == 0)
                                                 {
-                                                    money = item.Product.ProductPrice;
+                                                    money = price;
                                                 }
                                                 else
                                                 {
-
-                                                    money = item.Product.ProductPrice * item.Quantity;
+                                                    money = price * item.Quantity;
                                                 }
                                             }
                                             <span class="money">@money</span>
@@ -155,7 +155,7 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <!-- RETURNE-CONTINUE-SHOP START -->
             <div class="returne-continue-shop">
-                <a href="@Url.Action("Index","Home")" class="continueshoping"><i class="fa fa-chevron-left"></i>Continue Shoping</a>
+                <a href="@Url.Action("Index","Home")" class="continueshoping"><i class="fa fa-chevron-left"></i>Continue Shopping</a>
                 @{if (Model != null && Model.Count() > 0)
                     {<a href="@Url.Action("CartSignin","MyCart")" class="procedtocheckout">Payment<i class="fa fa-chevron-right"></i></a> } }
             </div>
@@ -169,8 +169,7 @@
             $(".Quantity").click(function () {
                 var tr = $(this).parents("tr");
                 var instock= parseInt(tr.find(".instock").text());
-                var price = parseInt(tr.find(".price").text());
-                var money = parseInt(tr.find(".price").text());
+                var price = parseInt(tr.find(".Price-After-Discount").text());
                 var quantity = parseInt($(this).val());
                 var id = $(this).data("id");
                 if (parseInt($(this).val()) > 0) {
@@ -186,7 +185,6 @@
                             } else {
                                 tr.find(".money").text(price * quantity);
                             }
-                            sumcart();
                         }
                     })
                 }
