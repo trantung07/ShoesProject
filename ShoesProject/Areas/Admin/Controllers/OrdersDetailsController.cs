@@ -136,6 +136,11 @@ namespace ShoesProject.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult BackToOrdersList()
+        {
+            return RedirectToAction("Index", "Orders", new { area = "Admin" });
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
