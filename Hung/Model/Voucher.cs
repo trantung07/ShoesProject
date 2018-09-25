@@ -1,5 +1,6 @@
 namespace ShoesProjectModels.Model
 {
+    using Hung.ValidateCustom;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
@@ -22,11 +23,15 @@ namespace ShoesProjectModels.Model
         [StringLength(20)]
         public string Code { get; set; }
 
+        [Range(1, 100)]
         public int? DiscountPercent { get; set; }
 
         public int? Remain { get; set; }
 
         [Column(TypeName = "date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [CurrentDate(ErrorMessage = "Please choose Expired Date greater or equal current date")]
         public DateTime? ExpiredAt { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
