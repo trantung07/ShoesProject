@@ -43,7 +43,7 @@ namespace ShoesProject.Controllers
                 content = content.Replace("{{CustomerName}}", user.UserName);
                 content = content.Replace("{{Email}}", user.Email);
 
-                new MailHelper().SendMail(user.Email, "Password retrieval", content);
+                new MailHelper().SendMail(user.Email, "Password Reset", content);
                 return RedirectToAction("Index","Login");
             }else
             {

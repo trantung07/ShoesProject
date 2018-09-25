@@ -207,11 +207,12 @@ namespace ShoesProject.Controllers
             //        lstCart = lst;
             //    }
             //    return View(lst);
-            //}else
+            //}
+            //else
             //{
             //    return RedirectToAction("Index", "Login");
             //}
-            return View(); 
+            return View();
         }
     }
 }
