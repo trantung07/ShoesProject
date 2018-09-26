@@ -12,6 +12,7 @@ using ShoesProject.Areas.Admin.Models;
 
 namespace ShoesProject.Areas.Admin.Controllers
 {
+    [AuthorizeBusiness]
     public class PermissonsController : Controller
     {
         private Shoes db = new Shoes();

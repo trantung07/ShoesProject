@@ -166,10 +166,11 @@ namespace ShoesProject.Areas.Admin.Controllers
             }
         }
 
-        public JsonResult GetProductsByName(string name)
+        public JsonResult GetProductsByName(string name, int page)
         {
-            var products = db.Products.Where(x => x.ProductName.ToLower() == name.ToLower()).Select(x => new { ProductName = x.ProductName, ProductId = x.ProductId, ProductFeatureImage = x.ProductFeatureImage  });
-            return Json(products.OrderBy(x => x.ProductName), JsonRequestBehavior.AllowGet);
+            var products = db.Products.Where(x => x.ProductName.ToLower().Contains(name.ToLower())).Select(x => new { ProductName = x.ProductName, ProductId = x.ProductId, ProductFeatureImage = x.ProductFeatureImage  });
+            var pagedProducts = products.OrderByDescending(x => x.ProductName).Skip(10*(page-1)).Take(10);
+            return Json(new { products= pagedProducts, page = 1, count= products.Count()}, JsonRequestBehavior.AllowGet);
         }
         protected override void Dispose(bool disposing)
         {

@@ -7,11 +7,13 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using ShoesProject.Areas.Admin.Models;
 using ShoesProject.Areas.Admin.Util;
 using ShoesProjectModels.Model;
 
 namespace ShoesProject.Areas.Admin.Controllers
 {
+    [AuthorizeBusiness]
     public class BusinessesController : Controller
     {
         private Shoes db = new Shoes();

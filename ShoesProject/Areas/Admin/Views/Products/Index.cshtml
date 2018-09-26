@@ -61,40 +61,40 @@
                             </th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="productTable">
                         @foreach (var item in Model)
                         {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Brand.BrandName)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Category.CategoryName)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.ProductName)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Instock)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.ProductPrice)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.ProductDescription)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.ProductDiscount)
-                                </td>
-                                <td>
-                                    <img src="@Url.Content("~/Admin/Content/ProductImages/" + item.ProductId + "/" + item.ProductFeatureImage)" class="img-responsive" alt="Responsive image">
-                                </td>
-                                <td>
-                                    @Html.ActionLink("Edit", "Edit", new { id = item.ProductId }) |
-                                    @Html.ActionLink("Details", "Details", new { id = item.ProductId }) |
-                                    @Html.ActionLink("Delete", "Delete", new { id = item.ProductId })
-                                </td>
-                            </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ProductName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Brand.BrandName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Category.CategoryName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Instock)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ProductPrice)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ProductDescription)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ProductDiscount)
+                            </td>
+                            <td>
+                                <img src="@Url.Content("~/Admin/Content/ProductImages/" + item.ProductId + "/" + item.ProductFeatureImage)" class="img-responsive" alt="Responsive image">
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.ProductId }) |
+                                @Html.ActionLink("Details", "Details", new { id = item.ProductId }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.ProductId })
+                            </td>
+                        </tr>
                         }
                     </tbody>
                 </table>
@@ -102,7 +102,7 @@
         </div>
     </div>
 </div>
-<div class="row">
+<div class="row" id="pagination">
     <div class="col-xs-12">
         <ul class="pagination">
             <li class="page-item disabled">
@@ -122,20 +122,46 @@
 @section Scripts{
 <script>
     var timeout = null;
-    function searchProducts(el) {
+    var currentPage = 1;
+    function searchProducts(page = 1) {
+        currentPage = page;
         clearTimeout(timeout);
         timeout = setTimeout(function () {
             $.ajax({
                 url: '@Url.Action("GetProductsByName", "Products")',
                 method: "get",
                 data: {
-                    name: $('#searchField').val()
+                    name: $('#searchField').val(),
+                    page: currentPage
                 },
-                success: function (products) {
-                    console.log(products);
+                success: function (data) {
+                    $('#productTable').html('');
+                    data.products.forEach(function (item) {
+                        var renderString = "<tr>" +
+                            "<td>" + item.ProductName + "</td>" +
+                            "</tr>";
+
+                        $('#productTable').append(renderString);
+                        renderSearchPagination(data.count);
+                    })
                 }
             })
         }, 500);
+        function renderSearchPagination(count) {
+            $('#pagination').html('');
+            var pageString = '<div class="col-xs-12"><ul class="pagination"><li class="page-item"><a class="page-link" href="#" tabindex="-1">Previous</a></li>';
+            var pageNumber = Math.floor(count / 10) + (count % 10) == 0 ? 0 : 1;
+            for (i = 0; i < pageNumber; i++) {
+                pageString += '<li class="page-item"><a id="btnpage'+(i+1)+'" class="page-link" >' + (i + 1) + '</a></li>';
+            }
+            pageString += '<li class="page-item"><a class="page-link" href="#">Next</a></li></ul></div>';
+            $('#pagination').html(pageString);
+            for (i = 0; i < pageNumber; i++) {
+                $('#btnpage' + (i + 1)).on("click", function () {
+                    searchProducts(i);
+                });
+            }
+        }
     }
 </script>    
 }
