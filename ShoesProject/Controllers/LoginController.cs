@@ -14,7 +14,20 @@ namespace ShoesProject.Controllers
         // GET: Login
         public ActionResult Index()
         {
-            return View();
+            if (Session["fullName"] != null)
+            {
+                if(Session["Cart"] != null)
+                {
+                    return RedirectToAction("CartAddress", "MyCart");
+                }else
+                {
+                    return RedirectToAction("Index", "MyAccount");
+                }
+                
+            }else
+            {
+                return View();
+            }
         }
         [HttpPost]
         public ActionResult Register(User u)
@@ -52,7 +65,15 @@ namespace ShoesProject.Controllers
             {
                 Session["fullname"] = user.UserName;
                 Session["UserId"] = user.UserId;
-                return RedirectToAction("Index", "MyAccount");
+                Session["Email"] = user.Email;
+                if (Session["Cart"] != null)
+                {
+                    return RedirectToAction("CartAddress", "MyCart");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "MyAccount");
+                }
             }
             else
             {
