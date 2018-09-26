@@ -11,6 +11,7 @@
                 <a href="@Url.Action("Index", "Home")">Home</a>
                 <span><i class="fa fa-caret-right	"></i></span>
                 <span>Payment</span>
+                <h2>@ViewBag.aaa</h2>
             </div>
             <!-- BSTORE-BREADCRUMB END -->
         </div>
@@ -50,7 +51,6 @@
                         <tr>
                             <th class="cart-product">Product</th>
                             <th class="cart-description">Description</th>
-                            <th class="cart-avail text-center">Instock</th>
                             <th class="cart-unit text-right">Sale</th>
                             <th class="cart-unit text-right">Price</th>
                             <th class="cart-unit text-right">Price After Discount</th>
@@ -79,10 +79,7 @@
                                         <small>@item.Category.CategoryName</small>
                                         <small><p>Size : S, Color : Orange</p></small>
                                     </td>
-                                    <td class="cart-avail">
-                                        @{var Instock = item.Product.Instock - item.Quantity; }
-                                        <span class="label label-success">@Instock</span>
-                                    </td>
+                                    @Html.Hidden("Instock", @item.Product.Instock);
                                     <td class="cart-unit">
                                         <ul class="price text-right">
                                            @{ var discount = 0;
@@ -93,7 +90,7 @@
                                     </td>
                                      <td class="cart-unit">
                                             <ul class="price text-right">
-                                                <li class="price">@item.Product.ProductPrice</li>
+                                                <li class="price">@item.Product.ProductPrice<p> vnđ</p></li>
                                             </ul>
                                         </td>
                                     <td class="cart-unit">
@@ -101,7 +98,7 @@
                                             @{ var price = 0;
                                                 if (item.Product.ProductDiscount != null) { price = item.Product.ProductPrice - (int)((item.Product.ProductDiscount * item.Product.ProductPrice)/100); } else { price = item.Product.ProductPrice; }
                                             }
-                                            <li class="price">@price.ToString("N0")</li>
+                                            <li class="price">@price<p> vnđ</p></li>
                                         </ul>
                                     </td>
                                     <td class="cart_quantity text-center">
@@ -109,7 +106,7 @@
                                     </td>
                                     <td class="cart-total">
                                         @{var total = price * item.Quantity; }
-                                        <span class="price">@total.ToString("N0")</span>
+                                        <span class="price">@total<p> vnđ</p></span>
                                     </td>
                                 </tr>
                     <!-- SINGLE CART_ITEM END -->
@@ -125,7 +122,7 @@
                                 <span>Total</span>
                             </td>
                             <td id="total-price-container" class="price" colspan="3">
-                                <span id="total-price"></span>
+                                <span id="total-price"><p> vnđ</p></span>
                             </td>
                         </tr>
                     </tfoot>
@@ -142,7 +139,9 @@
                     <label for="email">Phone </label>
                     <input type="text" value="" name="PhoneNumber" id="PhoneNumber" class="form-control input-feild" required>
                     <label for="email">Enter voucher if applicable </label>
-                    <input type="text" value="" name="Code" id="Code" class="form-control input-feild" required>
+                    <input type="text" value="" name="Code" id="Code" class="form-control input-feild" >
+                    @Html.Hidden("ProgressStatus", 0)
+                    @Html.Hidden("OrderStatus", true)
                 </div>
                 <div class="form-group primary-form-group p-info-group chose-address">
                     <input type="submit" value="Order" class="btn btn-default" />

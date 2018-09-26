@@ -789,6 +789,7 @@
     <Content Include="Views\Menu\MenuCart.cshtml" />
     <Content Include="Views\MyAccount\ChangePassword.cshtml" />
     <Content Include="Views\MyAccount\ForgotPassword.cshtml" />
+    <Content Include="Views\MyAccount\OrderHistory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Admin\Content\images\" />

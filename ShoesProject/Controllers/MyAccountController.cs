@@ -111,5 +111,20 @@ namespace ShoesProject.Controllers
                 return View();
             }
         }
+        public ActionResult OrderHistory()
+        {
+            
+            if (Session["UserId"] != null)
+            {
+                int id = (int)Session["UserId"];
+                var lstorder = from o in db.Orders where o.UserId == id
+                               select o;
+                return View(lstorder);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Login");
+            }
+        }
     }
 }

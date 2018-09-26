@@ -1,0 +1,109 @@
+﻿@model IEnumerable<ShoesProjectModels.Model.Order>
+
+@{
+    ViewBag.Title = "OrderHistory";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <!-- BSTORE-BREADCRUMB START -->
+            <div class="bstore-breadcrumb">
+                <a href="@Url.Action("Index","MyAccount")">My Account</a>
+                <span><i class="fa fa-caret-right	"></i></span>
+                <span>OrderHistory</span>
+            </div>
+            <!-- BSTORE-BREADCRUMB END -->
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <h2 class="page-title">Order History</h2>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <!-- SHOPING-CART-MENU START -->
+            <div class="table-responsive">
+                <!-- TABLE START -->
+                <table class="table table-bordered" id="cart-summary">
+                    <!-- TABLE HEADER START -->
+                    <thead>
+                        <tr>
+                            <th class="cart-product text-center">User Name</th>
+                            <th class="cart-description text-center">Voucher</th>
+                            @*<th class="cart-avail text-center">Instock</th>*@
+                            <th class="cart-unit text-center">Address</th>
+                            <th class="cart-unit text-center">Phone Number</th>
+                            <th class="cart-unit text-center">Progress Status</th>
+                            <th class="cart_quantity text-center">Order Status</th>
+                            <th class="cart-total text-center">CreatedAt</th>
+                            <th class="cart-total text-center"></th>
+                        </tr>
+                    </thead>
+                    <!-- TABLE HEADER END -->
+                    <!-- TABLE BODY START -->
+                    <tbody>
+                        @{
+                            if (Model != null && Model.Count() > 0)
+                            {
+                                foreach (var item in Model)
+                                {
+                    <!-- SINGLE CART_ITEM START -->
+                                    <tr>
+                                        <td class="cart-description">
+                                            <p class="product-name">@item.User.UserName</p>
+                                        </td>
+                                        <td class="cart-unit">
+                                            <ul class="price text-center">
+                                                <li class="price">@item.Voucher.DiscountPercent%</li>
+                                            </ul>
+                                        </td>
+                                        <td class="cart-unit">
+                                            <ul class="price text-center">
+                                                <li class="price">@item.Address</li>
+                                            </ul>
+                                        </td>
+                                        <td class="cart-unit">
+                                            <ul class="price text-center">
+                                                <li class="price">@item.PhoneNumber</li>
+                                            </ul>
+                                        </td>
+                                        <td class="cart_quantity text-center">
+                                            <span>@item.ProgressStatus</span>
+                                        </td>
+                                        <td class="cart-total text-center">
+                                            <span class="price text-center">@item.OrderStatus</span>
+                                        </td>
+                                        <td class="cart-total">
+                                            <span class="price">@item.CreatedAt</span>
+                                        </td>
+                                        <td class="cart-total text-center">
+                                            <span class="price text-center"><a href="@Url.Action("","",new {id = @item.OrderId})">Detail</a></span>
+                                        </td>
+                                    </tr>
+                    <!-- SINGLE CART_ITEM END -->
+                                                    }
+                                                }
+                        }
+                    </tbody>
+                    <!-- TABLE BODY END -->
+                    <!-- TABLE FOOTER START -->
+                    <!-- TABLE FOOTER END -->
+                </table>
+                <!-- TABLE END -->
+            </div>
+            <!-- SHOPING-CART-MENU END -->
+            <!-- CART TABLE_BLOCK START -->
+            <!-- CART TABLE_BLOCK END -->
+        </div>
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <!-- RETURNE-CONTINUE-SHOP START -->
+        <div class="returne-continue-shop">
+            <a href="@Url.Action("Index","MyAccount")" class="continueshoping"><i class="fa fa-chevron-left"></i>Back</a>
+        </div>
+        <!-- RETURNE-CONTINUE-SHOP END -->
+    </div>
+
+</div>
+

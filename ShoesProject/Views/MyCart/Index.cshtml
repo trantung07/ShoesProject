@@ -58,7 +58,6 @@
                         <tr>
                             <th class="cart-product">Product</th>
                             <th class="cart-description">Description</th>
-                            <th class="cart-avail text-center">Instock</th>
                             <th class="cart-unit text-right">Sale</th>
                             <th class="cart-unit text-right">Price</th>
                             <th class="cart-unit text-right">Price After Discount</th>
@@ -86,7 +85,7 @@
                                             <small>@item.Category.CategoryName</small>
                                             <small><a href="#">Size : @*@item.Size.SizeValue*@, Color : @*@item.Color.ColorValue*@ </a></small>
                                         </td>
-                                        <td class="cart-avail"><span class="label label-success instock">@item.Product.Instock</span></td>
+                                        @Html.Hidden("Instock", @item.Product.Instock);
                                         <td class="cart-unit">
                                             <ul class="price text-right">
                                                 @{ var discount = 0;
@@ -97,7 +96,7 @@
                                         </td>
                                         <td class="cart-unit">
                                             <ul class="price text-right">
-                                                <li class="price">@item.Product.ProductPrice</li>
+                                                <li class="price">@item.Product.ProductPrice<p> vnđ</p></li>
                                             </ul>
                                         </td>
                                             <td class="cart-unit">
@@ -106,7 +105,7 @@
                                                     var price = 0;
                                                     if (item.Product.ProductDiscount != null) {  price = item.Product.ProductPrice - (int)((item.Product.ProductDiscount * item.Product.ProductPrice) / 100); } else {  price = item.Product.ProductPrice; }
                                                 }
-                                                <li class="Price-After-Discount">@price</li>
+                                                <li class="Price-After-Discount">@price<p> vnđ</p></li>
                                             </ul>
                                         </td>
                                         <td class="cart_quantity text-center">
@@ -133,7 +132,7 @@
                                                     money = price * item.Quantity;
                                                 }
                                             }
-                                            <span class="money">@money</span>
+                                            <span class="money">@money<p> vnđ</p></span>
                                         </td>
                                     </tr>
                                                     }

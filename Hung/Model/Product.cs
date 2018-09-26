@@ -33,7 +33,7 @@ namespace ShoesProjectModels.Model
         [Column(TypeName = "ntext")]
         public string ProductDescription { get; set; }
 
-        public bool? ProductStatus { get; set; }
+        //public bool? ProductStatus { get; set; }
 
         public int? ProductDiscount { get; set; }
 
