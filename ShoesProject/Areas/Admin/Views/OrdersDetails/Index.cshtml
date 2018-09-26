@@ -17,6 +17,9 @@
             @Html.DisplayNameFor(model => model.Product.ProductName)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.Product.ProductFeatureImage)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Size.SizeValue)
         </th>
         <th>
@@ -36,6 +39,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.Product.ProductName)
         </td>
+        <td><img src="~/Admin/Content/ProductImages/@item.Product.ProductId/@item.Product.ProductFeatureImage" style="height:50px;width:80px;" /></td>
         <td>
             @Html.DisplayFor(modelItem => item.Size.SizeValue)
         </td>
@@ -45,12 +49,16 @@
         <td>
             @Html.DisplayFor(modelItem => item.OldPrice)
         </td>
-        <td>
+        @*<td>
             @Html.ActionLink("Edit", "Edit", new { oId = item.OrderId, cId = item.Color.ColorId, sId = item.Size.SizeId, pId = item.Product.ProductId }) |
             @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
             @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
+        </td>*@
     </tr>
 }
 
 </table>
+
+<div>
+    @Html.ActionLink("Back to Orders List", "BackToOrdersList")
+</div>
