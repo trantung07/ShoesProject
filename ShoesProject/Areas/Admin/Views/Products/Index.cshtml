@@ -10,67 +10,158 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Brand.BrandName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Category.CategoryName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ProductName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Instock)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ProductPrice)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ProductDescription)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ProductDiscount)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ProductFeatureImage)
-        </th>
-        <th></th>
-    </tr>
+<div class="form-horizontal">
+    <div class="form-group">
+        <label class="control-label col-md-2" for="ProductName" >Search</label>
+        <div class="col-md-10">
+            <input class="form-control text-box single-line" id="searchField" onkeyup="searchProducts()" type="text" value="" />
+        </div>
+    </div>
+</div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Brand.BrandName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Category.CategoryName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ProductName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Instock)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ProductPrice)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ProductDescription)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ProductDiscount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ProductFeatureImage)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ProductId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ProductId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ProductId })
-        </td>
-    </tr>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h4>Products Tables</h4>
+                <div class="options">
+
+                </div>
+            </div>
+            <div class="panel-body">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Brand.BrandName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Category.CategoryName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ProductName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Instock)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ProductPrice)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ProductDescription)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ProductDiscount)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ProductFeatureImage)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ProductStatus)
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="productTable">
+                        @foreach (var item in Model)
+                        {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ProductName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Brand.BrandName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Category.CategoryName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Instock)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ProductPrice)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ProductDescription)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ProductDiscount)
+                            </td>
+                            <td>
+                                <img src="@Url.Content("~/Admin/Content/ProductImages/" + item.ProductId + "/" + item.ProductFeatureImage)" class="img-responsive" alt="Responsive image">
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.ProductId }) |
+                                @Html.ActionLink("Details", "Details", new { id = item.ProductId }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.ProductId })
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row" id="pagination">
+    <div class="col-xs-12">
+        <ul class="pagination">
+            <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1">Previous</a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item active">
+                <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+                <a class="page-link" href="#">Next</a>
+            </li>
+        </ul>
+    </div>
+</div>
+@section Scripts{
+<script>
+    var timeout = null;
+    var currentPage = 1;
+    function searchProducts(page = 1) {
+        currentPage = page;
+        clearTimeout(timeout);
+        timeout = setTimeout(function () {
+            $.ajax({
+                url: '@Url.Action("GetProductsByName", "Products")',
+                method: "get",
+                data: {
+                    name: $('#searchField').val(),
+                    page: currentPage
+                },
+                success: function (data) {
+                    $('#productTable').html('');
+                    data.products.forEach(function (item) {
+                        var renderString = "<tr>" +
+                            "<td>" + item.ProductName + "</td>" +
+                            "</tr>";
+
+                        $('#productTable').append(renderString);
+                        renderSearchPagination(data.count);
+                    })
+                }
+            })
+        }, 500);
+        function renderSearchPagination(count) {
+            $('#pagination').html('');
+            var pageString = '<div class="col-xs-12"><ul class="pagination"><li class="page-item"><a class="page-link" href="#" tabindex="-1">Previous</a></li>';
+            var pageNumber = Math.floor(count / 10) + (count % 10) == 0 ? 0 : 1;
+            for (i = 0; i < pageNumber; i++) {
+                pageString += '<li class="page-item"><a id="btnpage'+(i+1)+'" class="page-link" >' + (i + 1) + '</a></li>';
+            }
+            pageString += '<li class="page-item"><a class="page-link" href="#">Next</a></li></ul></div>';
+            $('#pagination').html(pageString);
+            for (i = 0; i < pageNumber; i++) {
+                $('#btnpage' + (i + 1)).on("click", function () {
+                    searchProducts(i);
+                });
+            }
+        }
+    }
+</script>    
 }
-
-</table>

@@ -1,4 +1,5 @@
-﻿using ShoesProject.Areas.Admin.Util;
+﻿using ShoesProject.Areas.Admin.Models;
+using ShoesProject.Areas.Admin.Util;
 using ShoesProjectModels.Model;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Web.Mvc;
 
 namespace ShoesProject.Areas.Admin.Controllers
 {
+    [AuthorizeBusiness]
     public class HomeController : Controller
     {
         Shoes db = new Shoes();

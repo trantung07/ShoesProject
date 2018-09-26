@@ -6,10 +6,12 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using ShoesProject.Areas.Admin.Models;
 using ShoesProjectModels.Model;
 
 namespace ShoesProject.Areas.Admin.Controllers
 {
+    [AuthorizeBusiness]
     public class CategoriesController : Controller
     {
         private Shoes db = new Shoes();
