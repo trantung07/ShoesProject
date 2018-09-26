@@ -12,14 +12,16 @@ namespace ShoesProject.Controllers
     {
         private Shoes db = new Shoes();
         // GET: ShopGirl
-        public ActionResult Index()
+        [HttpGet]
+        public ActionResult Index(int id)
         {
-            var lst =
+            var lstProductInCategory =
                 //from co in db.Colors
                 //from s in db.Sizes
                 from p in db.Products
                 join c in db.Categories on p.CategoryId equals c.CategoryId
                 join b in db.Brands on p.BrandId equals b.BrandId
+                where c.CategoryId == id
                 select new Products
                 {
                     id = p.ProductId,
@@ -31,9 +33,10 @@ namespace ShoesProject.Controllers
                     brandName = b.BrandName,
                     price = p.ProductPrice,
                     discount = p.ProductDiscount,
-                    imagesFeature = p.ProductFeatureImage
+                    imagesFeature = p.ProductFeatureImage,
+                    status = p.ProductStatus
                 };
-            return View(lst);
+            return View(lstProductInCategory);
         }
     }
 }
