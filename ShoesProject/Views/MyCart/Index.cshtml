@@ -83,7 +83,7 @@
                                             <p class="product-name"><a href="#">@item.Product.ProductName</a></p>
                                             <small>@item.Brand.BrandName</small>
                                             <small>@item.Category.CategoryName</small>
-                                            <small><a href="#">Size : @*@item.Size.SizeValue*@, Color : @*@item.Color.ColorValue*@ </a></small>
+                                            <small><a href="#">Size : @item.Size.SizeValue, Color : @item.Color.ColorValue </a></small>
                                         </td>
                                         @Html.Hidden("Instock", @item.Product.Instock);
                                         <td class="cart-unit">
@@ -132,7 +132,7 @@
                                                     money = price * item.Quantity;
                                                 }
                                             }
-                                            <span class="money">@money<p> vnđ</p></span>
+                                            <span class="money">@money  vnđ</span>
                                         </td>
                                     </tr>
                                                     }

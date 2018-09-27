@@ -13,7 +13,7 @@ namespace ShoesProject.Models
         public int Quantity { get; set; }
         public Brand Brand { get; set; }
         public Category Category { get; set; }
-        //public Color Color { get; set; }
-        //public Size Size { get; set; }
+        public Color Color { get; set; }
+        public Size Size { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ShoesProject.Models.CartItem>
+﻿@model IEnumerable<ShoesProjectModels.Model.OrdersDetail>
 @{
     ViewBag.Title = "CartPayment";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -54,43 +54,38 @@
                                     <tr>
                                         <td class="cart-product">
                                             <a href="#">
-                                                <img alt="Faded" src="~/Admin/Content/ProductImages/@item.Product.ProductId/@item.Product.ProductFeatureImage">
+                                                <img alt="Faded" src="~/Admin/Content/ProductImages/@item.ProductId/@item.Product.ProductFeatureImage">
                                             </a>
                                         </td>
                                         <td class="cart-description">
                                             <p class="product-name"><a href="#">@item.Product.ProductName</a></p>
-                                            <small>@item.Brand.BrandName</small>
-                                            <small>@item.Category.CategoryName</small>
-                                            <small><p>Size : S, Color : Orange</p></small>
+                                            <small>@item.Product.Brand.BrandName</small>
+                                            <small>@item.Product.Category.CategoryName</small>
+                                            <small>Size : @item.Size.SizeValue, Color : @item.Color.ColorValue</small>
                                         </td>
                                             @Html.Hidden("Instock", @item.Product.Instock);
                                         <td class="cart-unit">
                                             <ul class="price text-right">
-                                                @{ var discount = 0;
-                                                    if (item.Product.ProductDiscount != null) { discount = (int)item.Product.ProductDiscount; } else { discount = 0; }
-                                                }
-                                                <li class="price">@discount%</li>
+                                                <li class="price">@item.Product.ProductDiscount%</li>
                                             </ul>
                                         </td>
                                         <td class="cart-unit">
                                             <ul class="price text-right">
-                                                <li class="price">@item.Product.ProductPrice<p> vnđ</p></li>
+                                                <li class="price">@item.Product.ProductPrice  vnđ</li>
                                             </ul>
                                         </td>
                                         <td class="cart-unit">
                                             <ul class="price text-right">
-                                                @{ var price = 0;
-                                                    if (item.Product.ProductDiscount != null) { price = item.Product.ProductPrice - (int)((item.Product.ProductDiscount * item.Product.ProductPrice) / 100); } else { price = item.Product.ProductPrice; }
-                                                }
-                                                <li class="price">@price<p> vnđ</p></li>
+                                               
+                                                <li class="price">@item.OldPrice  vnđ</li>
                                             </ul>
                                         </td>
                                         <td class="cart_quantity text-center">
                                             <span>@item.Quantity</span>
                                         </td>
                                         <td class="cart-total">
-                                            @{var total = price * item.Quantity; }
-                                            <span class="price">@total<p> vnđ</p></span>
+                                            @{var total = item.OldPrice * item.Quantity; }
+                                            <span class="price">@total  vnđ</span>
                                         </td>
                                     </tr>
                     <!-- SINGLE CART_ITEM END -->
@@ -114,7 +109,7 @@
                                 <span>Total</span>
                             </td>
                             <td id="total-price-container" class="price" colspan="3">
-                                <span id="total-price"><p> vnđ</p></span>
+                                <span id="total-price">  vnđ</span>
                             </td>
                         </tr>
                     </tfoot>

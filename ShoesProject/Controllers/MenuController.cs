@@ -29,5 +29,11 @@ namespace ShoesProject.Controllers
             }
             return PartialView(Cart);
         }
+        public ActionResult MenuBrand()
+        {
+            var lst = from b in db.Brands
+                      select b;
+            return PartialView(lst);
+        }
     }
 }

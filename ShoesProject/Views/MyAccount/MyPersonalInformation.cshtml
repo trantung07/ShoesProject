@@ -249,13 +249,24 @@
                         <div class="submit-button p-info-submit-button">
                             <input type="submit" value="Update" class="btn btn-default" />
                         </div>
+                        <div class="submit-button p-info-submit-button">
+                            <a href="@Url.Action("ChangePassword","MyAccount")" class="Chang-password">Change Password</a> 
+                        </div>
                     </div>
                 </form>
-                <div class="submit-button p-info-submit-button">
+                @*<div class="submit-button p-info-submit-button">
+                    <a href="@Url.Action("Index","MyAccount")">Back</a>
                     <a href="@Url.Action("ChangePassword","MyAccount")">Change Password</a>
-                </div>
+                </div>*@
             </div>
             <!-- PERSONAL-INFOMATION END -->
         </div>
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <!-- RETURNE-CONTINUE-SHOP START -->
+        <div class="returne-continue-shop">
+            <a href="@Url.Action("Index","MyAccount")" class="continueshoping"><i class="fa fa-chevron-left"></i>Back</a>
+        </div>
+        <!-- RETURNE-CONTINUE-SHOP END -->
     </div>
 </div>

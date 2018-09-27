@@ -126,5 +126,19 @@ namespace ShoesProject.Controllers
                 return RedirectToAction("Index", "Login");
             }
         }
+        public ActionResult DetailOrder(int id)
+        {
+            if(Session["UserId"] != null)
+            {
+                var lst = from ordetail in db.OrdersDetails
+                          where ordetail.OrderId == id
+                          select ordetail;
+                return View(lst);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Login");
+            }
+        }
     }
 }
