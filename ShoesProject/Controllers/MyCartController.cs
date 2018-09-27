@@ -2,6 +2,7 @@
 using ShoesProjectModels.Model;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -185,7 +186,7 @@ namespace ShoesProject.Controllers
             return RedirectToAction("Index", "Login");
         }
         [HttpPost]
-        public ActionResult CartAddress(Order or, string code, OrdersDetail ordetail)
+        public ActionResult CartAddress(Order or, string code)
         {
 
             try
@@ -199,7 +200,7 @@ namespace ShoesProject.Controllers
                     {
                         or.UserId = us.UserId;
                         or.VoucherId = voucher.VoucherId;
-                        or.CreatedAt = DateTime.Now;
+                        or.CreatedAt =DateTime.Now.ToLocalTime();
                         db.Orders.Add(or);
                         db.SaveChanges();
                         Session["OrderId"] = or.OrderId;
@@ -207,6 +208,7 @@ namespace ShoesProject.Controllers
                         var lst = (List<CartItem>)Session["Cart"];
                         foreach (var item in lst)
                         {
+                            var ordetail = new OrdersDetail();
                             ordetail.OrderId = or.OrderId;
                             ordetail.ProductId = item.Product.ProductId;
                             ordetail.ColorId = item.Color.ColorId;
@@ -229,7 +231,7 @@ namespace ShoesProject.Controllers
                     {
                         or.UserId = us.UserId;
                         or.VoucherId = 1;
-                        or.CreatedAt = DateTime.Now;
+                        or.CreatedAt = DateTime.Now.ToLocalTime();
                         db.Orders.Add(or);
                         db.SaveChanges();
                         Session["OrderId"] = or.OrderId;
@@ -237,6 +239,7 @@ namespace ShoesProject.Controllers
                         var lst = (List<CartItem>)Session["Cart"];
                         foreach (var item in lst)
                         {
+                            var ordetail = new OrdersDetail();
                             ordetail.OrderId = or.OrderId;
                             ordetail.ProductId = item.Product.ProductId;
                             ordetail.ColorId = item.Color.ColorId;
