@@ -168,9 +168,18 @@ namespace ShoesProject.Areas.Admin.Controllers
 
         public JsonResult GetProductsByName(string name, int page)
         {
-            var products = db.Products.Where(x => x.ProductName.ToLower().Contains(name.ToLower())).Select(x => new { ProductName = x.ProductName, ProductId = x.ProductId, ProductFeatureImage = x.ProductFeatureImage  });
+            var products = db.Products.Where(x => x.ProductName.ToLower().Contains(name.ToLower())).Select(x => new { ProductName = x.ProductName, ProductId = x.ProductId, ProductFeatureImage = x.ProductFeatureImage,
+                BrandName = x.Brand.BrandName, CategoryName = x.Category.CategoryName, InStock = x.Instock, 
+                ProductPrice = x.ProductPrice, ProductDescription = x.ProductDescription, ProductDiscount = x.ProductDiscount
+            });
             var pagedProducts = products.OrderByDescending(x => x.ProductName).Skip(10*(page-1)).Take(10);
             return Json(new { products= pagedProducts, page = 1, count= products.Count()}, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult GetAllProducts(int page)
+        {
+            var products = db.Products.Select(x => new { ProductName = x.ProductName, ProductId = x.ProductId, ProductFeatureImage = x.ProductFeatureImage });
+            var pagedProducts = products.OrderByDescending(x => x.ProductName).Skip(10 * (page - 1)).Take(10);
+            return Json(new { products = pagedProducts, page = page, count = products.Count() }, JsonRequestBehavior.AllowGet);
         }
         protected override void Dispose(bool disposing)
         {

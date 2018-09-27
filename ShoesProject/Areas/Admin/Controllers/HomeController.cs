@@ -9,7 +9,6 @@ using System.Web.Mvc;
 
 namespace ShoesProject.Areas.Admin.Controllers
 {
-    [AuthorizeBusiness]
     public class HomeController : Controller
     {
         Shoes db = new Shoes();
