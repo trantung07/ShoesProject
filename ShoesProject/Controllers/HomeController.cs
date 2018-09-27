@@ -14,7 +14,7 @@ namespace ShoesProject.Controllers
         private Shoes db = new Shoes();
         public ActionResult Index()
         {
-            int LIMIT = 100;
+            int LIMIT = 10;
             var lstNewProducts =
                    //from co in db.Colors
                    //from s in db.Sizes
@@ -69,7 +69,6 @@ namespace ShoesProject.Controllers
                    join c in db.Categories on p.CategoryId equals c.CategoryId
                    join b in db.Brands on p.BrandId equals b.BrandId
                    where p.ProductStatus == true
-                   orderby p.ProductId ascending
                    select new Products
                    {
                        id = p.ProductId,
@@ -84,9 +83,36 @@ namespace ShoesProject.Controllers
                        imagesFeature = p.ProductFeatureImage,
                        status = p.ProductStatus
                    };
-            var count = lstFeatureProduct.Count();
-            ViewBag.lstFeatureProduct = lstFeatureProduct.Skip(count).Take(LIMIT);
-            return View();
+            ViewBag.lstFeatureProduct = lstFeatureProduct.OrderBy(r => Guid.NewGuid()).Take(LIMIT);
+
+            var lstCategory =
+                from c in db.Categories
+                where c.CategoryStatus == true
+                && c.CategoryParentId == 0
+                select c;
+
+            var lstBestSale =
+                from p in db.Products
+                join c in db.Categories on p.CategoryId equals c.CategoryId
+                join b in db.Brands on p.BrandId equals b.BrandId
+                where p.ProductStatus == true
+                orderby p.ProductDiscount ascending
+                select new Products
+                {
+                    id = p.ProductId,
+                    name = p.ProductName,
+                    cateId = p.CategoryId,
+                    cateName = c.CategoryName,
+                    instock = p.Instock,
+                    brandId = p.BrandId,
+                    brandName = b.BrandName,
+                    price = p.ProductPrice,
+                    discount = p.ProductDiscount,
+                    imagesFeature = p.ProductFeatureImage,
+                    status = p.ProductStatus
+                };
+            ViewBag.lstBestSale = lstBestSale.Take(LIMIT);
+            return View(lstCategory);
         }
         public ActionResult About()
         {
