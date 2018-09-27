@@ -802,6 +802,7 @@
     <Content Include="Views\MyAccount\ForgotPassword.cshtml" />
     <Content Include="Views\MyAccount\OrderHistory.cshtml" />
     <Content Include="Views\MyAccount\DetailOrder.cshtml" />
+    <Content Include="Views\Menu\MenuBrand.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Admin\Content\images\" />
