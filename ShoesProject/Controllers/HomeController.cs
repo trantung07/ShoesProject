@@ -112,6 +112,7 @@ namespace ShoesProject.Controllers
                     status = p.ProductStatus
                 };
             ViewBag.lstBestSale = lstBestSale.Take(LIMIT);
+
             return View(lstCategory);
         }
         public ActionResult About()

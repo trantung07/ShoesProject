@@ -1678,7 +1678,13 @@
                 <!-- TABS MENU START-->
                 <div class="tab-carousel-menu">
                     <ul class="nav nav-tabs product-bg-nav">
-                        
+                        @*@{
+                            foreach (var c in Model)
+                            {
+                                <li class="@c.index"><a href="#@c.item" data-toggle="tab">@c.item</a></li>
+                            }*@
+                        }
+
                         <li class="active"><a href="#women-tab" data-toggle="tab">Women</a></li>
         <li><a href="#tops-tab" data-toggle="tab">tops</a></li>
         <li><a href="#t-shirts" data-toggle="tab">t-shirts</a></li>
@@ -1731,7 +1737,6 @@
                                 </div>
                             </div>
                         }
-
                         <!-- BESTSELLER-SINGLE-ITEM END -->
                     </div>
                     <!-- BESTSELLER-CAROUSEL END -->
