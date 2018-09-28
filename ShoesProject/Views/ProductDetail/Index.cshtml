@@ -44,7 +44,7 @@
                         <ul class="nav nav-tabs select-product-tab bxslider">
                             @foreach (var images in ViewBag.Images)
                             {
-                                <li class=" @(images == ViewBag.ImagesFirst ? "active" : "")">
+                                <li class=" @(images == ViewBag.ImagesFirst ? "active" : "") ">
                                     <a href="#@images.ProductImageId" data-toggle="tab"><img src="~/Admin/Content/ProductImages/@images.ProductId/@images.Image" alt="pro-thumbnail" /></a>
                                 </li>
                             }
@@ -66,8 +66,8 @@
                         <div class="single-product-condition">
                             @if (Model.ProductDiscount > 0)
                             {
-                                <p>Sale: <span>@Model.ProductDiscount %</span></p>
-                                <p>Old price: <span  class="old-price">@String.Format("{0:0,0 vnđ}", Model.ProductPrice)</span></p>
+                                <p>Sale: <span>@Model.ProductDiscount</span></p>
+                                <p>Old price: <span class="old-price">@String.Format("{0:0,0 vnđ}", Model.ProductPrice)</span></p>
                             }
                         </div>
                         <div class="single-product-price">
@@ -96,25 +96,29 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="single-product-size">
-                            <p class="small-title">Size </p>
-                            <select name="product-size" id="product-size">
-                                @foreach (var size in ViewBag.Size)
+                        <form method="get" action="~/MyCart/AddCart">
+                            @Html.Hidden("id", Model.ProductId)
+                            <div class="single-product-size">
+                                <p class="small-title">Size </p>
+                                <select name="sizeId" id="sizeId">
+                                    @foreach (var size in ViewBag.Size)
+                                    {
+                                        <option name="SizeId" id="SizeId" value="@size.SizeId">@size.SizeValue</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="single-product-color">
+                                <p class="small-title">Color </p>
+                                @foreach (var color in ViewBag.Color)
                                 {
-                                    <option value="">@size</option>
+                                    <input type="radio" name="colorId" id="colorId" value="@color.ColorId" /><p style="background-color:@color.ColorValue"></p>
                                 }
-                            </select>
-                        </div>
-                        <div class="single-product-color">
-                            <p class="small-title">Color </p>
-                            @foreach (var color in ViewBag.Color)
-                            {
-                                <a href="#@color.ColorCode" class="@(color == ViewBag.ColorFirst ? "active" :"")"><span style="background-color:@color.ColorCode"></span></a>
-                            }
-                        </div>
-                        <div class="single-product-add-cart">
-                            <a class="add-cart-text" title="Add to cart" href="@Url.Action("AddCart", "MyCart",new { id = @Model.ProductId })">Add to cart</a>
-                        </div>
+                            </div>
+                            <div class="single-product-add-cart">
+                                @*<a class="add-cart-text" title="Add to cart" href="@Url.Action("AddCart", "ProductDetail")">Add to cart</a>*@
+                                <input type="submit" value="AddCart" class="btn btn-default" />
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -134,7 +138,7 @@
                                     <p>@Model.ProductDescription</p>
                                 </div>
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>
@@ -211,17 +215,17 @@
                                     @{
                                         if (ot.ProductDescription.Length > 40)
                                         {
-                                        @(ot.ProductDescription.Substring(0, 39) + "...")
+                                            @(ot.ProductDescription.Substring(0, 39) + "...")
                                         }
                                         else
                                         {
-                                        @ot.ProductDescription
-                                            }
+                                            @ot.ProductDescription
                                         }
+                                    }
                                 </p>
-                             </div>
-                         </li>
-                    }
+                            </div>
+                        </li>
+                                        }
 
 
                 </ul>
@@ -231,4 +235,3 @@
         <!-- SINGLE SIDE BAR END -->
     </div>
 </div>
-

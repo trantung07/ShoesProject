@@ -61,7 +61,7 @@ namespace ShoesProject.Controllers
 
             var pass = Utility.getHashedMD5(Password);
             var user = db.Users.SingleOrDefault(x => x.Email.Equals(Email) && x.Password.StartsWith(pass) && x.Password.EndsWith(pass));
-            if (user != null)
+            if (user != null && user.UserStatus == true)
             {
                 Session["fullname"] = user.UserName;
                 Session["UserId"] = user.UserId;

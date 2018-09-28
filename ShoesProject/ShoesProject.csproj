@@ -207,10 +207,17 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Admin\Content\brandImages\1\2017-06-22.png" />
     <Content Include="Admin\Content\brandImages\1\2017-10-20.png" />
     <Content Include="Admin\Content\brandImages\1\2018-01-04.png" />
+    <Content Include="Admin\Content\brandImages\1\Adidas_Logo_Stack__93206.1337144792.100.100.jpg" />
+    <Content Include="Admin\Content\ProductImages\11\0003430_giay-nam-adidas-edge-rc-mau-den-size-41-us-8_100.jpeg" />
+    <Content Include="Admin\Content\ProductImages\11\prophereMen.jpg" />
+    <Content Include="Admin\Content\ProductImages\2\0003508_giay-nam-adidas-alphabounce-1m-running-shoes-grey-clear-onyx-size-415-vn-85-us_100.jpeg" />
     <Content Include="Admin\Content\ProductImages\1\2017-10-20.png" />
+    <Content Include="Admin\Content\ProductImages\1\2017-12-14.png" />
     <Content Include="Admin\Content\ProductImages\1\2018-01-06 %281%29.png" />
+    <Content Include="Admin\Content\ProductImages\1\prophereMen.jpg" />
     <Content Include="Admin\Content\ProductImages\2\cart-image1.jpg" />
     <Content Include="Admin\Content\ProductImages\2\cart-image2.jpg" />
     <Content Include="Admin\Content\ProductImages\3\3.jpg" />
@@ -218,18 +225,23 @@
     <Content Include="Admin\Content\ProductImages\3\5.jpg" />
     <Content Include="Admin\Content\ProductImages\3\7.jpg" />
     <Content Include="Admin\Content\ProductImages\3\8.jpg" />
+    <Content Include="Admin\Content\ProductImages\3\upload_901f4d33b48649929d292c0fc9b2b0ed_small.jpg" />
     <Content Include="Admin\Content\ProductImages\4\3.jpg" />
     <Content Include="Admin\Content\ProductImages\4\6.jpg" />
     <Content Include="Admin\Content\ProductImages\4\7.jpg" />
     <Content Include="Admin\Content\ProductImages\4\8.jpg" />
+    <Content Include="Admin\Content\ProductImages\5\0003417_giay-nu-adidas-flashback-mau-trang-xam-size-375-us-7_100.jpeg" />
     <Content Include="Admin\Content\ProductImages\5\Jellyfish.jpg" />
     <Content Include="Admin\Content\ProductImages\5\Lighthouse.jpg" />
     <Content Include="Admin\Content\ProductImages\5\Penguins.jpg" />
+    <Content Include="Admin\Content\ProductImages\5\prophereMen.jpg" />
     <Content Include="Admin\Content\ProductImages\5\Tulips.jpg" />
+    <Content Include="Admin\Content\ProductImages\6\0003097_giay-nu-adidas-womens-cf-advantage-stripes-mau-xam-size-37_100.jpeg" />
     <Content Include="Admin\Content\ProductImages\6\Jellyfish.jpg" />
     <Content Include="Admin\Content\ProductImages\6\Koala.jpg" />
     <Content Include="Admin\Content\ProductImages\6\Lighthouse.jpg" />
     <Content Include="Admin\Content\ProductImages\6\Penguins.jpg" />
+    <Content Include="Admin\Content\ProductImages\7\bb1973_04_standard_small.jpg" />
     <Content Include="Admin\Content\ProductImages\7\Chrysanthemum.jpg" />
     <Content Include="Admin\Content\ProductImages\7\Desert.jpg" />
     <Content Include="Admin\Content\ProductImages\7\Hydrangeas.jpg" />
@@ -246,13 +258,13 @@
     <Content Include="Admin\Content\ProductImages\14\prophereMen.jpg" />
     <Content Include="Admin\Content\ProductImages\13\prophereMen.jpg" />
     <Content Include="Admin\Content\ProductImages\12\prophereMen.jpg" />
-    <Content Include="Admin\Content\ProductImages\11\prophereMen.jpg" />
     <Content Include="Admin\Content\ProductImages\10\prophereMen.jpg" />
+    <Content Include="Admin\Content\ProductImages\8\0002659_giay-nam-adidas-pureboost-core-black-run-white_100.jpeg" />
+    <Content Include="Admin\Content\ProductImages\9\0003513_giay-nam-adidas-alphabounce-reflective-hpc-ams-shoes-size-41-us-8_100.jpeg" />
     <Content Include="Admin\Content\ProductImages\9\prophereMen.jpg" />
     <Content Include="Admin\Content\ProductImages\8\prophereMen.jpg" />
     <Content Include="Admin\Content\ProductImages\7\prophereMen.jpg" />
     <Content Include="Admin\Content\ProductImages\6\prophereMen.jpg" />
-    <Content Include="Admin\Content\ProductImages\5\prophereMen.jpg" />
     <Content Include="Admin\Content\ProductImages\26\prophereMen.jpg" />
     <Content Include="Admin\Content\ProductImages\27\prophereMen.jpg" />
     <Content Include="Admin\Content\ProductImages\24\prophereMen.jpg" />
@@ -815,6 +827,9 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Template\content.html" />
+    <Content Include="Views\Menu\Index.cshtml" />
+    <Content Include="Views\Menu\MenuBrand.cshtml" />
+    <Content Include="Views\Menu\MenuCart.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -851,8 +866,6 @@
     <Content Include="Views\Sizes\Details.cshtml" />
     <Content Include="Views\Sizes\Edit.cshtml" />
     <Content Include="Views\Sizes\Index.cshtml" />
-    <Content Include="Views\Menu\Index.cshtml" />
-    <Content Include="Views\Menu\MenuCart.cshtml" />
     <Content Include="Views\MyAccount\ChangePassword.cshtml" />
     <Content Include="Views\MyAccount\ForgotPassword.cshtml" />
     <Content Include="Views\MyAccount\OrderHistory.cshtml" />
