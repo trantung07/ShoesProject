@@ -84,7 +84,7 @@
                                 @Html.DisplayFor(modelItem => item.ProductDiscount)%
                             </td>
                             <td>
-                                <img src="@Url.Content("~/Admin/Content/ProductImages/" + item.ProductId + "/" + item.ProductFeatureImage)" class="img-responsive" alt="Responsive image">
+                                <img style="max-width: 200px" src="@Url.Content("~/Admin/Content/ProductImages/" + item.ProductId + "/" + item.ProductFeatureImage)" class="img-responsive" alt="Responsive image">
                             </td>
                             <td>
                                 @Html.ActionLink("Edit", "Edit", new { id = item.ProductId }) |
@@ -141,12 +141,12 @@
                                 "<td>" + item.ProductName + "</td>" +
                                 "<td>" + item.BrandName + "</td>" +
                                 "<td>" + item.CategoryName + "</td>" +
-                                "<td>" + item.Instock + "</td>" +
+                                "<td>" + item.InStock + "</td>" +
                                 "<td>" + item.ProductPrice + "</td>" +
                                 "<td>" + item.ProductDescription + "</td>" +
                                 "<td>" + item.ProductDiscount + "</td>" +
-                                "<td>" + item.ProductDiscount + "</td>" +
-                                '<td><a href="/Admin/Products/Edit/' + item.ProductId + '">Edit</a> | <a href="/Admin/Products/Details/' + item.ProductId + '">Details</a> |<a href="/Admin/Products/Delete/' + item.ProductId +'">Delete</a> </td>'+              
+                                '<td><img style="max-width: 200px" src="@Url.Content("~/Admin/Content/ProductImages/")' + item.ProductId + '/' + item.ProductFeatureImage + '" class="img-responsive" alt="Responsive image"></td>' +
+                                '<td><a href="/Admin/Products/Edit/' + item.ProductId + '">Edit</a> | <a href="/Admin/Products/Details/' + item.ProductId + '">Details</a> |<a href="/Admin/Products/Delete/' + item.ProductId + '">Delete</a>| <a href="/Admin/Products/SetProperties/' + item.ProductId +'">SetProperties</a> </td>'+              
                                 "</tr>";
                             $('#productTable').html(renderString);
                             renderSearchPagination(data.count);
@@ -165,9 +165,16 @@
                     $('#productTable').html('');
                     data.products.forEach(function (item) {
                         var renderString = "<tr>" +
-                            "<td>" + item.ProductName + "</td>" +
-                            "</tr>";
-
+                                "<td>" + item.ProductName + "</td>" +
+                                "<td>" + item.BrandName + "</td>" +
+                                "<td>" + item.CategoryName + "</td>" +
+                                "<td>" + item.InStock + "</td>" +
+                                "<td>" + item.ProductPrice + "</td>" +
+                                "<td>" + item.ProductDescription + "</td>" +
+                                "<td>" + item.ProductDiscount + "</td>" +
+                                '<td><img style="max-width: 200px" src="@Url.Content("~/Admin/Content/ProductImages/")' + item.ProductId + '/' + item.ProductFeatureImage + '" class="img-responsive" alt="Responsive image"></td>' +
+                            '<td><a href="/Admin/Products/Edit/' + item.ProductId + '">Edit</a> | <a href="/Admin/Products/Details/' + item.ProductId + '">Details</a> |<a href="/Admin/Products/Delete/' + item.ProductId + '">Delete</a> |<a href="/Admin/Products/SetProperties/' + item.ProductId +'">SetProperties</a> </td>'+              
+                                "</tr>";
                         $('#productTable').append(renderString);
                         renderSearchPagination(data.count);
                     })

@@ -20,7 +20,7 @@ namespace ShoesProject.Areas.Admin.Controllers
         // GET: Admin/Products
         public ActionResult Index()
         {
-            var products = db.Products.Include(p => p.Brand).Include(p => p.Category);
+            var products = db.Products.Where(x => x.ProductStatus == true).Include(p => p.Brand).Include(p => p.Category);
             return View(products.ToList());
         }
 
@@ -55,6 +55,7 @@ namespace ShoesProject.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                product.ProductStatus = true;
                 db.Products.Add(product);
                 db.SaveChanges();
                 return product.ProductId;
@@ -131,7 +132,7 @@ namespace ShoesProject.Areas.Admin.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Product product = db.Products.Find(id);
-            db.Products.Remove(product);
+            product.ProductStatus = false;
             db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -214,7 +215,10 @@ namespace ShoesProject.Areas.Admin.Controllers
         }
         public JsonResult GetAllProducts(int page)
         {
-            var products = db.Products.Select(x => new { ProductName = x.ProductName, ProductId = x.ProductId, ProductFeatureImage = x.ProductFeatureImage });
+            var products = db.Products.Where(x => x.ProductStatus == true).Select(x => new { ProductName = x.ProductName, ProductId = x.ProductId, ProductFeatureImage = x.ProductFeatureImage,
+                BrandName = x.Brand.BrandName, CategoryName = x.Category.CategoryName,
+                InStock = x.Instock, ProductPrice = x.ProductPrice, ProductDescription = x.ProductDescription,
+                ProductDiscount = x.ProductDiscount });
             var pagedProducts = products.OrderByDescending(x => x.ProductName).Skip(10 * (page - 1)).Take(10);
             return Json(new { products = pagedProducts, page = page, count = products.Count() }, JsonRequestBehavior.AllowGet);
         }

@@ -59,7 +59,7 @@
     function renderColors(listColors) {
          $('#listSizeGranted').html("");
             listColors.forEach(function(item){
-                item.IsPresent ?
+                item.isPresent ?
                     $('#listColor').append("<li><label><input type='checkbox' checked value='' onchange='updateProductColorState(" + item.ColorId + ",@Model.ProductId" + ")'/>" + "<span style='margin-left:10px;display:inline-block;width: 12px; height: 12px; background-color:#" + item.ColorCode +"'></span>" + item.ColorValue + "</label></li>")
                     : $('#listColor').append("<li><label><input type='checkbox' value='' onchange='updateProductColorState(" + item.ColorId + ",@Model.ProductId" + ")'/>" + "<span style='margin-left:10px;display:inline-block;width: 12px; height: 12px; background-color:#" + item.ColorCode +"'></span>"+ item.ColorValue + "</label></li>");
             });
