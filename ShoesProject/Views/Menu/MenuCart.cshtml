@@ -1,0 +1,22 @@
+﻿@model IEnumerable<ShoesProject.Models.CartItem>
+<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 pull-right shopingcartarea">
+    <div class="shopping-cart-out pull-right">
+        <div class="shopping-cart">
+            <a class="shop-link" href="@Url.Action("Index", "MyCart")" title="View my shopping cart">
+                <i class="fa fa-shopping-cart cart-icon"></i>
+                <b>My Cart</b>
+                <span class="ajax-cart-quantity">
+                    @{
+                    if (Session["Cart"] != null)
+                    {
+                        if (Model != null && Model.Count() > 0)
+                        {
+                            @Model.Count();
+                        }
+                    }
+                }
+                </span>
+            </a>
+        </div>
+    </div>
+</div>

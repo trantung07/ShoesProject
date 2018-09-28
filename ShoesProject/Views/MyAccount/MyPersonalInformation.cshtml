@@ -1,4 +1,4 @@
-﻿
+﻿@model ShoesProjectModels.Model.User
 @{
     ViewBag.Title = "MyPersonalInformation";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -9,7 +9,7 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <!-- BSTORE-BREADCRUMB START -->
             <div class="bstore-breadcrumb">
-                <a href="index.html">My Account</a>
+                <a href="@Url.Action("Index","MyAccount")">My Account</a>
                 <span><i class="fa fa-caret-right	"></i></span>
                 <span>Infomation</span>
             </div>
@@ -23,8 +23,9 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <!-- PERSONAL-INFOMATION START -->
             <div class="personal-infomation">
-                <form class="primari-box personal-info-box" id="personalinfo" method="post" action="#">
+                <form class="primari-box personal-info-box" id="personalinfo" method="post" action="~/MyAccount/UpdateMyPersonalInformation">
                     <h3 class="box-subheading">Your personal information</h3>
+                    <h4 class="box-subheading">@TempData["msg"]</h4>
                     <div class="personal-info-content">
                         @*<div class="form-group primary-form-group p-info-group">
                             <label>Title</label>
@@ -38,18 +39,22 @@
                                 <label for="radio2">Mrs.</label>
                             </span>
                         </div>*@
-                        <div class="form-group primary-form-group p-info-group">
-                            <label for="firstname">Full Name</label>
-                            <input type="text" value="" name="fullname" id="fullname" class="form-control input-feild">
-                        </div>
-                        <div class="form-group primary-form-group p-info-group">
-                            <label for="email">Email</label>
-                            <input type="email" value="" name="email" id="email" class="form-control input-feild">
-                        </div>
-                        <div class="form-group primary-form-group p-info-group">
-                            <label for="password">Password</label>
-                            <input type="password" value="" name="password" id="password" class="form-control input-feild">
-                        </div>
+                        @{
+                            if (Model != null)
+                            {
+                                @Html.Hidden("UserId", @Model.UserId)
+                                <div class="form-group primary-form-group p-info-group">
+                                    <label for="firstname">FullName</label>
+                                    <input type="text" value="@Model.UserName" name="UserName" id="UserName" class="form-control input-feild" required>
+                                </div>
+                                <div class="form-group primary-form-group p-info-group">
+                                    <label for="Email">Email</label>
+                                    <input type="email" value="@Model.Email" name="Email" id="Email" class="form-control input-feild" disabled >
+                                </div>
+                                @Html.Hidden("Password", @Model.Password)
+                                @Html.Hidden("UserStatus", true)
+                            }
+                        }
                         @*<div class="form-group primary-form-group p-info-group">
                             <label>Date of Birth</label>
                             <div class="birth-day">
@@ -242,16 +247,26 @@
                             <a href="#">Receive special offers from our partners!</a>
                         </div>*@
                         <div class="submit-button p-info-submit-button">
-                            <button  id="btnUpdate" class="btn main-btn">
-                                <span>
-                                    UPDATE
-                                </span>
-                            </button>
+                            <input type="submit" value="Update" class="btn btn-default" />
+                        </div>
+                        <div class="submit-button p-info-submit-button">
+                            <a href="@Url.Action("ChangePassword","MyAccount")" class="Chang-password">Change Password</a> 
                         </div>
                     </div>
                 </form>
+                @*<div class="submit-button p-info-submit-button">
+                    <a href="@Url.Action("Index","MyAccount")">Back</a>
+                    <a href="@Url.Action("ChangePassword","MyAccount")">Change Password</a>
+                </div>*@
             </div>
             <!-- PERSONAL-INFOMATION END -->
         </div>
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <!-- RETURNE-CONTINUE-SHOP START -->
+        <div class="returne-continue-shop">
+            <a href="@Url.Action("Index","MyAccount")" class="continueshoping"><i class="fa fa-chevron-left"></i>Back</a>
+        </div>
+        <!-- RETURNE-CONTINUE-SHOP END -->
     </div>
 </div>

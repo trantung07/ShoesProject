@@ -1,5 +1,5 @@
-﻿using ShoesProjectModels.Model;
-using ShoesProject.Areas.Admin.Util;
+﻿using ShoesProject.Areas.Admin.Util;
+using ShoesProjectModels.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +14,20 @@ namespace ShoesProject.Controllers
         // GET: Login
         public ActionResult Index()
         {
-            return View();
+            if (Session["fullName"] != null)
+            {
+                if(Session["Cart"] != null)
+                {
+                    return RedirectToAction("CartAddress", "MyCart");
+                }else
+                {
+                    return RedirectToAction("Index", "MyAccount");
+                }
+                
+            }else
+            {
+                return View();
+            }
         }
         [HttpPost]
         public ActionResult Register(User u)
@@ -51,7 +64,16 @@ namespace ShoesProject.Controllers
             if (user != null)
             {
                 Session["fullname"] = user.UserName;
-                return RedirectToAction("Index", "MyAccount");
+                Session["UserId"] = user.UserId;
+                Session["Email"] = user.Email;
+                if (Session["Cart"] != null)
+                {
+                    return RedirectToAction("CartAddress", "MyCart");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "MyAccount");
+                }
             }
             else
             {

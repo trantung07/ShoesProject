@@ -164,10 +164,13 @@
     <Compile Include="Areas\Admin\Controllers\CategoriesController.cs" />
     <Compile Include="Areas\Admin\Controllers\ColorsController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\OrdersController.cs" />
+    <Compile Include="Areas\Admin\Controllers\OrdersDetailsController.cs" />
     <Compile Include="Areas\Admin\Controllers\PermissonsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
     <Compile Include="Areas\Admin\Controllers\SetPermissonController.cs" />
     <Compile Include="Areas\Admin\Controllers\SizesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\VouchersController.cs" />
     <Compile Include="Areas\Admin\Models\AuthorizeBusiness.cs" />
     <Compile Include="Areas\Admin\Models\ColorViewModel.cs" />
     <Compile Include="Areas\Admin\Models\ImageViewModel.cs" />
@@ -175,10 +178,13 @@
     <Compile Include="Areas\Admin\Models\SizeViewModel.cs" />
     <Compile Include="Areas\Admin\Util\ReflectionController.cs" />
     <Compile Include="Areas\Admin\Util\Utility.cs" />
+    <Compile Include="Common\MailHelper.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ListProductController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\MyAccountController.cs" />
+    <Compile Include="Controllers\MyCartController.cs" />
     <Compile Include="Controllers\ProductDetailController.cs" />
     <Compile Include="Models\Products.cs" />
     <Compile Include="Global.asax.cs">
@@ -197,6 +203,18 @@
     <Content Include="Admin\Content\brandImages\1\2018-01-04.png" />
     <Content Include="Admin\Content\ProductImages\1\2017-10-20.png" />
     <Content Include="Admin\Content\ProductImages\1\2018-01-06 %281%29.png" />
+
+    <Content Include="Admin\Content\ProductImages\2\cart-image1.jpg" />
+    <Content Include="Admin\Content\ProductImages\2\cart-image2.jpg" />
+    <Content Include="Admin\Content\ProductImages\3\3.jpg" />
+    <Content Include="Admin\Content\ProductImages\3\4.jpg" />
+    <Content Include="Admin\Content\ProductImages\3\5.jpg" />
+    <Content Include="Admin\Content\ProductImages\3\7.jpg" />
+    <Content Include="Admin\Content\ProductImages\3\8.jpg" />
+    <Content Include="Admin\Content\ProductImages\4\3.jpg" />
+    <Content Include="Admin\Content\ProductImages\4\6.jpg" />
+    <Content Include="Admin\Content\ProductImages\4\7.jpg" />
+    <Content Include="Admin\Content\ProductImages\4\8.jpg" />
     <Content Include="Admin\Content\ProductImages\5\Jellyfish.jpg" />
     <Content Include="Admin\Content\ProductImages\5\Lighthouse.jpg" />
     <Content Include="Admin\Content\ProductImages\5\Penguins.jpg" />
@@ -208,6 +226,46 @@
     <Content Include="Admin\Content\ProductImages\7\Chrysanthemum.jpg" />
     <Content Include="Admin\Content\ProductImages\7\Desert.jpg" />
     <Content Include="Admin\Content\ProductImages\7\Hydrangeas.jpg" />
+
+    <Content Include="Admin\Content\ProductImages\1\prophereMen.jpg" />
+    <Content Include="Admin\Content\ProductImages\23\prophereMen.jpg" />
+    <Content Include="Admin\Content\ProductImages\22\prophereMen.jpg" />
+    <Content Include="Admin\Content\ProductImages\21\prophereMen.jpg" />
+    <Content Include="Admin\Content\ProductImages\20\prophereMen.jpg" />
+    <Content Include="Admin\Content\ProductImages\19\prophereMen.jpg" />
+    <Content Include="Admin\Content\ProductImages\18\prophereMen.jpg" />
+    <Content Include="Admin\Content\ProductImages\17\prophereMen.jpg" />
+    <Content Include="Admin\Content\ProductImages\16\prophereMen.jpg" />
+    <Content Include="Admin\Content\ProductImages\15\prophereMen.jpg" />
+    <Content Include="Admin\Content\ProductImages\14\prophereMen.jpg" />
+    <Content Include="Admin\Content\ProductImages\13\prophereMen.jpg" />
+    <Content Include="Admin\Content\ProductImages\12\prophereMen.jpg" />
+    <Content Include="Admin\Content\ProductImages\11\prophereMen.jpg" />
+    <Content Include="Admin\Content\ProductImages\10\prophereMen.jpg" />
+    <Content Include="Admin\Content\ProductImages\9\prophereMen.jpg" />
+    <Content Include="Admin\Content\ProductImages\8\prophereMen.jpg" />
+    <Content Include="Admin\Content\ProductImages\7\prophereMen.jpg" />
+    <Content Include="Admin\Content\ProductImages\6\prophereMen.jpg" />
+    <Content Include="Admin\Content\ProductImages\5\prophereMen.jpg" />
+    <Content Include="Admin\Content\ProductImages\26\prophereMen.jpg" />
+    <Content Include="Admin\Content\ProductImages\27\prophereMen.jpg" />
+    <Content Include="Admin\Content\ProductImages\24\prophereMen.jpg" />
+    <Content Include="Admin\Content\ProductImages\2\Jellyfish.jpg" />
+    <Content Include="Admin\Content\ProductImages\2\Lighthouse.jpg" />
+    <Content Include="Admin\Content\ProductImages\2\Penguins.jpg" />
+    <Content Include="Admin\Content\ProductImages\2\prophereMen.jpg" />
+    <Content Include="Admin\Content\ProductImages\2\Tulips.jpg" />
+    <Content Include="Admin\Content\ProductImages\3\Jellyfish.jpg" />
+    <Content Include="Admin\Content\ProductImages\3\Koala.jpg" />
+    <Content Include="Admin\Content\ProductImages\3\Lighthouse.jpg" />
+    <Content Include="Admin\Content\ProductImages\3\Penguins.jpg" />
+    <Content Include="Admin\Content\ProductImages\3\prophereMen.jpg" />
+    <Content Include="Admin\Content\ProductImages\25\prophereMen.jpg" />
+    <Content Include="Admin\Content\ProductImages\4\Chrysanthemum.jpg" />
+    <Content Include="Admin\Content\ProductImages\4\Desert.jpg" />
+    <Content Include="Admin\Content\ProductImages\4\Hydrangeas.jpg" />
+    <Content Include="Admin\Content\ProductImages\4\prophereMen.jpg" />
+
     <Content Include="Areas\Admin\Content\css\Baobinh.net.url" />
     <Content Include="Areas\Admin\Content\css\fine-uploader-new.css" />
     <Content Include="Areas\Admin\Content\css\styles.minc726.css" />
@@ -705,6 +763,21 @@
     <Content Include="Areas\Admin\Views\Products\Index.cshtml" />
     <Content Include="Areas\Admin\Views\SetPermisson\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Products\SetProperties.cshtml" />
+    <Content Include="Areas\Admin\Views\Vouchers\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Vouchers\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Vouchers\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Vouchers\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Vouchers\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Orders\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Orders\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Orders\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Orders\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Orders\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\OrdersDetails\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\OrdersDetails\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\OrdersDetails\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\OrdersDetails\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\OrdersDetails\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -730,6 +803,7 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Template\content.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -760,14 +834,19 @@
     <Content Include="Views\ProductDetail\Index.cshtml" />
     <Content Include="Views\MyCart\CartAddress.cshtml" />
     <Content Include="Views\MyCart\CartPayment.cshtml" />
-    <Content Include="Views\MyCart\CartShipping.cshtml" />
-    <Content Include="Views\MyCart\CartSignin.cshtml" />
     <Content Include="Views\MyCart\Index.cshtml" />
     <Content Include="Views\Sizes\Create.cshtml" />
     <Content Include="Views\Sizes\Delete.cshtml" />
     <Content Include="Views\Sizes\Details.cshtml" />
     <Content Include="Views\Sizes\Edit.cshtml" />
     <Content Include="Views\Sizes\Index.cshtml" />
+    <Content Include="Views\Menu\Index.cshtml" />
+    <Content Include="Views\Menu\MenuCart.cshtml" />
+    <Content Include="Views\MyAccount\ChangePassword.cshtml" />
+    <Content Include="Views\MyAccount\ForgotPassword.cshtml" />
+    <Content Include="Views\MyAccount\OrderHistory.cshtml" />
+    <Content Include="Views\MyAccount\DetailOrder.cshtml" />
+    <Content Include="Views\Menu\MenuBrand.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Admin\Content\images\" />
