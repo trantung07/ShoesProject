@@ -10,30 +10,24 @@
                 <div class="slider-area">
                     <div id="wrapper">
                         <div class="slider-wrapper">
-                            <div id="mainSlider" class="nivoSlider">
-                                <img src="~/Content/img/slider/2.jpg" alt="main slider" title="#htmlcaption" />
-                                <img src="~/Content/img/slider/1.jpg" alt="main slider" title="#htmlcaption2" />
+                            <div id="mainSlider" class="nivoSlider" style="height:420px">
+                                @foreach (var ban in ViewBag.lstBannerProduct)
+                                {
+                                    <img src="~/Admin/Content/ProductImages/@ban.ProductId/@ban.ProductFeatureImage" alt="main slider" title="#@ban.ProductId" height="100%" />
+                                }
                             </div>
-                            <div id="htmlcaption" class="nivo-html-caption slider-caption">
-                                <div class="slider-progress"></div>
-                                <div class="slider-cap-text slider-text1">
-                                    <div class="d-table-cell">
-                                        <h2 class="animated bounceInDown">BEST THEMES</h2>
-                                        <p class="animated bounceInUp">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod ut laoreet dolore magna aliquam erat volutpat.</p>
-                                        <a class="wow zoomInDown" data-wow-duration="1s" data-wow-delay="1s" href="#">Read More <i class="fa fa-caret-right"></i></a>
+                            @foreach (var ban1 in ViewBag.lstBannerProduct)
+                            {
+                                <div id="@ban1.ProductId" class="nivo-html-caption slider-caption">
+                                    <div class="slider-progress"></div>
+                                    <div class="slider-cap-text slider-text1">
+                                        <div class="d-table-cell">
+                                            <h2 class="animated bounceInDown">@ban1.ProductName</h2>
+                                            <p class="animated bounceInUp">@ban1.ProductDescription</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div id="htmlcaption2" class="nivo-html-caption slider-caption">
-                                <div class="slider-progress"></div>
-                                <div class="slider-cap-text slider-text2">
-                                    <div class="d-table-cell">
-                                        <h2 class="animated bounceInDown">BEST THEMES</h2>
-                                        <p class="animated bounceInUp">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod ut laoreet dolore magna aliquam erat volutpat.</p>
-                                        <a class="wow zoomInDown" data-wow-duration="1s" data-wow-delay="1s" href="#">Read More <i class="fa fa-caret-right"></i></a>
-                                    </div>
-                                </div>
-                            </div>
+                            }
                         </div>
                     </div>
                 </div>
@@ -42,7 +36,7 @@
             <!-- SLIDER-RIGHT START -->
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                 <div class="slider-right zoom-img m-top">
-                    <a href="@Url.Action("Index","ProductDetail")"><img class="img-responsive" src="~/Content/img/product/cms11.jpg" alt="sidebar left" /></a>
+                    <a><img class="img-responsive" src="~/Content/img/product/cms11.jpg" alt="sidebar left" /></a>
                 </div>
             </div>
             <!-- SLIDER-RIGHT END -->
@@ -69,26 +63,32 @@
                                             <div class="single-product-item">
                                                 <div class="product-image">
                                                     <a href="@Url.Action("Index", "ProductDetail",new { id = @p.id })" style="height: 263px"><img src="~/Admin/Content/ProductImages/@p.id/@p.imagesFeature" alt="product-image" height="100%" /></a>
-                                                    <a href="#" class="new-mark-box">new</a>
-                                                    @*<div class="overlay-content">
-                                                        <ul>
-                                                            <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
-                                                            <li><a href="@Url.Action("AddCart","MyCart", new { id = @p.id , colorId = 1, sizeId = 1 })" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
-                                                            <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
-                                                            <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
-                                                        </ul>
-                                                    </div>*@
+                                                    <a class="new-mark-box">@(p.discount > 0 ? "sale" : "")</a>
                                                 </div>
                                                 <div class="product-info">
                                                     <div class="customar-comments-box">
                                                         <div class="review-box">
-                                                            <span>@p.discount %</span>
+                                                            @if (p.discount > 0)
+                                                            {
+                                                                <span>@p.discount %</span>
+                                                            }
                                                         </div>
                                                     </div>
                                                     <a href="@Url.Action("Index", "ProductDetail")">@p.name</a>
                                                     <div class="price-box">
-                                                        <span class="price">$@(p.price - (p.price * p.discount) / 100)</span>
-                                                        <span class="old-price">$@p.price</span>
+                                                        <span class="price">
+                                                            @if (p.discount > 0)
+                                                            {
+                                                                @String.Format("{0:0,0 vnđ}", (p.price - (p.price * p.discount) / 100))
+                                                            }
+                                                            else
+                                                            {
+                                                                @String.Format("{0:0,0 vnđ}", p.price)
+                                                            }
+                                                        </span>
+                                                        @if(p.discount > 0) {
+                                                            <span class="old-price">@String.Format("{0:0,0 vnđ}", p.price)</span>
+                                                        }
                                                     </div>
                                                 </div>
                                             </div>
@@ -122,26 +122,33 @@
                                             <div class="single-product-item">
                                                 <div class="product-image">
                                                     <a href="@Url.Action("Index", "ProductDetail",new { id = @p2.id })" style="height: 263px"><img src="~/Admin/Content/ProductImages/@p2.id/@p2.imagesFeature" alt="product-image" height="100%" /></a>
-                                                    <a href="#" class="new-mark-box">new</a>
-                                                    @*<div class="overlay-content">
-                                                        <ul>
-                                                            <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
-                                                            <li><a href="@Url.Action("AddCart","MyCart", new { id = @p2.id , colorId = 1, sizeId = 1})" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
-                                                            <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
-                                                            <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
-                                                        </ul>
-                                                    </div>*@
+                                                    <a class="new-mark-box">@(p2.discount > 0 ? "sale" : "")</a>
                                                 </div>
                                                 <div class="product-info">
                                                     <div class="customar-comments-box">
                                                         <div class="review-box">
-                                                            <span>@p2.discount %</span>
+                                                            @if (p2.discount > 0)
+                                                            {
+                                                                <span>@p2.discount %</span>
+                                                            }
                                                         </div>
                                                     </div>
                                                     <a href="@Url.Action("Index", "ProductDetail")">@p2.name</a>
                                                     <div class="price-box">
-                                                        <span class="price">$@(p2.price - (p2.price * p2.discount) / 100)</span>
-                                                        <span class="old-price">$@p2.price</span>
+                                                        <span class="price">
+                                                            @if (p2.discount > 0)
+                                                            {
+                                                                @String.Format("{0:0,0 vnđ}", (p2.price - (p2.price * p2.discount) / 100))
+                                                            }
+                                                            else
+                                                            {
+                                                                @String.Format("{0:0,0 vnđ}", p2.price)
+                                                            }
+                                                        </span>
+                                                        @if (p2.discount > 0)
+                                                        {
+                                                            <span class="old-price">@String.Format("{0:0,0 vnđ}", p2.price)</span>
+                                                        }
                                                     </div>
                                                 </div>
                                             </div>
@@ -163,12 +170,12 @@
         <div class="add-two-by-one-column">
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
                 <div class="tow-column-add zoom-img">
-                    <a href="@Url.Action("Index","ListProduct")"><img src="~/Content/img/product/shope-add1.jpg" alt="shope-add" /></a>
+                    <a><img src="~/Content/img/product/shope-add1.jpg" alt="shope-add" /></a>
                 </div>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                 <div class="one-column-add zoom-img">
-                    <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/shope-add2.jpg" alt="shope-add" /></a>
+                    <a><img src="~/Content/img/product/shope-add2.jpg" alt="shope-add" /></a>
                 </div>
             </div>
         </div>
@@ -190,33 +197,34 @@
                             <div class="item">
                                 <div class="single-product-item">
                                     <div class="product-image">
-                                        <a href="@Url.Action("Index", "ProductDetail",new { id = @p3.id })" style="height: 263px"><img src="~/Admin/Content/ProductImages/@p3.id/@p3.imagesFeature" alt="product-image" height="100%" /></a>
-                                        <a href="#" class="new-mark-box">new</a>
-                                        @*<div class="overlay-content">
-                                            <ul>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
-                                            </ul>
-                                        </div>*@
+                                        <a href="@Url.Action("Index", "ProductDetail",new { id = @p3.id })" style="height: 200px"><img src="~/Admin/Content/ProductImages/@p3.id/@p3.imagesFeature" alt="product-image" height="100%" /></a>
+                                        <a class="new-mark-box">@(p3.discount > 0 ? "sale" : "")</a>
                                     </div>
                                     <div class="product-info">
                                         <div class="customar-comments-box">
-                                            <div class="rating-box">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star-half-empty"></i>
-                                            </div>
                                             <div class="review-box">
-                                                <span>1 Review (s)</span>
+                                                @if (p3.discount > 0)
+                                                {
+                                                    <span>@p3.discount %</span>
+                                                }
                                             </div>
                                         </div>
                                         <a href="@Url.Action("Index", "ProductDetail")">@p3.name</a>
                                         <div class="price-box">
-                                            <span class="price">$@p3.price</span>
+                                            <span class="price">
+                                                @if (p3.discount > 0)
+                                                {
+                                                    @String.Format("{0:0,0 vnđ}", (p3.price - (p3.price * p3.discount) / 100))
+                                                }
+                                                else
+                                                {
+                                                    @String.Format("{0:0,0 vnđ}", p3.price)
+                                                }
+                                            </span>
+                                            @if (p3.discount > 0)
+                                            {
+                                                <span class="old-price">@String.Format("{0:0,0 vnđ}", p3.price)</span>
+                                            }
                                         </div>
                                     </div>
                                 </div>
@@ -237,1457 +245,72 @@
                 <!-- TAB PANES START -->
                 <div class="tab-content bg-tab-content">
                     <!-- TABS ONE START-->
-                    <div role="tabpanel" class="tab-pane active" id="women-tab">
-                        <div class="bg-tab-content-area tab-carousel-1">
-                            <!-- TAB-SINGLE-ITEM START -->
-                            <div class="item">
-                                <div class="single-product-item">
-                                    <div class="product-image">
-                                        <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/3.jpg" alt="product-image" /></a>
-                                        <a href="#" class="new-mark-box">new</a>
-                                        @*<div class="overlay-content">
-                                            <ul>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
-                                            </ul>
-                                        </div>*@
-                                    </div>
-                                    <div class="product-info">
-                                        <div class="customar-comments-box">
-                                            <div class="rating-box">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star-half-empty"></i>
-                                            </div>
-                                            <div class="review-box">
-                                                <span>1 Review(s)</span>
+                    @foreach (var btab in ViewBag.lstBrand)
+                    {
+                        <div role="tabpanel" class="tab-pane @(btab == ViewBag.lstBrandFirst ? "active" : "")" id="@btab.BrandId">
+                            <div class="bg-tab-content-area tab-carousel-1">
+                                <!-- TAB-SINGLE-ITEM START -->
+                                @foreach (var ptab in ViewBag.lstFeatureProduct)
+                                {
+                                    if (ptab.brandId == btab.BrandId)
+                                    {
+                                        <div class="item">
+                                            <div class="single-product-item">
+                                                <div class="product-image">
+                                                    <a href="@Url.Action("Index","ProductDetail",new { id = @ptab.id })"><img src="~/Admin/Content/ProductImages/@ptab.id/@ptab.imagesFeature" alt="product-image" /></a>
+                                                    <a class="new-mark-box">@(ptab.discount > 0 ? "sale" : "")</a>
+                                                </div>
+                                                <div class="product-info">
+                                                    <div class="customar-comments-box">
+                                                        <div class="review-box">
+                                                            @if (ptab.discount > 0)
+                                                            {
+                                                            <span>@ptab.discount %</span>
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                    <a href="@Url.Action("Index", "ProductDetail")">@ptab.name</a>
+                                                    <div class="price-box">
+                                                        <span class="price">
+                                                            @if (ptab.discount > 0)
+                                                            {
+                                                                @String.Format("{0:0,0 vnđ}", (ptab.price - (ptab.price * ptab.discount) / 100))
+                                                            }
+                                                            else
+                                                            {
+                                                                @String.Format("{0:0,0 vnđ}", ptab.price)
+                                                            }
+                                                        </span>
+                                                        @if (ptab.discount > 0)
+                                                        {
+                                                            <span class="old-price">@String.Format("{0:0,0 vnđ}", ptab.price)</span>
+                                                        }
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                        <a href="@Url.Action("Index","ProductDetail")">Short Sleeves T-shirt</a>
-                                        <div class="price-box">
-                                            <span class="price">$16.51</span>
-                                        </div>
-                                    </div>
-                                </div>
+                                    }
+
+                                }
+
+
+                                <!-- TAB-SINGLE-ITEM END -->
                             </div>
-                            <!-- TAB-SINGLE-ITEM END -->
-                            <!-- TAB-SINGLE-ITEM START -->
-                            <div class="item">
-                                <div class="single-product-item">
-                                    <div class="product-image">
-                                        <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/1.jpg" alt="product-image" /></a>
-                                        <a href="#" class="new-mark-box">sale!</a>
-                                        @*<div class="overlay-content">
-                                            <ul>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
-                                            </ul>
-                                        </div>*@
-                                    </div>
-                                    <div class="product-info">
-                                        <div class="customar-comments-box">
-                                            <div class="rating-box">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                            <div class="review-box">
-                                                <span>1 Review(s)</span>
-                                            </div>
-                                        </div>
-                                        <a href="@Url.Action("Index","ProductDetail")">Blouse</a>
-                                        <div class="price-box">
-                                            <span class="price">$22.95</span>
-                                            <span class="old-price">$27.00</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- TAB-SINGLE-ITEM END -->
-                            <!-- TAB-SINGLE-ITEM START -->
-                            <div class="item">
-                                <div class="single-product-item">
-                                    <div class="product-image">
-                                        <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/9.jpg" alt="product-image" /></a>
-                                        <a href="#" class="new-mark-box">sale!</a>
-                                        @*<div class="overlay-content">
-                                            <ul>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
-                                            </ul>
-                                        </div>*@
-                                    </div>
-                                    <div class="product-info">
-                                        <div class="customar-comments-box">
-                                            <div class="rating-box">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star-half-empty"></i>
-                                                <i class="fa fa-star-half-empty"></i>
-                                            </div>
-                                            <div class="review-box">
-                                                <span>1 Review(s)</span>
-                                            </div>
-                                        </div>
-                                        <a href="@Url.Action("Index","ProductDetail")">Printed Dress</a>
-                                        <div class="price-box">
-                                            <span class="price">$23.40</span>
-                                            <span class="old-price">$26.00</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- TAB-SINGLE-ITEM END -->
-                            <!-- TAB-SINGLE-ITEM START -->
-                            <div class="item">
-                                <div class="single-product-item">
-                                    <div class="product-image">
-                                        <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/5.jpg" alt="product-image" /></a>
-                                        <a href="#" class="new-mark-box">new</a>
-                                        @*<div class="overlay-content">
-                                            <ul>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
-                                            </ul>
-                                        </div>*@
-                                    </div>
-                                    <div class="product-info">
-                                        <div class="customar-comments-box">
-                                            <div class="rating-box">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star-half-empty"></i>
-                                            </div>
-                                            <div class="review-box">
-                                                <span>1 Review(s)</span>
-                                            </div>
-                                        </div>
-                                        <a href="@Url.Action("Index","ProductDetail")">Printed Dress</a>
-                                        <div class="price-box">
-                                            <span class="price">$50.99</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- TAB-SINGLE-ITEM END -->
-                            <!-- TAB-SINGLE-ITEM START -->
-                            <div class="item">
-                                <div class="single-product-item">
-                                    <div class="product-image">
-                                        <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/12.jpg" alt="product-image" /></a>
-                                        <a href="#" class="new-mark-box">new</a>
-                                        @*<div class="overlay-content">
-                                            <ul>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
-                                            </ul>
-                                        </div>*@
-                                    </div>
-                                    <div class="product-info">
-                                        <div class="customar-comments-box">
-                                            <div class="rating-box">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star-half-empty"></i>
-                                                <i class="fa fa-star-half-empty"></i>
-                                            </div>
-                                            <div class="review-box">
-                                                <span>1 Review(s)</span>
-                                            </div>
-                                        </div>
-                                        <a href="@Url.Action("Index","ProductDetail")">Printed Summer Dress</a>
-                                        <div class="price-box">
-                                            <span class="price">$28.98</span>
-                                            <span class="old-price">$30.51</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- TAB-SINGLE-ITEM END -->
-                            <!-- TAB-SINGLE-ITEM START -->
-                            <div class="item">
-                                <div class="single-product-item">
-                                    <div class="product-image">
-                                        <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/13.jpg" alt="product-image" /></a>
-                                        <a href="#" class="new-mark-box">new</a>
-                                        @*<div class="overlay-content">
-                                            <ul>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
-                                            </ul>
-                                        </div>*@
-                                    </div>
-                                    <div class="product-info">
-                                        <div class="customar-comments-box">
-                                            <div class="rating-box">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                            <div class="review-box">
-                                                <span>1 Review(s)</span>
-                                            </div>
-                                        </div>
-                                        <a href="@Url.Action("Index","ProductDetail")">Printed Summer Dress</a>
-                                        <div class="price-box">
-                                            <span class="price">$30.50</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- TAB-SINGLE-ITEM END -->
-                            <!-- TAB-SINGLE-ITEM START -->
-                            <div class="item">
-                                <div class="single-product-item">
-                                    <div class="product-image">
-                                        <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/7.jpg" alt="product-image" /></a>
-                                        <a href="#" class="new-mark-box">new</a>
-                                        @*<div class="overlay-content">
-                                            <ul>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
-                                            </ul>
-                                        </div>*@
-                                    </div>
-                                    <div class="product-info">
-                                        <div class="customar-comments-box">
-                                            <div class="rating-box">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star-half-empty"></i>
-                                                <i class="fa fa-star-half-empty"></i>
-                                            </div>
-                                            <div class="review-box">
-                                                <span>1 Review(s)</span>
-                                            </div>
-                                        </div>
-                                        <a href="@Url.Action("Index","ProductDetail")">Printed Chiffon Dress</a>
-                                        <div class="price-box">
-                                            <span class="price">$16.40</span>
-                                            <span class="old-price">$20.50</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- TAB-SINGLE-ITEM END -->
-                            <!-- TAB-SINGLE-ITEM START -->
-                            <div class="item">
-                                <div class="single-product-item">
-                                    <div class="product-image">
-                                        <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/11.jpg" alt="product-image" /></a>
-                                        <a href="#" class="new-mark-box">new</a>
-                                        @*<div class="overlay-content">
-                                            <ul>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
-                                            </ul>
-                                        </div>*@
-                                    </div>
-                                    <div class="product-info">
-                                        <div class="customar-comments-box">
-                                            <div class="rating-box">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star-half-empty"></i>
-                                                <i class="fa fa-star-half-empty"></i>
-                                            </div>
-                                            <div class="review-box">
-                                                <span>1 Review(s)</span>
-                                            </div>
-                                        </div>
-                                        <a href="@Url.Action("Index","ProductDetail")">Printed Dress</a>
-                                        <div class="price-box">
-                                            <span class="price">$26.00</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- TAB-SINGLE-ITEM END -->
-                            <!-- TAB-SINGLE-ITEM START -->
-                            <div class="item">
-                                <div class="single-product-item">
-                                    <div class="product-image">
-                                        <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/10.jpg" alt="product-image" /></a>
-                                        <a href="#" class="new-mark-box">new</a>
-                                        @*<div class="overlay-content">
-                                            <ul>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
-                                            </ul>
-                                        </div>*@
-                                    </div>
-                                    <div class="product-info">
-                                        <div class="customar-comments-box">
-                                            <div class="rating-box">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star-half-empty"></i>
-                                                <i class="fa fa-star-half-empty"></i>
-                                            </div>
-                                            <div class="review-box">
-                                                <span>1 Review(s)</span>
-                                            </div>
-                                        </div>
-                                        <a href="@Url.Action("Index","ProductDetail")">Printed Dress</a>
-                                        <div class="price-box">
-                                            <span class="price">$26.00</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- TAB-SINGLE-ITEM END -->
-                            <!-- TAB-SINGLE-ITEM START -->
-                            <div class="item">
-                                <div class="single-product-item">
-                                    <div class="product-image">
-                                        <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/2.jpg" alt="product-image" /></a>
-                                        <a href="#" class="new-mark-box">new</a>
-                                        @*<div class="overlay-content">
-                                            <ul>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
-                                            </ul>
-                                        </div>*@
-                                    </div>
-                                    <div class="product-info">
-                                        <div class="customar-comments-box">
-                                            <div class="rating-box">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                            <div class="review-box">
-                                                <span>1 Review(s)</span>
-                                            </div>
-                                        </div>
-                                        <a href="@Url.Action("Index","ProductDetail")">Blouse</a>
-                                        <div class="price-box">
-                                            <span class="price">$27.00</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- TAB-SINGLE-ITEM END -->
-                            <!-- TAB-SINGLE-ITEM START -->
-                            <div class="item">
-                                <div class="single-product-item">
-                                    <div class="product-image">
-                                        <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/4.jpg" alt="product-image" /></a>
-                                        <a href="#" class="new-mark-box">new</a>
-                                        @*<div class="overlay-content">
-                                            <ul>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
-                                            </ul>
-                                        </div>*@
-                                    </div>
-                                    <div class="product-info">
-                                        <div class="customar-comments-box">
-                                            <div class="rating-box">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star-half-empty"></i>
-                                            </div>
-                                            <div class="review-box">
-                                                <span>1 Review(s)</span>
-                                            </div>
-                                        </div>
-                                        <a href="@Url.Action("Index","ProductDetail")">Faded Short Sleeves T-shirt</a>
-                                        <div class="price-box">
-                                            <span class="price">$16.51</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- TAB-SINGLE-ITEM END -->
-                            <!-- TAB-SINGLE-ITEM START -->
-                            <div class="item">
-                                <div class="single-product-item">
-                                    <div class="product-image">
-                                        <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/6.jpg" alt="product-image" /></a>
-                                        <a href="#" class="new-mark-box">new</a>
-                                        @*<div class="overlay-content">
-                                            <ul>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
-                                            </ul>
-                                        </div>*@
-                                    </div>
-                                    <div class="product-info">
-                                        <div class="customar-comments-box">
-                                            <div class="rating-box">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                            <div class="review-box">
-                                                <span>4 Review(s)</span>
-                                            </div>
-                                        </div>
-                                        <a href="@Url.Action("Index","ProductDetail")">Faded Short Sleeves T-shirt</a>
-                                        <div class="price-box">
-                                            <span class="price">$16.40</span>
-                                            <span class="old-price">$20.50</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- TAB-SINGLE-ITEM END -->
-                            <!-- TAB-SINGLE-ITEM START -->
-                            <div class="item">
-                                <div class="single-product-item">
-                                    <div class="product-image">
-                                        <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/8.jpg" alt="product-image" /></a>
-                                        <a href="#" class="new-mark-box">new</a>
-                                        @*<div class="overlay-content">
-                                            <ul>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
-                                            </ul>
-                                        </div>*@
-                                    </div>
-                                    <div class="product-info">
-                                        <div class="customar-comments-box">
-                                            <div class="rating-box">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star-half-empty"></i>
-                                            </div>
-                                            <div class="review-box">
-                                                <span>3 Review(s)</span>
-                                            </div>
-                                        </div>
-                                        <a href="@Url.Action("Index","ProductDetail")">Printed Dress</a>
-                                        <div class="price-box">
-                                            <span class="price">$26.00</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- TAB-SINGLE-ITEM END -->
                         </div>
-                    </div>
+                    }
+
                     <!-- TABS ONE END-->
-                    <!-- TABS TWO START-->
-                    <div role="tabpanel" class="tab-pane" id="tops-tab">
-                        <div class="bg-tab-content-area tab-carousel-2">
-                            <!-- TAB-SINGLE-ITEM START -->
-                            <div class="item">
-                                <div class="single-product-item">
-                                    <div class="product-image">
-                                        <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/9.jpg" alt="product-image" /></a>
-                                        <a href="#" class="new-mark-box">sale!</a>
-                                        @*<div class="overlay-content">
-                                            <ul>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
-                                            </ul>
-                                        </div>*@
-                                    </div>
-                                    <div class="product-info">
-                                        <div class="customar-comments-box">
-                                            <div class="rating-box">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star-half-empty"></i>
-                                                <i class="fa fa-star-half-empty"></i>
-                                            </div>
-                                            <div class="review-box">
-                                                <span>1 Review(s)</span>
-                                            </div>
-                                        </div>
-                                        <a href="@Url.Action("Index","ProductDetail")">Printed Dress</a>
-                                        <div class="price-box">
-                                            <span class="price">$23.40</span>
-                                            <span class="old-price">$26.00</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- TAB-SINGLE-ITEM END -->
-                            <!-- TAB-SINGLE-ITEM START -->
-                            <div class="item">
-                                <div class="single-product-item">
-                                    <div class="product-image">
-                                        <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/5.jpg" alt="product-image" /></a>
-                                        <a href="#" class="new-mark-box">new</a>
-                                        @*<div class="overlay-content">
-                                            <ul>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
-                                            </ul>
-                                        </div>*@
-                                    </div>
-                                    <div class="product-info">
-                                        <div class="customar-comments-box">
-                                            <div class="rating-box">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star-half-empty"></i>
-                                            </div>
-                                            <div class="review-box">
-                                                <span>1 Review(s)</span>
-                                            </div>
-                                        </div>
-                                        <a href="@Url.Action("Index","ProductDetail")">Printed Dress</a>
-                                        <div class="price-box">
-                                            <span class="price">$50.99</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- TAB-SINGLE-ITEM END -->
-                            <!-- TAB-SINGLE-ITEM START -->
-                            <div class="item">
-                                <div class="single-product-item">
-                                    <div class="product-image">
-                                        <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/1.jpg" alt="product-image" /></a>
-                                        <a href="#" class="new-mark-box">sale!</a>
-                                        @*<div class="overlay-content">
-                                            <ul>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
-                                            </ul>
-                                        </div>*@
-                                    </div>
-                                    <div class="product-info">
-                                        <div class="customar-comments-box">
-                                            <div class="rating-box">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                            <div class="review-box">
-                                                <span>1 Review(s)</span>
-                                            </div>
-                                        </div>
-                                        <a href="@Url.Action("Index","ProductDetail")">Blouse</a>
-                                        <div class="price-box">
-                                            <span class="price">$22.95</span>
-                                            <span class="old-price">$27.00</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- TAB-SINGLE-ITEM END -->
-                            <!-- TAB-SINGLE-ITEM START -->
-                            <div class="item">
-                                <div class="single-product-item">
-                                    <div class="product-image">
-                                        <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/2.jpg" alt="product-image" /></a>
-                                        <a href="#" class="new-mark-box">new</a>
-                                        @*<div class="overlay-content">
-                                            <ul>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
-                                            </ul>
-                                        </div>*@
-                                    </div>
-                                    <div class="product-info">
-                                        <div class="customar-comments-box">
-                                            <div class="rating-box">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                            <div class="review-box">
-                                                <span>1 Review(s)</span>
-                                            </div>
-                                        </div>
-                                        <a href="@Url.Action("Index","ProductDetail")">Blouse</a>
-                                        <div class="price-box">
-                                            <span class="price">$27.00</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- TAB-SINGLE-ITEM END -->
-                            <!-- TAB-SINGLE-ITEM START -->
-                            <div class="item">
-                                <div class="single-product-item">
-                                    <div class="product-image">
-                                        <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/3.jpg" alt="product-image" /></a>
-                                        <a href="#" class="new-mark-box">new</a>
-                                        @*<div class="overlay-content">
-                                            <ul>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
-                                            </ul>
-                                        </div>*@
-                                    </div>
-                                    <div class="product-info">
-                                        <div class="customar-comments-box">
-                                            <div class="rating-box">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star-half-empty"></i>
-                                            </div>
-                                            <div class="review-box">
-                                                <span>1 Review(s)</span>
-                                            </div>
-                                        </div>
-                                        <a href="@Url.Action("Index","ProductDetail")">Short Sleeves T-shirt</a>
-                                        <div class="price-box">
-                                            <span class="price">$16.51</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- TAB-SINGLE-ITEM END -->
-                            <!-- TAB-SINGLE-ITEM START -->
-                            <div class="item">
-                                <div class="single-product-item">
-                                    <div class="product-image">
-                                        <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/12.jpg" alt="product-image" /></a>
-                                        <a href="#" class="new-mark-box">new</a>
-                                        @*<div class="overlay-content">
-                                            <ul>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
-                                            </ul>
-                                        </div>*@
-                                    </div>
-                                    <div class="product-info">
-                                        <div class="customar-comments-box">
-                                            <div class="rating-box">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star-half-empty"></i>
-                                                <i class="fa fa-star-half-empty"></i>
-                                            </div>
-                                            <div class="review-box">
-                                                <span>1 Review(s)</span>
-                                            </div>
-                                        </div>
-                                        <a href="@Url.Action("Index","ProductDetail")">Printed Summer Dress</a>
-                                        <div class="price-box">
-                                            <span class="price">$28.98</span>
-                                            <span class="old-price">$30.51</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- TAB-SINGLE-ITEM END -->
-                            <!-- TAB-SINGLE-ITEM START -->
-                            <div class="item">
-                                <div class="single-product-item">
-                                    <div class="product-image">
-                                        <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/4.jpg" alt="product-image" /></a>
-                                        <a href="#" class="new-mark-box">new</a>
-                                        @*<div class="overlay-content">
-                                            <ul>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
-                                            </ul>
-                                        </div>*@
-                                    </div>
-                                    <div class="product-info">
-                                        <div class="customar-comments-box">
-                                            <div class="rating-box">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star-half-empty"></i>
-                                            </div>
-                                            <div class="review-box">
-                                                <span>1 Review(s)</span>
-                                            </div>
-                                        </div>
-                                        <a href="@Url.Action("Index","ProductDetail")">Faded Short Sleeves T-shirt</a>
-                                        <div class="price-box">
-                                            <span class="price">$16.51</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- TAB-SINGLE-ITEM END -->
-                            <!-- TAB-SINGLE-ITEM START -->
-                            <div class="item">
-                                <div class="single-product-item">
-                                    <div class="product-image">
-                                        <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/13.jpg" alt="product-image" /></a>
-                                        <a href="#" class="new-mark-box">new</a>
-                                        @*<div class="overlay-content">
-                                            <ul>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
-                                            </ul>
-                                        </div>*@
-                                    </div>
-                                    <div class="product-info">
-                                        <div class="customar-comments-box">
-                                            <div class="rating-box">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                            <div class="review-box">
-                                                <span>1 Review(s)</span>
-                                            </div>
-                                        </div>
-                                        <a href="@Url.Action("Index","ProductDetail")">Printed Summer Dress</a>
-                                        <div class="price-box">
-                                            <span class="price">$30.50</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- TAB-SINGLE-ITEM END -->
-                            <!-- TAB-SINGLE-ITEM START -->
-                            <div class="item">
-                                <div class="single-product-item">
-                                    <div class="product-image">
-                                        <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/7.jpg" alt="product-image" /></a>
-                                        <a href="#" class="new-mark-box">new</a>
-                                        @*<div class="overlay-content">
-                                            <ul>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
-                                            </ul>
-                                        </div>*@
-                                    </div>
-                                    <div class="product-info">
-                                        <div class="customar-comments-box">
-                                            <div class="rating-box">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star-half-empty"></i>
-                                                <i class="fa fa-star-half-empty"></i>
-                                            </div>
-                                            <div class="review-box">
-                                                <span>1 Review(s)</span>
-                                            </div>
-                                        </div>
-                                        <a href="@Url.Action("Index","ProductDetail")">Printed Chiffon Dress</a>
-                                        <div class="price-box">
-                                            <span class="price">$16.40</span>
-                                            <span class="old-price">$20.50</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- TAB-SINGLE-ITEM END -->
-                            <!-- TAB-SINGLE-ITEM START -->
-                            <div class="item">
-                                <div class="single-product-item">
-                                    <div class="product-image">
-                                        <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/6.jpg" alt="product-image" /></a>
-                                        <a href="#" class="new-mark-box">new</a>
-                                        @*<div class="overlay-content">
-                                            <ul>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
-                                            </ul>
-                                        </div>*@
-                                    </div>
-                                    <div class="product-info">
-                                        <div class="customar-comments-box">
-                                            <div class="rating-box">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                            <div class="review-box">
-                                                <span>4 Review(s)</span>
-                                            </div>
-                                        </div>
-                                        <a href="@Url.Action("Index","ProductDetail")">Faded Short Sleeves T-shirt</a>
-                                        <div class="price-box">
-                                            <span class="price">$16.40</span>
-                                            <span class="old-price">$20.50</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- TAB-SINGLE-ITEM END -->
-                            <!-- TAB-SINGLE-ITEM START -->
-                            <div class="item">
-                                <div class="single-product-item">
-                                    <div class="product-image">
-                                        <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/10.jpg" alt="product-image" /></a>
-                                        <a href="#" class="new-mark-box">new</a>
-                                        @*<div class="overlay-content">
-                                            <ul>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
-                                            </ul>
-                                        </div>*@
-                                    </div>
-                                    <div class="product-info">
-                                        <div class="customar-comments-box">
-                                            <div class="rating-box">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star-half-empty"></i>
-                                                <i class="fa fa-star-half-empty"></i>
-                                            </div>
-                                            <div class="review-box">
-                                                <span>1 Review(s)</span>
-                                            </div>
-                                        </div>
-                                        <a href="@Url.Action("Index","ProductDetail")">Printed Dress</a>
-                                        <div class="price-box">
-                                            <span class="price">$26.00</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- TAB-SINGLE-ITEM END -->
-                            <!-- TAB-SINGLE-ITEM START -->
-                            <div class="item">
-                                <div class="single-product-item">
-                                    <div class="product-image">
-                                        <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/11.jpg" alt="product-image" /></a>
-                                        <a href="#" class="new-mark-box">new</a>
-                                        @*<div class="overlay-content">
-                                            <ul>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
-                                            </ul>
-                                        </div>*@
-                                    </div>
-                                    <div class="product-info">
-                                        <div class="customar-comments-box">
-                                            <div class="rating-box">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star-half-empty"></i>
-                                                <i class="fa fa-star-half-empty"></i>
-                                            </div>
-                                            <div class="review-box">
-                                                <span>1 Review(s)</span>
-                                            </div>
-                                        </div>
-                                        <a href="@Url.Action("Index","ProductDetail")">Printed Dress</a>
-                                        <div class="price-box">
-                                            <span class="price">$26.00</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- TAB-SINGLE-ITEM END -->
-                            <!-- TAB-SINGLE-ITEM START -->
-                            <div class="item">
-                                <div class="single-product-item">
-                                    <div class="product-image">
-                                        <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/8.jpg" alt="product-image" /></a>
-                                        <a href="#" class="new-mark-box">new</a>
-                                        @*<div class="overlay-content">
-                                            <ul>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
-                                            </ul>
-                                        </div>*@
-                                    </div>
-                                    <div class="product-info">
-                                        <div class="customar-comments-box">
-                                            <div class="rating-box">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star-half-empty"></i>
-                                            </div>
-                                            <div class="review-box">
-                                                <span>3 Review(s)</span>
-                                            </div>
-                                        </div>
-                                        <a href="@Url.Action("Index","ProductDetail")">Printed Dress</a>
-                                        <div class="price-box">
-                                            <span class="price">$26.00</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- TAB-SINGLE-ITEM END -->
-                        </div>
-                    </div>
-                    <!-- TABS TWO END-->
-                    <!-- TABS THREE START-->
-                    <div role="tabpanel" class="tab-pane" id="t-shirts">
-                        <div class="bg-tab-content-area tab-carousel-3">
-                            <!-- TAB-SINGLE-ITEM START -->
-                            <div class="item">
-                                <div class="single-product-item">
-                                    <div class="product-image">
-                                        <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/5.jpg" alt="product-image" /></a>
-                                        <a href="#" class="new-mark-box">new</a>
-                                        @*<div class="overlay-content">
-                                            <ul>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
-                                            </ul>
-                                        </div>*@
-                                    </div>
-                                    <div class="product-info">
-                                        <div class="customar-comments-box">
-                                            <div class="rating-box">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star-half-empty"></i>
-                                            </div>
-                                            <div class="review-box">
-                                                <span>1 Review(s)</span>
-                                            </div>
-                                        </div>
-                                        <a href="@Url.Action("Index","ProductDetail")">Printed Dress</a>
-                                        <div class="price-box">
-                                            <span class="price">$50.99</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- TAB-SINGLE-ITEM END -->
-                            <!-- TAB-SINGLE-ITEM START -->
-                            <div class="item">
-                                <div class="single-product-item">
-                                    <div class="product-image">
-                                        <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/3.jpg" alt="product-image" /></a>
-                                        <a href="#" class="new-mark-box">new</a>
-                                        @*<div class="overlay-content">
-                                            <ul>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
-                                            </ul>
-                                        </div>*@
-                                    </div>
-                                    <div class="product-info">
-                                        <div class="customar-comments-box">
-                                            <div class="rating-box">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star-half-empty"></i>
-                                            </div>
-                                            <div class="review-box">
-                                                <span>1 Review(s)</span>
-                                            </div>
-                                        </div>
-                                        <a href="@Url.Action("Index","ProductDetail")">Short Sleeves T-shirt</a>
-                                        <div class="price-box">
-                                            <span class="price">$16.51</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- TAB-SINGLE-ITEM END -->
-                            <!-- TAB-SINGLE-ITEM START -->
-                            <div class="item">
-                                <div class="single-product-item">
-                                    <div class="product-image">
-                                        <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/7.jpg" alt="product-image" /></a>
-                                        <a href="#" class="new-mark-box">new</a>
-                                        @*<div class="overlay-content">
-                                            <ul>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
-                                            </ul>
-                                        </div>*@
-                                    </div>
-                                    <div class="product-info">
-                                        <div class="customar-comments-box">
-                                            <div class="rating-box">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star-half-empty"></i>
-                                                <i class="fa fa-star-half-empty"></i>
-                                            </div>
-                                            <div class="review-box">
-                                                <span>1 Review(s)</span>
-                                            </div>
-                                        </div>
-                                        <a href="@Url.Action("Index","ProductDetail")">Printed Chiffon Dress</a>
-                                        <div class="price-box">
-                                            <span class="price">$16.40</span>
-                                            <span class="old-price">$20.50</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- TAB-SINGLE-ITEM END -->
-                            <!-- TAB-SINGLE-ITEM START -->
-                            <div class="item">
-                                <div class="single-product-item">
-                                    <div class="product-image">
-                                        <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/6.jpg" alt="product-image" /></a>
-                                        <a href="#" class="new-mark-box">new</a>
-                                        @*<div class="overlay-content">
-                                            <ul>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
-                                            </ul>
-                                        </div>*@
-                                    </div>
-                                    <div class="product-info">
-                                        <div class="customar-comments-box">
-                                            <div class="rating-box">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                            <div class="review-box">
-                                                <span>4 Review(s)</span>
-                                            </div>
-                                        </div>
-                                        <a href="@Url.Action("Index","ProductDetail")">Faded Short Sleeves T-shirt</a>
-                                        <div class="price-box">
-                                            <span class="price">$16.40</span>
-                                            <span class="old-price">$20.50</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- TAB-SINGLE-ITEM END -->
-                            <!-- TAB-SINGLE-ITEM START -->
-                            <div class="item">
-                                <div class="single-product-item">
-                                    <div class="product-image">
-                                        <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/13.jpg" alt="product-image" /></a>
-                                        <a href="#" class="new-mark-box">new</a>
-                                        @*<div class="overlay-content">
-                                            <ul>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
-                                            </ul>
-                                        </div>*@
-                                    </div>
-                                    <div class="product-info">
-                                        <div class="customar-comments-box">
-                                            <div class="rating-box">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                            <div class="review-box">
-                                                <span>1 Review(s)</span>
-                                            </div>
-                                        </div>
-                                        <a href="@Url.Action("Index","ProductDetail")">Printed Summer Dress</a>
-                                        <div class="price-box">
-                                            <span class="price">$30.50</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- TAB-SINGLE-ITEM END -->
-                            <!-- TAB-SINGLE-ITEM START -->
-                            <div class="item">
-                                <div class="single-product-item">
-                                    <div class="product-image">
-                                        <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/9.jpg" alt="product-image" /></a>
-                                        <a href="#" class="new-mark-box">sale!</a>
-                                        @*<div class="overlay-content">
-                                            <ul>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
-                                            </ul>
-                                        </div>*@
-                                    </div>
-                                    <div class="product-info">
-                                        <div class="customar-comments-box">
-                                            <div class="rating-box">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star-half-empty"></i>
-                                                <i class="fa fa-star-half-empty"></i>
-                                            </div>
-                                            <div class="review-box">
-                                                <span>1 Review(s)</span>
-                                            </div>
-                                        </div>
-                                        <a href="@Url.Action("Index","ProductDetail")">Printed Dress</a>
-                                        <div class="price-box">
-                                            <span class="price">$23.40</span>
-                                            <span class="old-price">$26.00</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- TAB-SINGLE-ITEM END -->
-                            <!-- TAB-SINGLE-ITEM START -->
-                            <div class="item">
-                                <div class="single-product-item">
-                                    <div class="product-image">
-                                        <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/1.jpg" alt="product-image" /></a>
-                                        <a href="#" class="new-mark-box">sale!</a>
-                                        @*<div class="overlay-content">
-                                            <ul>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
-                                            </ul>
-                                        </div>*@
-                                    </div>
-                                    <div class="product-info">
-                                        <div class="customar-comments-box">
-                                            <div class="rating-box">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                            <div class="review-box">
-                                                <span>1 Review(s)</span>
-                                            </div>
-                                        </div>
-                                        <a href="@Url.Action("Index","ProductDetail")">Blouse</a>
-                                        <div class="price-box">
-                                            <span class="price">$22.95</span>
-                                            <span class="old-price">$27.00</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- TAB-SINGLE-ITEM END -->
-                            <!-- TAB-SINGLE-ITEM START -->
-                            <div class="item">
-                                <div class="single-product-item">
-                                    <div class="product-image">
-                                        <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/10.jpg" alt="product-image" /></a>
-                                        <a href="#" class="new-mark-box">new</a>
-                                        @*<div class="overlay-content">
-                                            <ul>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
-                                            </ul>
-                                        </div>*@
-                                    </div>
-                                    <div class="product-info">
-                                        <div class="customar-comments-box">
-                                            <div class="rating-box">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star-half-empty"></i>
-                                                <i class="fa fa-star-half-empty"></i>
-                                            </div>
-                                            <div class="review-box">
-                                                <span>1 Review(s)</span>
-                                            </div>
-                                        </div>
-                                        <a href="@Url.Action("Index","ProductDetail")">Printed Dress</a>
-                                        <div class="price-box">
-                                            <span class="price">$26.00</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- TAB-SINGLE-ITEM END -->
-                            <!-- TAB-SINGLE-ITEM START -->
-                            <div class="item">
-                                <div class="single-product-item">
-                                    <div class="product-image">
-                                        <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/2.jpg" alt="product-image" /></a>
-                                        <a href="#" class="new-mark-box">new</a>
-                                        @*<div class="overlay-content">
-                                            <ul>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
-                                            </ul>
-                                        </div>*@
-                                    </div>
-                                    <div class="product-info">
-                                        <div class="customar-comments-box">
-                                            <div class="rating-box">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                            <div class="review-box">
-                                                <span>1 Review(s)</span>
-                                            </div>
-                                        </div>
-                                        <a href="@Url.Action("Index","ProductDetail")">Blouse</a>
-                                        <div class="price-box">
-                                            <span class="price">$27.00</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- TAB-SINGLE-ITEM END -->
-                            <!-- TAB-SINGLE-ITEM START -->
-                            <div class="item">
-                                <div class="single-product-item">
-                                    <div class="product-image">
-                                        <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/12.jpg" alt="product-image" /></a>
-                                        <a href="#" class="new-mark-box">new</a>
-                                        @*<div class="overlay-content">
-                                            <ul>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
-                                            </ul>
-                                        </div>*@
-                                    </div>
-                                    <div class="product-info">
-                                        <div class="customar-comments-box">
-                                            <div class="rating-box">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star-half-empty"></i>
-                                                <i class="fa fa-star-half-empty"></i>
-                                            </div>
-                                            <div class="review-box">
-                                                <span>1 Review(s)</span>
-                                            </div>
-                                        </div>
-                                        <a href="@Url.Action("Index","ProductDetail")">Printed Summer Dress</a>
-                                        <div class="price-box">
-                                            <span class="price">$28.98</span>
-                                            <span class="old-price">$30.51</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- TAB-SINGLE-ITEM END -->
-                            <!-- TAB-SINGLE-ITEM START -->
-                            <div class="item">
-                                <div class="single-product-item">
-                                    <div class="product-image">
-                                        <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/4.jpg" alt="product-image" /></a>
-                                        <a href="#" class="new-mark-box">new</a>
-                                        @*<div class="overlay-content">
-                                            <ul>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
-                                            </ul>
-                                        </div>*@
-                                    </div>
-                                    <div class="product-info">
-                                        <div class="customar-comments-box">
-                                            <div class="rating-box">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star-half-empty"></i>
-                                            </div>
-                                            <div class="review-box">
-                                                <span>1 Review(s)</span>
-                                            </div>
-                                        </div>
-                                        <a href="@Url.Action("Index","ProductDetail")">Faded Short Sleeves T-shirt</a>
-                                        <div class="price-box">
-                                            <span class="price">$16.51</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- TAB-SINGLE-ITEM END -->
-                            <!-- TAB-SINGLE-ITEM START -->
-                            <div class="item">
-                                <div class="single-product-item">
-                                    <div class="product-image">
-                                        <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/11.jpg" alt="product-image" /></a>
-                                        <a href="#" class="new-mark-box">new</a>
-                                        @*<div class="overlay-content">
-                                            <ul>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
-                                            </ul>
-                                        </div>*@
-                                    </div>
-                                    <div class="product-info">
-                                        <div class="customar-comments-box">
-                                            <div class="rating-box">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star-half-empty"></i>
-                                                <i class="fa fa-star-half-empty"></i>
-                                            </div>
-                                            <div class="review-box">
-                                                <span>1 Review(s)</span>
-                                            </div>
-                                        </div>
-                                        <a href="@Url.Action("Index","ProductDetail")">Printed Dress</a>
-                                        <div class="price-box">
-                                            <span class="price">$26.00</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- TAB-SINGLE-ITEM END -->
-                            <!-- TAB-SINGLE-ITEM START -->
-                            <div class="item">
-                                <div class="single-product-item">
-                                    <div class="product-image">
-                                        <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/8.jpg" alt="product-image" /></a>
-                                        <a href="#" class="new-mark-box">new</a>
-                                        @*<div class="overlay-content">
-                                            <ul>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
-                                            </ul>
-                                        </div>*@
-                                    </div>
-                                    <div class="product-info">
-                                        <div class="customar-comments-box">
-                                            <div class="rating-box">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star-half-empty"></i>
-                                            </div>
-                                            <div class="review-box">
-                                                <span>3 Review(s)</span>
-                                            </div>
-                                        </div>
-                                        <a href="@Url.Action("Index","ProductDetail")">Printed Dress</a>
-                                        <div class="price-box">
-                                            <span class="price">$26.00</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- TAB-SINGLE-ITEM END -->
-                        </div>
-                    </div>
-                    <!-- TABS THREE END-->
                 </div>
                 <!-- TAB PANES END -->
                 <!-- TABS MENU START-->
                 <div class="tab-carousel-menu">
                     <ul class="nav nav-tabs product-bg-nav">
-                        @*@{
-                            foreach (var c in Model)
+                        @{
+                            foreach (var b in ViewBag.lstBrand)
                             {
-                                <li class="@c.index"><a href="#@c.item" data-toggle="tab">@c.item</a></li>
-                            }*@
+                                <li class="@(b == ViewBag.lstBrandFirst ? "active" : "")"><a href="#@b.BrandId" data-toggle="tab">@b.BrandName</a></li>
+                            }
                         }
-
-                        <li class="active"><a href="#women-tab" data-toggle="tab">Women</a></li>
-        <li><a href="#tops-tab" data-toggle="tab">tops</a></li>
-        <li><a href="#t-shirts" data-toggle="tab">t-shirts</a></li>
                     </ul>
                 </div>
                 <!-- TABS MENU END-->
@@ -1711,27 +334,34 @@
                             <div class="item">
                                 <div class="single-product-item">
                                     <div class="product-image">
-                                        <a href="@Url.Action("Index", "ProductDetail",new { id = @p4.id })" style="height: 263px"><img src="~/Admin/Content/ProductImages/@p4.id/@p4.imagesFeature" alt="product-image" height= "99%"/></a>
-                                        <a href="#" class="new-mark-box">sale!</a>
-                                        @*<div class="overlay-content">
-                                            <ul>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
-                                            </ul>
-                                        </div>*@
+                                        <a href="@Url.Action("Index", "ProductDetail",new { id = @p4.id })" style="height: 200px"><img src="~/Admin/Content/ProductImages/@p4.id/@p4.imagesFeature" alt="product-image" height= "99%"/></a>
+                                        <a class="new-mark-box">@(p4.discount > 0 ? "sale" : "")</a>
                                     </div>
                                     <div class="product-info">
                                         <div class="customar-comments-box">
                                             <div class="review-box">
-                                                <span>1 Review (s)</span>
+                                                @if (p4.discount > 0)
+                                                {
+                                                    <span>@p4.discount %</span>
+                                                }
                                             </div>
                                         </div>
-                                        <a href="@Url.Action("Index","ProductDetail")">@p4.name</a>
+                                        <a href="@Url.Action("Index", "ProductDetail")">@p4.name</a>
                                         <div class="price-box">
-                                            <span class="price">$@(p4.price - (p4.price * p4.discount) / 100)</span>
-                                            <span class="old-price">$@p4.price</span>
+                                            <span class="price">
+                                                @if (p4.discount > 0)
+                                                {
+                                                    @String.Format("{0:0,0 vnđ}", (p4.price - (p4.price * p4.discount) / 100))
+                                                }
+                                                else
+                                                {
+                                                    @String.Format("{0:0,0 vnđ}", p4.price)
+                                                }
+                                            </span>
+                                            @if (p4.discount > 0)
+                                            {
+                                                <span class="old-price">@String.Format("{0:0,0 vnđ}", p4.price)</span>
+                                            }
                                         </div>
                                     </div>
                                 </div>

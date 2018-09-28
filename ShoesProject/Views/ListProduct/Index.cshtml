@@ -11,7 +11,7 @@
             <div class="bstore-breadcrumb">
                 <a href="@Url.Action("Index","Home")">HOME</a>
                 <span><i class="fa fa-caret-right"></i></span>
-                <span></span>
+                <span>LIST</span>
             </div>
             <!-- BSTORE-BREADCRUMB END -->
         </div>
@@ -122,14 +122,6 @@
                                         <a href="@Url.Action("Index", "ProductDetail",new { id = @product.id })" class="new-mark-box">
                                             @(product.discount > 0 ? "sale" : "")
                                         </a>
-                                        <div class="overlay-content">
-                                            <ul>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
-                                                <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
-                                            </ul>
-                                        </div>
                                     </div>
                                     <div class="product-info">
                                         <div class="customar-comments-box">
