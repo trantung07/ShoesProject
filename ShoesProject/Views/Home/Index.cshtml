@@ -70,14 +70,14 @@
                                                 <div class="product-image">
                                                     <a href="@Url.Action("Index", "ProductDetail",new { id = @p.id })" style="height: 263px"><img src="~/Admin/Content/ProductImages/@p.id/@p.imagesFeature" alt="product-image" height="100%" /></a>
                                                     <a href="#" class="new-mark-box">new</a>
-                                                    <div class="overlay-content">
+                                                    @*<div class="overlay-content">
                                                         <ul>
                                                             <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
-                                                            <li><a href="@Url.Action("AddCart","MyCart", new { id = @p.id })" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
+                                                            <li><a href="@Url.Action("AddCart","MyCart", new { id = @p.id , colorId = 1, sizeId = 1 })" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
                                                             <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
                                                             <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
                                                         </ul>
-                                                    </div>
+                                                    </div>*@
                                                 </div>
                                                 <div class="product-info">
                                                     <div class="customar-comments-box">
@@ -123,14 +123,14 @@
                                                 <div class="product-image">
                                                     <a href="@Url.Action("Index", "ProductDetail",new { id = @p2.id })" style="height: 263px"><img src="~/Admin/Content/ProductImages/@p2.id/@p2.imagesFeature" alt="product-image" height="100%" /></a>
                                                     <a href="#" class="new-mark-box">new</a>
-                                                    <div class="overlay-content">
+                                                    @*<div class="overlay-content">
                                                         <ul>
                                                             <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
-                                                            <li><a href="@Url.Action("AddCart","MyCart", new { id = @p2.id })" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
+                                                            <li><a href="@Url.Action("AddCart","MyCart", new { id = @p2.id , colorId = 1, sizeId = 1})" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
                                                             <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
                                                             <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
                                                         </ul>
-                                                    </div>
+                                                    </div>*@
                                                 </div>
                                                 <div class="product-info">
                                                     <div class="customar-comments-box">
@@ -190,16 +190,16 @@
                             <div class="item">
                                 <div class="single-product-item">
                                     <div class="product-image">
-                                        <a href="@Url.Action("Index", "ProductDetail")"><img src="~/Admin/Content/ProductImages/@p3.id/@p3.imagesFeature" alt="product-image" /></a>
+                                        <a href="@Url.Action("Index", "ProductDetail",new { id = @p3.id })" style="height: 263px"><img src="~/Admin/Content/ProductImages/@p3.id/@p3.imagesFeature" alt="product-image" height="100%" /></a>
                                         <a href="#" class="new-mark-box">new</a>
-                                        <div class="overlay-content">
+                                        @*<div class="overlay-content">
                                             <ul>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
                                             </ul>
-                                        </div>
+                                        </div>*@
                                     </div>
                                     <div class="product-info">
                                         <div class="customar-comments-box">
@@ -245,14 +245,14 @@
                                     <div class="product-image">
                                         <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/3.jpg" alt="product-image" /></a>
                                         <a href="#" class="new-mark-box">new</a>
-                                        <div class="overlay-content">
+                                        @*<div class="overlay-content">
                                             <ul>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
                                             </ul>
-                                        </div>
+                                        </div>*@
                                     </div>
                                     <div class="product-info">
                                         <div class="customar-comments-box">
@@ -281,14 +281,14 @@
                                     <div class="product-image">
                                         <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/1.jpg" alt="product-image" /></a>
                                         <a href="#" class="new-mark-box">sale!</a>
-                                        <div class="overlay-content">
+                                        @*<div class="overlay-content">
                                             <ul>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
                                             </ul>
-                                        </div>
+                                        </div>*@
                                     </div>
                                     <div class="product-info">
                                         <div class="customar-comments-box">
@@ -318,14 +318,14 @@
                                     <div class="product-image">
                                         <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/9.jpg" alt="product-image" /></a>
                                         <a href="#" class="new-mark-box">sale!</a>
-                                        <div class="overlay-content">
+                                        @*<div class="overlay-content">
                                             <ul>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
                                             </ul>
-                                        </div>
+                                        </div>*@
                                     </div>
                                     <div class="product-info">
                                         <div class="customar-comments-box">
@@ -355,14 +355,14 @@
                                     <div class="product-image">
                                         <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/5.jpg" alt="product-image" /></a>
                                         <a href="#" class="new-mark-box">new</a>
-                                        <div class="overlay-content">
+                                        @*<div class="overlay-content">
                                             <ul>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
                                             </ul>
-                                        </div>
+                                        </div>*@
                                     </div>
                                     <div class="product-info">
                                         <div class="customar-comments-box">
@@ -391,14 +391,14 @@
                                     <div class="product-image">
                                         <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/12.jpg" alt="product-image" /></a>
                                         <a href="#" class="new-mark-box">new</a>
-                                        <div class="overlay-content">
+                                        @*<div class="overlay-content">
                                             <ul>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
                                             </ul>
-                                        </div>
+                                        </div>*@
                                     </div>
                                     <div class="product-info">
                                         <div class="customar-comments-box">
@@ -428,14 +428,14 @@
                                     <div class="product-image">
                                         <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/13.jpg" alt="product-image" /></a>
                                         <a href="#" class="new-mark-box">new</a>
-                                        <div class="overlay-content">
+                                        @*<div class="overlay-content">
                                             <ul>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
                                             </ul>
-                                        </div>
+                                        </div>*@
                                     </div>
                                     <div class="product-info">
                                         <div class="customar-comments-box">
@@ -464,14 +464,14 @@
                                     <div class="product-image">
                                         <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/7.jpg" alt="product-image" /></a>
                                         <a href="#" class="new-mark-box">new</a>
-                                        <div class="overlay-content">
+                                        @*<div class="overlay-content">
                                             <ul>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
                                             </ul>
-                                        </div>
+                                        </div>*@
                                     </div>
                                     <div class="product-info">
                                         <div class="customar-comments-box">
@@ -501,14 +501,14 @@
                                     <div class="product-image">
                                         <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/11.jpg" alt="product-image" /></a>
                                         <a href="#" class="new-mark-box">new</a>
-                                        <div class="overlay-content">
+                                        @*<div class="overlay-content">
                                             <ul>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
                                             </ul>
-                                        </div>
+                                        </div>*@
                                     </div>
                                     <div class="product-info">
                                         <div class="customar-comments-box">
@@ -537,14 +537,14 @@
                                     <div class="product-image">
                                         <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/10.jpg" alt="product-image" /></a>
                                         <a href="#" class="new-mark-box">new</a>
-                                        <div class="overlay-content">
+                                        @*<div class="overlay-content">
                                             <ul>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
                                             </ul>
-                                        </div>
+                                        </div>*@
                                     </div>
                                     <div class="product-info">
                                         <div class="customar-comments-box">
@@ -573,14 +573,14 @@
                                     <div class="product-image">
                                         <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/2.jpg" alt="product-image" /></a>
                                         <a href="#" class="new-mark-box">new</a>
-                                        <div class="overlay-content">
+                                        @*<div class="overlay-content">
                                             <ul>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
                                             </ul>
-                                        </div>
+                                        </div>*@
                                     </div>
                                     <div class="product-info">
                                         <div class="customar-comments-box">
@@ -609,14 +609,14 @@
                                     <div class="product-image">
                                         <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/4.jpg" alt="product-image" /></a>
                                         <a href="#" class="new-mark-box">new</a>
-                                        <div class="overlay-content">
+                                        @*<div class="overlay-content">
                                             <ul>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
                                             </ul>
-                                        </div>
+                                        </div>*@
                                     </div>
                                     <div class="product-info">
                                         <div class="customar-comments-box">
@@ -645,14 +645,14 @@
                                     <div class="product-image">
                                         <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/6.jpg" alt="product-image" /></a>
                                         <a href="#" class="new-mark-box">new</a>
-                                        <div class="overlay-content">
+                                        @*<div class="overlay-content">
                                             <ul>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
                                             </ul>
-                                        </div>
+                                        </div>*@
                                     </div>
                                     <div class="product-info">
                                         <div class="customar-comments-box">
@@ -682,14 +682,14 @@
                                     <div class="product-image">
                                         <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/8.jpg" alt="product-image" /></a>
                                         <a href="#" class="new-mark-box">new</a>
-                                        <div class="overlay-content">
+                                        @*<div class="overlay-content">
                                             <ul>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
                                             </ul>
-                                        </div>
+                                        </div>*@
                                     </div>
                                     <div class="product-info">
                                         <div class="customar-comments-box">
@@ -724,14 +724,14 @@
                                     <div class="product-image">
                                         <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/9.jpg" alt="product-image" /></a>
                                         <a href="#" class="new-mark-box">sale!</a>
-                                        <div class="overlay-content">
+                                        @*<div class="overlay-content">
                                             <ul>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
                                             </ul>
-                                        </div>
+                                        </div>*@
                                     </div>
                                     <div class="product-info">
                                         <div class="customar-comments-box">
@@ -761,14 +761,14 @@
                                     <div class="product-image">
                                         <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/5.jpg" alt="product-image" /></a>
                                         <a href="#" class="new-mark-box">new</a>
-                                        <div class="overlay-content">
+                                        @*<div class="overlay-content">
                                             <ul>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
                                             </ul>
-                                        </div>
+                                        </div>*@
                                     </div>
                                     <div class="product-info">
                                         <div class="customar-comments-box">
@@ -797,14 +797,14 @@
                                     <div class="product-image">
                                         <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/1.jpg" alt="product-image" /></a>
                                         <a href="#" class="new-mark-box">sale!</a>
-                                        <div class="overlay-content">
+                                        @*<div class="overlay-content">
                                             <ul>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
                                             </ul>
-                                        </div>
+                                        </div>*@
                                     </div>
                                     <div class="product-info">
                                         <div class="customar-comments-box">
@@ -834,14 +834,14 @@
                                     <div class="product-image">
                                         <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/2.jpg" alt="product-image" /></a>
                                         <a href="#" class="new-mark-box">new</a>
-                                        <div class="overlay-content">
+                                        @*<div class="overlay-content">
                                             <ul>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
                                             </ul>
-                                        </div>
+                                        </div>*@
                                     </div>
                                     <div class="product-info">
                                         <div class="customar-comments-box">
@@ -870,14 +870,14 @@
                                     <div class="product-image">
                                         <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/3.jpg" alt="product-image" /></a>
                                         <a href="#" class="new-mark-box">new</a>
-                                        <div class="overlay-content">
+                                        @*<div class="overlay-content">
                                             <ul>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
                                             </ul>
-                                        </div>
+                                        </div>*@
                                     </div>
                                     <div class="product-info">
                                         <div class="customar-comments-box">
@@ -906,14 +906,14 @@
                                     <div class="product-image">
                                         <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/12.jpg" alt="product-image" /></a>
                                         <a href="#" class="new-mark-box">new</a>
-                                        <div class="overlay-content">
+                                        @*<div class="overlay-content">
                                             <ul>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
                                             </ul>
-                                        </div>
+                                        </div>*@
                                     </div>
                                     <div class="product-info">
                                         <div class="customar-comments-box">
@@ -943,14 +943,14 @@
                                     <div class="product-image">
                                         <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/4.jpg" alt="product-image" /></a>
                                         <a href="#" class="new-mark-box">new</a>
-                                        <div class="overlay-content">
+                                        @*<div class="overlay-content">
                                             <ul>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
                                             </ul>
-                                        </div>
+                                        </div>*@
                                     </div>
                                     <div class="product-info">
                                         <div class="customar-comments-box">
@@ -979,14 +979,14 @@
                                     <div class="product-image">
                                         <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/13.jpg" alt="product-image" /></a>
                                         <a href="#" class="new-mark-box">new</a>
-                                        <div class="overlay-content">
+                                        @*<div class="overlay-content">
                                             <ul>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
                                             </ul>
-                                        </div>
+                                        </div>*@
                                     </div>
                                     <div class="product-info">
                                         <div class="customar-comments-box">
@@ -1015,14 +1015,14 @@
                                     <div class="product-image">
                                         <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/7.jpg" alt="product-image" /></a>
                                         <a href="#" class="new-mark-box">new</a>
-                                        <div class="overlay-content">
+                                        @*<div class="overlay-content">
                                             <ul>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
                                             </ul>
-                                        </div>
+                                        </div>*@
                                     </div>
                                     <div class="product-info">
                                         <div class="customar-comments-box">
@@ -1052,14 +1052,14 @@
                                     <div class="product-image">
                                         <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/6.jpg" alt="product-image" /></a>
                                         <a href="#" class="new-mark-box">new</a>
-                                        <div class="overlay-content">
+                                        @*<div class="overlay-content">
                                             <ul>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
                                             </ul>
-                                        </div>
+                                        </div>*@
                                     </div>
                                     <div class="product-info">
                                         <div class="customar-comments-box">
@@ -1089,14 +1089,14 @@
                                     <div class="product-image">
                                         <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/10.jpg" alt="product-image" /></a>
                                         <a href="#" class="new-mark-box">new</a>
-                                        <div class="overlay-content">
+                                        @*<div class="overlay-content">
                                             <ul>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
                                             </ul>
-                                        </div>
+                                        </div>*@
                                     </div>
                                     <div class="product-info">
                                         <div class="customar-comments-box">
@@ -1125,14 +1125,14 @@
                                     <div class="product-image">
                                         <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/11.jpg" alt="product-image" /></a>
                                         <a href="#" class="new-mark-box">new</a>
-                                        <div class="overlay-content">
+                                        @*<div class="overlay-content">
                                             <ul>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
                                             </ul>
-                                        </div>
+                                        </div>*@
                                     </div>
                                     <div class="product-info">
                                         <div class="customar-comments-box">
@@ -1161,14 +1161,14 @@
                                     <div class="product-image">
                                         <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/8.jpg" alt="product-image" /></a>
                                         <a href="#" class="new-mark-box">new</a>
-                                        <div class="overlay-content">
+                                        @*<div class="overlay-content">
                                             <ul>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
                                             </ul>
-                                        </div>
+                                        </div>*@
                                     </div>
                                     <div class="product-info">
                                         <div class="customar-comments-box">
@@ -1203,14 +1203,14 @@
                                     <div class="product-image">
                                         <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/5.jpg" alt="product-image" /></a>
                                         <a href="#" class="new-mark-box">new</a>
-                                        <div class="overlay-content">
+                                        @*<div class="overlay-content">
                                             <ul>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
                                             </ul>
-                                        </div>
+                                        </div>*@
                                     </div>
                                     <div class="product-info">
                                         <div class="customar-comments-box">
@@ -1239,14 +1239,14 @@
                                     <div class="product-image">
                                         <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/3.jpg" alt="product-image" /></a>
                                         <a href="#" class="new-mark-box">new</a>
-                                        <div class="overlay-content">
+                                        @*<div class="overlay-content">
                                             <ul>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
                                             </ul>
-                                        </div>
+                                        </div>*@
                                     </div>
                                     <div class="product-info">
                                         <div class="customar-comments-box">
@@ -1275,14 +1275,14 @@
                                     <div class="product-image">
                                         <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/7.jpg" alt="product-image" /></a>
                                         <a href="#" class="new-mark-box">new</a>
-                                        <div class="overlay-content">
+                                        @*<div class="overlay-content">
                                             <ul>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
                                             </ul>
-                                        </div>
+                                        </div>*@
                                     </div>
                                     <div class="product-info">
                                         <div class="customar-comments-box">
@@ -1312,14 +1312,14 @@
                                     <div class="product-image">
                                         <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/6.jpg" alt="product-image" /></a>
                                         <a href="#" class="new-mark-box">new</a>
-                                        <div class="overlay-content">
+                                        @*<div class="overlay-content">
                                             <ul>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
                                             </ul>
-                                        </div>
+                                        </div>*@
                                     </div>
                                     <div class="product-info">
                                         <div class="customar-comments-box">
@@ -1349,14 +1349,14 @@
                                     <div class="product-image">
                                         <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/13.jpg" alt="product-image" /></a>
                                         <a href="#" class="new-mark-box">new</a>
-                                        <div class="overlay-content">
+                                        @*<div class="overlay-content">
                                             <ul>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
                                             </ul>
-                                        </div>
+                                        </div>*@
                                     </div>
                                     <div class="product-info">
                                         <div class="customar-comments-box">
@@ -1385,14 +1385,14 @@
                                     <div class="product-image">
                                         <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/9.jpg" alt="product-image" /></a>
                                         <a href="#" class="new-mark-box">sale!</a>
-                                        <div class="overlay-content">
+                                        @*<div class="overlay-content">
                                             <ul>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
                                             </ul>
-                                        </div>
+                                        </div>*@
                                     </div>
                                     <div class="product-info">
                                         <div class="customar-comments-box">
@@ -1422,14 +1422,14 @@
                                     <div class="product-image">
                                         <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/1.jpg" alt="product-image" /></a>
                                         <a href="#" class="new-mark-box">sale!</a>
-                                        <div class="overlay-content">
+                                        @*<div class="overlay-content">
                                             <ul>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
                                             </ul>
-                                        </div>
+                                        </div>*@
                                     </div>
                                     <div class="product-info">
                                         <div class="customar-comments-box">
@@ -1459,14 +1459,14 @@
                                     <div class="product-image">
                                         <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/10.jpg" alt="product-image" /></a>
                                         <a href="#" class="new-mark-box">new</a>
-                                        <div class="overlay-content">
+                                        @*<div class="overlay-content">
                                             <ul>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
                                             </ul>
-                                        </div>
+                                        </div>*@
                                     </div>
                                     <div class="product-info">
                                         <div class="customar-comments-box">
@@ -1495,14 +1495,14 @@
                                     <div class="product-image">
                                         <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/2.jpg" alt="product-image" /></a>
                                         <a href="#" class="new-mark-box">new</a>
-                                        <div class="overlay-content">
+                                        @*<div class="overlay-content">
                                             <ul>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
                                             </ul>
-                                        </div>
+                                        </div>*@
                                     </div>
                                     <div class="product-info">
                                         <div class="customar-comments-box">
@@ -1531,14 +1531,14 @@
                                     <div class="product-image">
                                         <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/12.jpg" alt="product-image" /></a>
                                         <a href="#" class="new-mark-box">new</a>
-                                        <div class="overlay-content">
+                                        @*<div class="overlay-content">
                                             <ul>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
                                             </ul>
-                                        </div>
+                                        </div>*@
                                     </div>
                                     <div class="product-info">
                                         <div class="customar-comments-box">
@@ -1568,14 +1568,14 @@
                                     <div class="product-image">
                                         <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/4.jpg" alt="product-image" /></a>
                                         <a href="#" class="new-mark-box">new</a>
-                                        <div class="overlay-content">
+                                        @*<div class="overlay-content">
                                             <ul>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
                                             </ul>
-                                        </div>
+                                        </div>*@
                                     </div>
                                     <div class="product-info">
                                         <div class="customar-comments-box">
@@ -1604,14 +1604,14 @@
                                     <div class="product-image">
                                         <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/11.jpg" alt="product-image" /></a>
                                         <a href="#" class="new-mark-box">new</a>
-                                        <div class="overlay-content">
+                                        @*<div class="overlay-content">
                                             <ul>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
                                             </ul>
-                                        </div>
+                                        </div>*@
                                     </div>
                                     <div class="product-info">
                                         <div class="customar-comments-box">
@@ -1640,14 +1640,14 @@
                                     <div class="product-image">
                                         <a href="@Url.Action("Index","ProductDetail")"><img src="~/Content/img/product/sale/8.jpg" alt="product-image" /></a>
                                         <a href="#" class="new-mark-box">new</a>
-                                        <div class="overlay-content">
+                                        @*<div class="overlay-content">
                                             <ul>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
                                             </ul>
-                                        </div>
+                                        </div>*@
                                     </div>
                                     <div class="product-info">
                                         <div class="customar-comments-box">
@@ -1711,16 +1711,16 @@
                             <div class="item">
                                 <div class="single-product-item">
                                     <div class="product-image">
-                                        <a href="@Url.Action("Index","ProductDetail")"><img src="~/Admin/Content/ProductImages/@p4.id/@p4.imagesFeature" alt="product-image"  /></a>
+                                        <a href="@Url.Action("Index", "ProductDetail",new { id = @p4.id })" style="height: 263px"><img src="~/Admin/Content/ProductImages/@p4.id/@p4.imagesFeature" alt="product-image" height= "99%"/></a>
                                         <a href="#" class="new-mark-box">sale!</a>
-                                        <div class="overlay-content">
+                                        @*<div class="overlay-content">
                                             <ul>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
                                                 <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
                                             </ul>
-                                        </div>
+                                        </div>*@
                                     </div>
                                     <div class="product-info">
                                         <div class="customar-comments-box">
