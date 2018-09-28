@@ -111,7 +111,11 @@
                                 <p class="small-title">Color </p>
                                 @foreach (var color in ViewBag.Color)
                                 {
-                                    <input type="radio" name="colorId" id="colorId" value="@color.ColorId" /><p style="background-color:@color.ColorValue"></p>
+                                    <a class="color-blue">
+                                        <span style="background-color:@color.ColorValue">
+                                        <input type="radio" name="colorId" id="colorId" value="@color.ColorId" style="width:100%    " />
+                                        </span>
+                                    </a>
                                 }
                             </div>
                             <div class="single-product-add-cart">
