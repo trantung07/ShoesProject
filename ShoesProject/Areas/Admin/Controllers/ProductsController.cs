@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using ShoesProjectModels.Model;
 using FineUploader;
 using System.IO;
+using System.Diagnostics;
 
 namespace ShoesProject.Areas.Admin.Controllers
 {
@@ -19,7 +20,7 @@ namespace ShoesProject.Areas.Admin.Controllers
         // GET: Admin/Products
         public ActionResult Index()
         {
-            var products = db.Products.Include(p => p.Brand).Include(p => p.Category);
+            var products = db.Products.Where(x => x.ProductStatus == true).Include(p => p.Brand).Include(p => p.Category);
             return View(products.ToList());
         }
 
@@ -54,6 +55,7 @@ namespace ShoesProject.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                product.ProductStatus = true;
                 db.Products.Add(product);
                 db.SaveChanges();
                 return product.ProductId;
@@ -61,6 +63,19 @@ namespace ShoesProject.Areas.Admin.Controllers
             return 0;
         }
 
+        public ActionResult SetProperties(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Product product = db.Products.Find(id);
+            if (product == null)
+            {
+                return HttpNotFound();
+            }
+            return View(product);
+        }
         // GET: Admin/Products/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -82,18 +97,18 @@ namespace ShoesProject.Areas.Admin.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProductId,ProductName,CategoryId,Instock,BrandId,ProductPrice,ProductDescription,ProductDiscount,ProductFeatureImage, ProductStatus")] Product product)
+        public void Edit(int ProductId,string ProductName,int CategoryId,int Instock,int BrandId,int ProductPrice,string ProductDescription,int ProductDiscount)
         {
-            if (ModelState.IsValid)
-            {
-                db.Entry(product).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.BrandId = new SelectList(db.Brands, "BrandId", "BrandName", product.BrandId);
-            ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "CategoryName", product.CategoryId);
-            return View(product);
+            Product p = db.Products.SingleOrDefault(x => x.ProductId == ProductId);
+            p.ProductName = ProductName;
+            p.CategoryId = CategoryId;
+            p.Instock = Instock;
+            p.BrandId = BrandId;
+            p.ProductPrice = p.ProductPrice;
+            p.ProductDescription = ProductDescription;
+            p.ProductDiscount = ProductDiscount;
+            db.Entry(p).State = EntityState.Modified;
+            db.SaveChanges();
         }
 
         // GET: Admin/Products/Delete/5
@@ -117,10 +132,33 @@ namespace ShoesProject.Areas.Admin.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Product product = db.Products.Find(id);
-            db.Products.Remove(product);
+            product.ProductStatus = false;
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+        [HttpPost]
+        public FineUploaderResult UpdateFeatureImage(FineUpload upload, int ProductId)
+        {
+            try
+            {
+                Product p = db.Products.SingleOrDefault(x => x.ProductId == ProductId);
+                var currentFileName = p.ProductFeatureImage;
+                p.ProductFeatureImage = upload.Filename;
+                db.Entry(p).State = EntityState.Modified;
+                db.SaveChanges();
+                var dir = Server.MapPath("../Content/ProductImages/" + p.ProductId + "/");
+                var filePath = Path.Combine(dir, upload.Filename);
+                upload.SaveAs(filePath);
+                var currentFilePath = Path.Combine(dir, currentFileName);
+                System.IO.File.Delete(currentFilePath);
+                return new FineUploaderResult(true, new { FilePath = filePath });
+            }
+            catch (Exception ex)
+            {
+                return new FineUploaderResult(false, error: ex.Message);
+            }
+        }
+
         [HttpPost]
         public FineUploaderResult CreateProductImages(FineUpload upload, int ProductId)
         {
@@ -168,9 +206,68 @@ namespace ShoesProject.Areas.Admin.Controllers
 
         public JsonResult GetProductsByName(string name, int page)
         {
-            var products = db.Products.Where(x => x.ProductName.ToLower().Contains(name.ToLower())).Select(x => new { ProductName = x.ProductName, ProductId = x.ProductId, ProductFeatureImage = x.ProductFeatureImage  });
+            var products = db.Products.Where(x => x.ProductName.ToLower().Contains(name.ToLower())).Select(x => new { ProductName = x.ProductName, ProductId = x.ProductId, ProductFeatureImage = x.ProductFeatureImage,
+                BrandName = x.Brand.BrandName, CategoryName = x.Category.CategoryName, InStock = x.Instock, 
+                ProductPrice = x.ProductPrice, ProductDescription = x.ProductDescription, ProductDiscount = x.ProductDiscount
+            });
             var pagedProducts = products.OrderByDescending(x => x.ProductName).Skip(10*(page-1)).Take(10);
             return Json(new { products= pagedProducts, page = 1, count= products.Count()}, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult GetAllProducts(int page)
+        {
+            var products = db.Products.Where(x => x.ProductStatus == true).Select(x => new { ProductName = x.ProductName, ProductId = x.ProductId, ProductFeatureImage = x.ProductFeatureImage,
+                BrandName = x.Brand.BrandName, CategoryName = x.Category.CategoryName,
+                InStock = x.Instock, ProductPrice = x.ProductPrice, ProductDescription = x.ProductDescription,
+                ProductDiscount = x.ProductDiscount });
+            var pagedProducts = products.OrderByDescending(x => x.ProductName).Skip(10 * (page - 1)).Take(10);
+            return Json(new { products = pagedProducts, page = page, count = products.Count() }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public string UpdateSizeState(int SizeId, int ProductId)
+        {
+            var msg = "";
+            var p = db.Products.SingleOrDefault(x => x.ProductId == ProductId);
+            var s = db.Sizes.SingleOrDefault(x => x.SizeId == SizeId);
+            if (p == null || s == null)
+            {
+                return "<div class='alert alert-danger'>400 Bad Request</div>";
+            }
+            if (p.Sizes.Any(x => x.SizeId == s.SizeId))
+            {
+                p.Sizes.Remove(s);
+                msg = "<div class='alert alert-danger'>Sizes Removed!</div>";
+            }
+            else
+            {
+                p.Sizes.Add(s);
+                msg = "<div class='alert alert-success'>Sizes Added!</div>";
+            }
+            db.SaveChanges();
+            return msg;
+        }
+        [HttpPost]
+        public string UpdateColorState(int ColorId, int ProductId)
+        {
+            var msg = "";
+            var p = db.Products.SingleOrDefault(x => x.ProductId == ProductId);
+            var s = db.Colors.SingleOrDefault(x => x.ColorId == ColorId);
+            if (p == null || s == null)
+            {
+                return "<div class='alert alert-danger'>400 Bad Request</div>";
+            }
+            if (p.Colors.Any(x => x.ColorId == s.ColorId))
+            {
+                p.Colors.Remove(s);
+                msg = "<div class='alert alert-danger'>Colors Removed!</div>";
+            }
+            else
+            {
+                p.Colors.Add(s);
+                msg = "<div class='alert alert-success'>Colors Added!</div>";
+            }
+            db.SaveChanges();
+            return msg;
         }
         protected override void Dispose(bool disposing)
         {

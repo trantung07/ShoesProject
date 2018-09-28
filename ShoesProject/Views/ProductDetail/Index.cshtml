@@ -66,7 +66,7 @@
                         <div class="single-product-condition">
                             @if (Model.ProductDiscount > 0)
                             {
-                                <p>Sale: <span>@Model.ProductDiscount</span></p>
+                                <p>Sale: <span>@Model.ProductDiscount %</span></p>
                                 <p>Old price: <span  class="old-price">@String.Format("{0:0,0 vnđ}", Model.ProductPrice)</span></p>
                             }
                         </div>
