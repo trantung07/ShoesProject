@@ -18,7 +18,8 @@ namespace ShoesProject.Areas.Admin.Controllers
         // GET: Admin/Sizes
         public ActionResult Index()
         {
-            return View(db.Sizes.ToList());
+            var enabledSizes = db.Sizes.Where(s => s.SizeStatus ?? false);
+            return View(enabledSizes.ToList());
         }
 
         // GET: Admin/Sizes/Details/5
@@ -94,7 +95,8 @@ namespace ShoesProject.Areas.Admin.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Size size = db.Sizes.Find(id);
-            db.Sizes.Remove(size);
+            //db.Sizes.Remove(size);
+            size.SizeStatus = false;
             db.SaveChanges();
             return RedirectToAction("Index");
         }

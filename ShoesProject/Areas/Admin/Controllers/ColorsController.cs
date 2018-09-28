@@ -19,7 +19,8 @@ namespace ShoesProject.Areas.Admin.Controllers
         // GET: Admin/Colors
         public ActionResult Index()
         {
-            return View(db.Colors.ToList());
+            var enabledColors = db.Colors.Where(c => c.ColorStatus ?? false);
+            return View(enabledColors.ToList());
         }
 
         // GET: Admin/Colors/Details/5
@@ -113,7 +114,8 @@ namespace ShoesProject.Areas.Admin.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Color color = db.Colors.Find(id);
-            db.Colors.Remove(color);
+            //db.Colors.Remove(color);
+            color.ColorStatus = false;
             db.SaveChanges();
             return RedirectToAction("Index");
         }
