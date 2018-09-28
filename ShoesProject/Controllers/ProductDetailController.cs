@@ -21,7 +21,7 @@ namespace ShoesProject.Controllers
                            from s in p.Sizes
                            where p.ProductId == id
                            && s.SizeStatus == true
-                           select s.SizeValue;
+                           select s;
 
             var Color = from p in db.Products
                             from c in p.Colors

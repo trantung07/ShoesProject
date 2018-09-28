@@ -118,8 +118,8 @@
                             <li class="gategory-product-list col-lg-3 col-md-4 col-sm-6 col-xs-12">
                                 <div class="single-product-item">
                                     <div class="product-image">
-                                        <a href="single-product.html" style="height:200px; width:200px"><img src="~/Admin/Content/ProductImages/@product.id/@product.imagesFeature" alt="product-image" height="100%" /></a>
-                                        <a href="single-product.html" class="new-mark-box">
+                                        <a href="@Url.Action("Index", "ProductDetail",new { id = @product.id })" style="height:200px; width:200px"><img src="~/Admin/Content/ProductImages/@product.id/@product.imagesFeature" alt="product-image" height="100%" /></a>
+                                        <a href="@Url.Action("Index", "ProductDetail",new { id = @product.id })" class="new-mark-box">
                                             @(product.discount > 0 ? "sale" : "")
                                         </a>
                                         <div class="overlay-content">
