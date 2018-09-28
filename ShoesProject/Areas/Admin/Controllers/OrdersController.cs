@@ -18,7 +18,8 @@ namespace ShoesProject.Areas.Admin.Controllers
         public ActionResult Index()
         {
             var orders = db.Orders.Include(o => o.User).Include(o => o.Voucher);
-            return View(orders.ToList());
+            var enabledOrders = orders.Where(order => order.OrderStatus ?? false);
+            return View(enabledOrders.ToList());
         }
 
         public ActionResult OrdersDetail(int? id)
@@ -124,7 +125,8 @@ namespace ShoesProject.Areas.Admin.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Order order = db.Orders.Find(id);
-            db.Orders.Remove(order);
+            //db.Orders.Remove(order);
+            order.OrderStatus = false;
             db.SaveChanges();
             return RedirectToAction("Index");
         }
