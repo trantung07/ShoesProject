@@ -169,8 +169,10 @@
     <Compile Include="Areas\Admin\Controllers\SetPermissonController.cs" />
     <Compile Include="Areas\Admin\Controllers\SizesController.cs" />
     <Compile Include="Areas\Admin\Models\AuthorizeBusiness.cs" />
+    <Compile Include="Areas\Admin\Models\ColorViewModel.cs" />
     <Compile Include="Areas\Admin\Models\ImageViewModel.cs" />
     <Compile Include="Areas\Admin\Models\PermissonViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\SizeViewModel.cs" />
     <Compile Include="Areas\Admin\Util\ReflectionController.cs" />
     <Compile Include="Areas\Admin\Util\Utility.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -702,6 +704,7 @@
     <Content Include="Areas\Admin\Views\Products\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Products\Index.cshtml" />
     <Content Include="Areas\Admin\Views\SetPermisson\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\SetProperties.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

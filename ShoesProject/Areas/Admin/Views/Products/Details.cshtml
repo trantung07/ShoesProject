@@ -72,12 +72,37 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ProductFeatureImage)
+            <a class="sofancy" href="@Url.Content("~/Admin/Content/ProductImages/" + Model.ProductId + "/" + Model.ProductFeatureImage)"><img style="max-width: 200px" class="img-responsive img-thumbnail" src="@Url.Content("~/Admin/Content/ProductImages/" + Model.ProductId + "/" + Model.ProductFeatureImage)" alt="Alternate Text" /></a>
         </dd>
+        <dt>
+            Images
+        </dt>
 
+        <dd>
+            <div id="imgList" class="row">
+            </div>
+        </dd>
     </dl>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.ProductId }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+@section Scripts{
+<script>
+    $(document).ready(function () {
+        $.when($.ajax({
+                url: '@Url.Action("GetProductImages", "Products")',
+                data: {
+                    ProductId: @Model.ProductId,
+                }
+        })).then(function (imgs) {
+            imgs.forEach(function (img, index) {
+                $('#imgList').append('<div class="col-md-3"><a class="sofancy" href="@Url.Content("~/Admin/Content/ProductImages/" + Model.ProductId + "/")' + img.Image + '"><img style="max-width: 200px" class="img-responsive img-thumbnail" src="@Url.Content("~/Admin/Content/ProductImages/" + Model.ProductId + "/")' + img.Image + '" alt="Alternate Text" /></a></div>');
+            });
+            $('a.sofancy').fancybox();
+        });
+
+    })
+</script>
+}

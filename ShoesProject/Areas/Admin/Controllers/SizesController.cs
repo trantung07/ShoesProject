@@ -54,6 +54,22 @@ namespace ShoesProject.Areas.Admin.Controllers
             return View(s);
 
         }
+
+        public JsonResult getProductSizes(int ProductId)
+        {
+            var productSizes = (from p in db.Products
+                                 from c in p.Sizes
+                                 where p.ProductId == ProductId && c.SizeStatus == true
+                                 select new SizeViewModel { SizeId = c.SizeId, SizeValue = c.SizeValue, IsPresent = true }).ToList();
+            var allSizes = from c in db.Sizes select new SizeViewModel { SizeId = c.SizeId, SizeValue = c.SizeValue, IsPresent = false };
+            var productSizesId = productSizes.Select(x => x.SizeId);
+            foreach (var item in allSizes)
+            {
+                if (!productSizesId.Contains(item.SizeId)) productSizes.Add(item);
+            }
+            return Json(productSizes, JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult Edit(int id)
         {
             var size = db.Sizes.Find(id);

@@ -1,0 +1,94 @@
+﻿@model ShoesProjectModels.Model.Product
+
+@{
+    ViewBag.Title = "SetProperties";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>SetProperties</h2>
+<div id="message"></div>
+<div class="row">
+    <div class="col-md-6">
+        <h3>Colors</h3>
+        <ul id="listColor"></ul>
+    </div>
+    <div class="col-md-6">
+        <h3>Sizes</h3>
+        <ul id="listSize"></ul>
+    </div>
+</div>
+@section Scripts{
+<script>
+      $(document).ready(function () {
+            fetchAllColors();
+            fetchAllSizes();
+        })
+        function fetchAllColors() {
+            $.ajax({
+                url: '@Url.Action("getProductColors", "Colors")',
+                data: {
+                    ProductId: @Model.ProductId
+                },
+                method: "post",
+                success: function (data) {
+                    renderColors(data);
+                }
+            })
+        }
+        function fetchAllSizes() {
+            $.ajax({
+                url: '@Url.Action("getProductSizes", "Sizes")',
+                data: {
+                    ProductId: @Model.ProductId
+                },
+                method: "post",
+                success: function (data) {
+                    console.log(data);
+                    renderSizes(data);
+                }
+            })
+        }
+        function renderSizes(listSizes) {
+            $('#listSizeGranted').html("");
+            listSizes.forEach(function(item){
+                item.IsPresent ?
+                    $('#listSize').append("<li><label><input type='checkbox' checked value='' onchange='updateProductSizeState(" + item.SizeId + ",@Model.ProductId" + ")'/>" + item.SizeValue + "</label></li>")
+                    : $('#listSize').append("<li><label><input type='checkbox' value='' onchange='updateProductSizeState(" + item.SizeId + ",@Model.ProductId" + ")'/>" + item.SizeValue + "</label></li>");
+            });
+    }
+    function renderColors(listColors) {
+         $('#listSizeGranted').html("");
+            listColors.forEach(function(item){
+                item.IsPresent ?
+                    $('#listColor').append("<li><label><input type='checkbox' checked value='' onchange='updateProductColorState(" + item.ColorId + ",@Model.ProductId" + ")'/>" + "<span style='margin-left:10px;display:inline-block;width: 12px; height: 12px; background-color:#" + item.ColorCode +"'></span>" + item.ColorValue + "</label></li>")
+                    : $('#listColor').append("<li><label><input type='checkbox' value='' onchange='updateProductColorState(" + item.ColorId + ",@Model.ProductId" + ")'/>" + "<span style='margin-left:10px;display:inline-block;width: 12px; height: 12px; background-color:#" + item.ColorCode +"'></span>"+ item.ColorValue + "</label></li>");
+            });
+    }
+    function updateProductSizeState(SizeId,ProductId) {
+        $.ajax({
+            url: '@Url.Action("UpdateSizeState", "Products")',
+            data: {
+                SizeId,
+                ProductId
+            },
+            method: "post",
+            success: function (msg) {
+                $('#message').html(msg);
+            }
+        })
+    }
+    function updateProductColorState(ColorId,ProductId) {
+        $.ajax({
+            url: '@Url.Action("UpdateColorState", "Products")',
+            data: {
+                ColorId,
+                ProductId
+            },
+            method: "post",
+            success: function (msg) {
+                $('#message').html(msg);
+            }
+        })
+    }
+</script>
+}
