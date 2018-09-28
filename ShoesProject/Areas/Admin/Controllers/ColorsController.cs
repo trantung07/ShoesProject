@@ -19,7 +19,8 @@ namespace ShoesProject.Areas.Admin.Controllers
         // GET: Admin/Colors
         public ActionResult Index()
         {
-            return View(db.Colors.ToList());
+            var enabledColors = db.Colors.Where(c => c.ColorStatus ?? false);
+            return View(enabledColors.ToList());
         }
 
         // GET: Admin/Colors/Details/5
@@ -113,11 +114,25 @@ namespace ShoesProject.Areas.Admin.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Color color = db.Colors.Find(id);
-            db.Colors.Remove(color);
+            //db.Colors.Remove(color);
+            color.ColorStatus = false;
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
+        public JsonResult getProductColors(int ProductId)
+        {           
+            var productColors = (from p in db.Products
+                                from c in p.Colors
+                                where p.ProductId == ProductId && c.ColorStatus == true
+                                select new ColorViewModel { ColorId = c.ColorId, ColorCode = c.ColorCode, ColorValue = c.ColorValue, isPresent = true }).ToList();
+            var allColors = from c in db.Colors select new ColorViewModel { ColorId = c.ColorId, ColorCode = c.ColorCode, ColorValue = c.ColorValue, isPresent = false };
+            var productColorsId = productColors.Select(x => x.ColorId);
+            foreach (var item in allColors)
+            {
+                if (!productColorsId.Contains(item.ColorId)) productColors.Add(item);
+            }
+            return Json(productColors, JsonRequestBehavior.AllowGet);
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

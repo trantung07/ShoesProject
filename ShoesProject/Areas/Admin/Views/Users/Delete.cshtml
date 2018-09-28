@@ -1,4 +1,4 @@
-﻿@model ShoesProjectModels.Model.Color
+﻿@model ShoesProjectModels.Model.User
 
 @{
     ViewBag.Title = "Delete";
@@ -9,31 +9,39 @@
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>Color</h4>
+    <h4>User</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.ColorValue)
+            @Html.DisplayNameFor(model => model.UserName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ColorValue)
+            @Html.DisplayFor(model => model.UserName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ColorCode)
+            @Html.DisplayNameFor(model => model.Password)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ColorCode)
+            @Html.DisplayFor(model => model.Password)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ColorStatus)
+            @Html.DisplayNameFor(model => model.Email)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ColorStatus)
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserStatus)
         </dd>
 
     </dl>

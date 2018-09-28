@@ -67,6 +67,7 @@
     </div>
 </script>
 
+
 <style>
     #trigger-upload {
         color: white;
@@ -239,7 +240,7 @@
         $.when($('#fine-uploader-manual-trigger-1').fineUploader('uploadStoredFiles')).then(function () {
             return $.when($('#fine-uploader-manual-trigger-2').fineUploader('uploadStoredFiles'));
         }).then(function () {
-            
+            alert("Upload sucessfully")
         });
     }
 </script>    

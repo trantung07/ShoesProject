@@ -24,10 +24,12 @@ namespace ShoesProjectModels.Model
 
         public int CategoryId { get; set; }
 
+        [Range(1, Int32.MaxValue)]
         public int Instock { get; set; }
 
         public int BrandId { get; set; }
 
+        [Range(1, Int32.MaxValue)]
         public int ProductPrice { get; set; }
 
         [Column(TypeName = "ntext")]
@@ -35,6 +37,7 @@ namespace ShoesProjectModels.Model
 
         public bool? ProductStatus { get; set; }
 
+        [Range(1, 100)]
         public int? ProductDiscount { get; set; }
 
         [Column(TypeName = "text")]

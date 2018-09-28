@@ -56,9 +56,6 @@
                             <th>
                                 @Html.DisplayNameFor(model => model.ProductFeatureImage)
                             </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.ProductStatus)
-                            </th>
                         </tr>
                     </thead>
                     <tbody id="productTable">
@@ -84,15 +81,16 @@
                                 @Html.DisplayFor(modelItem => item.ProductDescription)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.ProductDiscount)
+                                @Html.DisplayFor(modelItem => item.ProductDiscount)%
                             </td>
                             <td>
-                                <img src="@Url.Content("~/Admin/Content/ProductImages/" + item.ProductId + "/" + item.ProductFeatureImage)" class="img-responsive" alt="Responsive image">
+                                <img style="max-width: 200px" src="@Url.Content("~/Admin/Content/ProductImages/" + item.ProductId + "/" + item.ProductFeatureImage)" class="img-responsive" alt="Responsive image">
                             </td>
                             <td>
                                 @Html.ActionLink("Edit", "Edit", new { id = item.ProductId }) |
                                 @Html.ActionLink("Details", "Details", new { id = item.ProductId }) |
-                                @Html.ActionLink("Delete", "Delete", new { id = item.ProductId })
+                                @Html.ActionLink("Delete", "Delete", new { id = item.ProductId })|
+                                @Html.ActionLink("Set Properties", "SetProperties", new { id = item.ProductId })
                             </td>
                         </tr>
                         }
@@ -127,7 +125,36 @@
         currentPage = page;
         clearTimeout(timeout);
         timeout = setTimeout(function () {
-            $.ajax({
+            console.log($('#searchField').val());
+            if ($('#searchField').val() == '') {
+                $.ajax({
+                    url: '@Url.Action("GetAllProducts", "Products")',
+                    method: "get",
+                    data: {
+                        page: currentPage
+                    },
+                    success: function (data) {
+                        console.log(data)
+                        $('#productTable').html('');
+                        data.products.forEach(function (item) {
+                            var renderString = "<tr>" +
+                                "<td>" + item.ProductName + "</td>" +
+                                "<td>" + item.BrandName + "</td>" +
+                                "<td>" + item.CategoryName + "</td>" +
+                                "<td>" + item.InStock + "</td>" +
+                                "<td>" + item.ProductPrice + "</td>" +
+                                "<td>" + item.ProductDescription + "</td>" +
+                                "<td>" + item.ProductDiscount + "</td>" +
+                                '<td><img style="max-width: 200px" src="@Url.Content("~/Admin/Content/ProductImages/")' + item.ProductId + '/' + item.ProductFeatureImage + '" class="img-responsive" alt="Responsive image"></td>' +
+                                '<td><a href="/Admin/Products/Edit/' + item.ProductId + '">Edit</a> | <a href="/Admin/Products/Details/' + item.ProductId + '">Details</a> |<a href="/Admin/Products/Delete/' + item.ProductId + '">Delete</a>| <a href="/Admin/Products/SetProperties/' + item.ProductId +'">SetProperties</a> </td>'+              
+                                "</tr>";
+                            $('#productTable').html(renderString);
+                            renderSearchPagination(data.count);
+                        })
+                    }
+                })
+            } else {
+                $.ajax({
                 url: '@Url.Action("GetProductsByName", "Products")',
                 method: "get",
                 data: {
@@ -138,14 +165,23 @@
                     $('#productTable').html('');
                     data.products.forEach(function (item) {
                         var renderString = "<tr>" +
-                            "<td>" + item.ProductName + "</td>" +
-                            "</tr>";
-
+                                "<td>" + item.ProductName + "</td>" +
+                                "<td>" + item.BrandName + "</td>" +
+                                "<td>" + item.CategoryName + "</td>" +
+                                "<td>" + item.InStock + "</td>" +
+                                "<td>" + item.ProductPrice + "</td>" +
+                                "<td>" + item.ProductDescription + "</td>" +
+                                "<td>" + item.ProductDiscount + "</td>" +
+                                '<td><img style="max-width: 200px" src="@Url.Content("~/Admin/Content/ProductImages/")' + item.ProductId + '/' + item.ProductFeatureImage + '" class="img-responsive" alt="Responsive image"></td>' +
+                            '<td><a href="/Admin/Products/Edit/' + item.ProductId + '">Edit</a> | <a href="/Admin/Products/Details/' + item.ProductId + '">Details</a> |<a href="/Admin/Products/Delete/' + item.ProductId + '">Delete</a> |<a href="/Admin/Products/SetProperties/' + item.ProductId +'">SetProperties</a> </td>'+              
+                                "</tr>";
                         $('#productTable').append(renderString);
                         renderSearchPagination(data.count);
                     })
                 }
             })
+            }
+            
         }, 500);
         function renderSearchPagination(count) {
             $('#pagination').html('');
@@ -161,7 +197,7 @@
                     searchProducts(i);
                 });
             }
-        }
+        }     
     }
 </script>    
 }
