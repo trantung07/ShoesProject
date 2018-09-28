@@ -10,7 +10,7 @@
             <div class="bstore-breadcrumb">
                 <a href="@Url.Action("Index","Home")">HOME<span><i class="fa fa-caret-right"></i> </span> </a>
                 <span> <i class="fa fa-caret-right"> </i> </span>
-                <a href="@Url.Action("Index","ListProduct")"> women </a>
+                <a href="#"> Detail </a>
                 <span> @Model.ProductName </span>
             </div>
             <!-- BSTORE-BREADCRUMB END -->
@@ -54,19 +54,11 @@
                 <div class="col-lg-7 col-md-7 col-sm-8 col-xs-12">
                     <div class="single-product-descirption">
                         <h2>@Model.ProductName</h2>
-                        <div class="single-product-review-box">
 
-                            <div class="read-reviews">
-                                <a href="#">Read reviews (1)</a>
-                            </div>
-                            <div class="write-review">
-                                <a href="#">Write a review</a>
-                            </div>
-                        </div>
                         <div class="single-product-condition">
                             @if (Model.ProductDiscount > 0)
                             {
-                                <p>Sale: <span>@Model.ProductDiscount</span></p>
+                                <p>Sale: <span>@Model.ProductDiscount %</span></p>
                                 <p>Old price: <span class="old-price">@String.Format("{0:0,0 vnđ}", Model.ProductPrice)</span></p>
                             }
                         </div>
@@ -88,14 +80,6 @@
                                 <p>@Model.Instock Items<span>In stock</span></p>
                             </div>
                         </div>
-                        <div class="single-product-quantity">
-                            <p class="small-title">Quantity</p>
-                            <div class="cart-quantity">
-                                <div class="cart-plus-minus-button single-qty-btn">
-                                    <input class="cart-plus-minus sing-pro-qty" type="text" name="qtybutton" value="0">
-                                </div>
-                            </div>
-                        </div>
                         <form method="get" action="~/MyCart/AddCart">
                             @Html.Hidden("id", Model.ProductId)
                             <div class="single-product-size">
@@ -113,7 +97,7 @@
                                 {
                                     <a class="color-blue">
                                         <span style="background-color:@color.ColorValue">
-                                        <input type="radio" name="colorId" id="colorId" value="@color.ColorId" style="width:100%    " />
+                                        <input type="radio" name="colorId" id="colorId" value="@color.ColorId" style="width:100%" checked/>
                                         </span>
                                     </a>
                                 }

@@ -16,9 +16,9 @@ namespace ShoesProject.Controllers
         {
             int LIMIT = 10;
             var lstNewProducts =
-                   //from co in db.Colors
-                   //from s in db.Sizes
                    from p in db.Products
+                   from co in p.Colors
+                   from s in p.Sizes
                    join c in db.Categories on p.CategoryId equals c.CategoryId
                    join b in db.Brands on p.BrandId equals b.BrandId
                    where p.ProductStatus == true
@@ -39,9 +39,9 @@ namespace ShoesProject.Controllers
                    };
             ViewBag.lstNewProducts = lstNewProducts.Take(LIMIT);
             var lstSaleProduct =
-                   //from co in db.Colors
-                   //from s in db.Sizes
                    from p in db.Products
+                   from co in p.Colors
+                   from s in p.Sizes
                    join c in db.Categories on p.CategoryId equals c.CategoryId
                    join b in db.Brands on p.BrandId equals b.BrandId
                    where p.ProductStatus == true
@@ -63,9 +63,9 @@ namespace ShoesProject.Controllers
                    };
             ViewBag.lstSaleProduct = lstSaleProduct.Take(LIMIT);
             var lstFeatureProduct =
-                   //from co in db.Colors
-                   //from s in db.Sizes
                    from p in db.Products
+                   from co in p.Colors
+                   from s in p.Sizes
                    join c in db.Categories on p.CategoryId equals c.CategoryId
                    join b in db.Brands on p.BrandId equals b.BrandId
                    where p.ProductStatus == true
@@ -83,16 +83,22 @@ namespace ShoesProject.Controllers
                        imagesFeature = p.ProductFeatureImage,
                        status = p.ProductStatus
                    };
-            ViewBag.lstFeatureProduct = lstFeatureProduct.OrderBy(r => Guid.NewGuid()).Take(LIMIT);
+            ViewBag.lstFeatureProduct = lstFeatureProduct.OrderBy(r => Guid.NewGuid()).Take(15);
+            ViewBag.lstFeatureProductFirst = lstFeatureProduct.OrderBy(r => Guid.NewGuid()).Take(1).FirstOrDefault();
+            var lstBannerProduct =
+                   from p in db.Products
+                   select p;
+            ViewBag.lstBannerProduct = lstBannerProduct.OrderBy(r => Guid.NewGuid()).Take(2);
 
-            var lstCategory =
-                from c in db.Categories
-                where c.CategoryStatus == true
-                && c.CategoryParentId == 0
-                select c;
-
+            var lstBrand =
+                from b in db.Brands
+                select b;
+            ViewBag.lstBrand = lstBrand;
+            ViewBag.lstBrandFirst = lstBrand.Take(1).FirstOrDefault();
             var lstBestSale =
                 from p in db.Products
+                from co in p.Colors
+                from s in p.Sizes
                 join c in db.Categories on p.CategoryId equals c.CategoryId
                 join b in db.Brands on p.BrandId equals b.BrandId
                 where p.ProductStatus == true
@@ -112,8 +118,7 @@ namespace ShoesProject.Controllers
                     status = p.ProductStatus
                 };
             ViewBag.lstBestSale = lstBestSale.Take(LIMIT);
-
-            return View(lstCategory);
+            return View();
         }
         public ActionResult About()
         {
