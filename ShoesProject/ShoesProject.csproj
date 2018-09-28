@@ -178,8 +178,10 @@
     <Compile Include="Areas\Admin\Controllers\SizesController.cs" />
     <Compile Include="Areas\Admin\Controllers\VouchersController.cs" />
     <Compile Include="Areas\Admin\Models\AuthorizeBusiness.cs" />
+    <Compile Include="Areas\Admin\Models\ColorViewModel.cs" />
     <Compile Include="Areas\Admin\Models\ImageViewModel.cs" />
     <Compile Include="Areas\Admin\Models\PermissonViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\SizeViewModel.cs" />
     <Compile Include="Areas\Admin\Util\ReflectionController.cs" />
     <Compile Include="Areas\Admin\Util\Utility.cs" />
     <Compile Include="Common\MailHelper.cs" />
@@ -765,6 +767,7 @@
     <Content Include="Areas\Admin\Views\Products\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Products\Index.cshtml" />
     <Content Include="Areas\Admin\Views\SetPermisson\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\SetProperties.cshtml" />
     <Content Include="Areas\Admin\Views\Vouchers\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Vouchers\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Vouchers\Details.cshtml" />
