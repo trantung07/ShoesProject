@@ -141,24 +141,30 @@ namespace ShoesProject.Areas.Admin.Controllers
             }
 
         }
-
+        [HttpPost]
+        public void UpdateBrand(int BrandId, string BrandName)
+        {
+            Brand b = db.Brands.FirstOrDefault(x => x.BrandId == BrandId);
+            var currentFileName = b.BrandImage;
+            b.BrandName = BrandName;
+            db.SaveChanges();
+        }
         [HttpPost]
         public FineUploaderResult UpdateBrandWithImage(FineUpload upload, int BrandId, string BrandName)
         {
             try
             {
-                Brand b = db.Brands.FirstOrDefault(x => x.BrandId == BrandId);
-                var currentFileName = b.BrandImage;
-                b.BrandName = BrandName;
-                b.BrandImage = upload.Filename;
-                db.Entry(b).State = EntityState.Modified;
-                db.SaveChanges();
-                var dir = Server.MapPath("../Content/brandImages/" + b.BrandId + "/");             
-                var filePath = Path.Combine(dir, upload.Filename);
-                upload.SaveAs(filePath);
-                var currentFilePath = Path.Combine(dir, currentFileName);
-                System.IO.File.Delete(currentFilePath);
-                return new FineUploaderResult(true, new { FilePath = filePath });
+                    Brand b = db.Brands.FirstOrDefault(x => x.BrandId == BrandId);
+                    var currentFileName = b.BrandImage;
+                    b.BrandName = BrandName;
+                    b.BrandImage = upload.Filename;
+                    db.SaveChanges();
+                    var dir = Server.MapPath("../Content/brandImages/" + b.BrandId + "/");
+                    var filePath = Path.Combine(dir, upload.Filename);
+                    upload.SaveAs(filePath);
+                    var currentFilePath = Path.Combine(dir, currentFileName);
+                    System.IO.File.Delete(currentFilePath);
+                    return new FineUploaderResult(true, new { FilePath = filePath });
             }
             catch (Exception ex)
             {
