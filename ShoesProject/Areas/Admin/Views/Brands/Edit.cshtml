@@ -103,9 +103,9 @@
         @Html.HiddenFor(model => model.BrandId)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.BrandName, htmlAttributes: new { @class = "control-label col-md-2", @id="BrandName" })
+            @Html.LabelFor(model => model.BrandName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.BrandName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.BrandName, new { htmlAttributes = new { @class = "form-control", @id = "BrandName" } })
                 @Html.ValidationMessageFor(model => model.BrandName, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -121,9 +121,24 @@
 @section Scripts
 {
     <script>
+        allowUpload = false;
         function uploadNow() {
-            $('#fine-uploader-manual-trigger').fineUploader('setParams', { BrandId: @Model.BrandId , BrandName: $('BrandName').val() }, 0);
-            $('#fine-uploader-manual-trigger').fineUploader('uploadStoredFiles');
+            if (allowUpload) {
+                $('#fine-uploader-manual-trigger').fineUploader('setParams', { BrandId: @Model.BrandId , BrandName: $('#BrandName').val() }, 0);
+                $('#fine-uploader-manual-trigger').fineUploader('uploadStoredFiles');
+            }
+            else {
+                $.ajax({
+                    url: '@Url.Action("UpdateBrand", "Brands")',
+                    data: {
+                        BrandId: @Model.BrandId , BrandName: $('#BrandName').val()
+                    },
+                    success: function () {
+                        alert("ok");
+                    },
+                    method: "post"
+                })
+            }
         }
         function removeCurrentImage() {
             $('#fine-uploader-manual-trigger').fineUploader('reset');
@@ -137,7 +152,10 @@
                 autoUpload: false,
                 validation: {
                     itemLimit: 1
-                }
+                },
+                debug: true
+            }).on("submitted", function () {
+                allowUpload = true;
             });
             $('#fine-uploader-manual-trigger').fineUploader('addInitialFiles', [{
                 name: '@Model.BrandImage',
