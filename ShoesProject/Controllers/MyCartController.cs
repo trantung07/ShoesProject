@@ -194,7 +194,7 @@ namespace ShoesProject.Controllers
                 if (Session["Cart"] != null)
                 {
                     int u = (int)Session["UserId"];
-                    var voucher = db.Vouchers.SingleOrDefault(x => x.Code.Equals(code));
+                    var voucher = db.Vouchers.SingleOrDefault(x => x.Code.Equals(code) && x.Remain > 0 && (x.ExpiredAt >= DateTime.Now || x.ExpiredAt == null));
                     User us = db.Users.SingleOrDefault(x => x.UserId == u);
                     if (voucher != null)
                     {

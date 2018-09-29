@@ -55,7 +55,6 @@ namespace ShoesProject.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                product.ProductStatus = true;
                 db.Products.Add(product);
                 db.SaveChanges();
                 return product.ProductId;
