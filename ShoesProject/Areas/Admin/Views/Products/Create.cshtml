@@ -222,6 +222,7 @@
         })
     }
     function getFormData() {
+        console.log($('#ProductStatus').val());
         return {
             ProductName: $('#ProductName').val(),
             CategoryId: $('#CategoryId').val(),
@@ -230,7 +231,9 @@
             ProductPrice: $('#ProductPrice').val(),
             ProductDescription: $('#ProductDescription').val(),
             ProductDiscount: $('#ProductDiscount').val(),
-            ProductFeatureImage: $('#fine-uploader-manual-trigger-1').fineUploader('getName', 0)
+            ProductStatus: $('#ProductStatus').val(),
+            ProductFeatureImage: $('#fine-uploader-manual-trigger-1').fineUploader('getName', 0),
+            
         }
     }
     function uploadImages(id) { 

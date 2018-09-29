@@ -13,11 +13,12 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.AdminPassword)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.AdminUsername)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AdminPassword)
+        </th>
+
         <th>
             @Html.DisplayNameFor(model => model.AdminIsDeleted)
         </th>
@@ -33,11 +34,12 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.AdminPassword)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.AdminUsername)
         </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AdminPassword)
+        </td>
+
         <td>
             @Html.DisplayFor(modelItem => item.AdminIsDeleted)
         </td>
@@ -51,7 +53,7 @@
             @Html.ActionLink("Edit", "Edit", new { id = item.AdminId }) |
             @Html.ActionLink("Details", "Details", new { id = item.AdminId }) |
             @Html.ActionLink("Delete", "Delete", new { id = item.AdminId }) |
-            @Html.ActionLink("Set Permisson", "Index", "SetPermisson", new { id = item.AdminId },null)
+            @Html.ActionLink("Set Permisson", "Index", "SetPermisson", new { id = item.AdminId }, null)
         </td>
     </tr>
 }
